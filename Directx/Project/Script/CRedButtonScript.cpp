@@ -22,7 +22,7 @@ CRedButtonScript::CRedButtonScript()
 	m_pRedButTex = CResMgr::GetInst()->Load<CTexture>(L"redbutton", L"texture\\object\\8.bmp");
 	m_pMtrl = CResMgr::GetInst()->FindRes<CMaterial>(L"Std2DMtrl");
 
-	m_pMtrl->SetData(SHADER_PARAM::TEX_1, m_pRedButTex.Get());
+	m_pMtrl->SetData(SHADER_PARAM::TEX_0, m_pRedButTex.Get());
 }
 
 CRedButtonScript::~CRedButtonScript()
@@ -38,9 +38,9 @@ void CRedButtonScript::awake()
 void CRedButtonScript::update()
 {
 	//for debug
-	int temp = 100;
+	//int temp = 100;
 
-	m_pMtrl->SetData(SHADER_PARAM::INT_1, &temp);
+	//m_pMtrl->SetData(SHADER_PARAM::INT_0, &temp);
 }
 
 void CRedButtonScript::OnCollisionEnter(CGameObject* _pOther)

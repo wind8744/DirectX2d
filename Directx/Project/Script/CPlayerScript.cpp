@@ -57,10 +57,10 @@ void CPlayerScript::update()
 		vRot.z += fDT * XM_PI;
 	}
 
-	if (KEY_TAP(KEY_TYPE::SPACE))
-	{
-		CreateMissile();
-	}
+	//if (KEY_TAP(KEY_TYPE::SPACE))
+	//{
+	//	CreateMissile();
+	//}
 
 
 	Transform()->SetLocalPos(vPos);

@@ -13,9 +13,13 @@ CPushStoneScript::CPushStoneScript()
 	: CScript((int)SCRIPT_TYPE::PUSHSTONESCRIPT)
 	, m_bIsPushed(false)
 {
-	m_pStoneTex = CResMgr::GetInst()->Load<CTexture>(L"pushstone", L"texture\\object\\17.jpg");
+	m_pStoneTex = CResMgr::GetInst()->FindRes<CTexture>(L"pushstone");
+	
+	if(nullptr == m_pStoneTex)
+		m_pStoneTex = CResMgr::GetInst()->Load<CTexture>(L"pushstone", L"texture\\object\\17.jpg");
+	
 	m_pMtrl = CResMgr::GetInst()->FindRes<CMaterial>(L"Std2DMtrl");
-	m_pMtrl->SetData(SHADER_PARAM::TEX_2, m_pStoneTex.Get());
+	m_pMtrl->SetData(SHADER_PARAM::TEX_0, m_pStoneTex.Get());
 }
 
 CPushStoneScript::~CPushStoneScript()
@@ -30,8 +34,8 @@ void CPushStoneScript::awake()
 void CPushStoneScript::update()
 {
 	//for debug
-	int temp = 101;
-	m_pMtrl->SetData(SHADER_PARAM::INT_1, &temp);
+	//int temp = 101;
+	//m_pMtrl->SetData(SHADER_PARAM::INT_0, &temp);
 }
 
 void CPushStoneScript::OnCollisionEnter(CGameObject* _pOther)

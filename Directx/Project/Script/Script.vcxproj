@@ -183,9 +183,11 @@ call CodeGen.exe</Command>
     <ClInclude Include="CMapScript.h" />
     <ClInclude Include="CMissileScript.h" />
     <ClInclude Include="CMonsterScript.h" />
-    <ClInclude Include="CObjEvent.h" />
+    <ClInclude Include="CObjEventScript.h" />
     <ClInclude Include="CPlayerScript.h" />
+    <ClInclude Include="CRedButtonScript.h" />
     <ClInclude Include="CScriptMgr.h" />
+    <ClInclude Include="CStoneDoorScript.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
@@ -194,9 +196,11 @@ call CodeGen.exe</Command>
     <ClCompile Include="CMapScript.cpp" />
     <ClCompile Include="CMissileScript.cpp" />
     <ClCompile Include="CMonsterScript.cpp" />
-    <ClCompile Include="CObjEvent.cpp" />
+    <ClCompile Include="CObjEventScript.cpp" />
     <ClCompile Include="CPlayerScript.cpp" />
+    <ClCompile Include="CRedButtonScript.cpp" />
     <ClCompile Include="CScriptMgr.cpp" />
+    <ClCompile Include="CStoneDoorScript.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

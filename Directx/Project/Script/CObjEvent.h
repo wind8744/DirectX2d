@@ -1,5 +1,5 @@
 #pragma once
-#include <Engine\CScript.h>
+#include "D:\2dÆ÷Æú\Directx\External\Include\Engine\CScript.h"
 
 
 enum class EventType {
@@ -22,7 +22,7 @@ public:
     void SetTirrger(bool _Trigger) { b_TriggerOn = b_TriggerOn; }
 public:
     CLONE(CObjEvent);
-    CObjEvent();
+    CObjEvent(EventType _Type);
     ~CObjEvent();
 
 };

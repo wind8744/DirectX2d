@@ -32,8 +32,8 @@ void CObjEvent::update()
 
 
 
-CObjEvent::CObjEvent() : CScript((int)SCRIPT_TYPE::OBJEVENT),
-E_EvnetType(EventType::TriggerOn),
+CObjEvent::CObjEvent(EventType _Type) : CScript((int)SCRIPT_TYPE::OBJEVENT),
+E_EvnetType(_Type),
 b_TriggerOn(false)
 {
 	

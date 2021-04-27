@@ -3,7 +3,4 @@ CMapScript
 CMissileScript
 CMonsterScript
 CObjEvent
-CObjEventScript
 CPlayerScript
-CRedButtonScript
-CStoneDoorScript

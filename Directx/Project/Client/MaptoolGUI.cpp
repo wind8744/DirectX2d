@@ -27,7 +27,7 @@ void MaptoolGUI::init()
 		m_TileTex = CResMgr::GetInst()->Load<CTexture>(L"TILE", L"texture\\TIle.bmp");
 
 	m_Map =(CMapScript*)CSceneMgr::GetInst()->GetCurScene()->FindObjectByName(L"Background")->GetScript();
-	
+	;
 	m_x = m_TileTex.Get()->Width() / TileSize_X;
 	m_y = m_TileTex.Get()->Height() / TileSize_Y;
 	m_size = m_Map->GetTileSIze();
@@ -36,7 +36,7 @@ void MaptoolGUI::update()
 {
 	Vec3 Pos = m_Map->GetGameObject()->Transform()->GetLocalPos();
 	Vec3 Scale = m_Map->GetGameObject()->Transform()->GetLocalScale();
-	if (KEY_HOLD(KEY_TYPE::LBTN) || KEY_TAP(KEY_TYPE::LBTN))
+	if (KEY_TAP(KEY_TYPE::LBTN))
 	{
 		POINT _Pos = CKeyMgr::GetInst()->GetPrevMousePos();
 		_Pos.x = _Pos.x - 800;

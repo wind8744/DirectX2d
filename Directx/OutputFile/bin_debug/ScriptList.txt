@@ -1,0 +1,6 @@
+CCameraScript
+CMapScript
+CMissileScript
+CMonsterScript
+CObjEvent
+CPlayerScript

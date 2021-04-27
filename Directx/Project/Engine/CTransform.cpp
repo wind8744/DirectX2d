@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CTransform.h"
 
+#include "CCore.h"
 #include "CDevice.h"
 #include "CConstBuffer.h"
 
@@ -23,6 +24,7 @@ CTransform::~CTransform()
 
 void CTransform::update()
 {
+
 }
 
 void CTransform::finalupdate()

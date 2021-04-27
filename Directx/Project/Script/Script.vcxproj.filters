@@ -23,14 +23,20 @@
       <Filter>ScriptCode</Filter>
     </ClInclude>
     <ClInclude Include="CScriptMgr.h" />
-    <ClInclude Include="CRedButtonScript.h">
-      <Filter>ScriptCode\ObjectScript</Filter>
-    </ClInclude>
     <ClInclude Include="CObjEventScript.h">
       <Filter>ScriptCode\ObjEventScript</Filter>
     </ClInclude>
+    <ClInclude Include="CRedButtonScript.h">
+      <Filter>ScriptCode\ObjectScript\Button</Filter>
+    </ClInclude>
     <ClInclude Include="CStoneDoorScript.h">
-      <Filter>ScriptCode\ObjectScript</Filter>
+      <Filter>ScriptCode\ObjectScript\StoneDoor</Filter>
+    </ClInclude>
+    <ClInclude Include="CPushStoneScript.h">
+      <Filter>ScriptCode\ObjectScript\PushStone</Filter>
+    </ClInclude>
+    <ClInclude Include="CPushSmallStoneScript.h">
+      <Filter>ScriptCode\ObjectScript\PushStone</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -45,6 +51,15 @@
     </Filter>
     <Filter Include="ScriptCode\ObjEventScript">
       <UniqueIdentifier>{66244720-4324-465b-a304-74d5ab818220}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptCode\ObjectScript\Button">
+      <UniqueIdentifier>{6311a4f4-76f2-429d-9ac5-6b2d07bc047a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptCode\ObjectScript\PushStone">
+      <UniqueIdentifier>{8d41792e-6dba-40d0-9053-7c5c4cf559a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptCode\ObjectScript\StoneDoor">
+      <UniqueIdentifier>{a874d686-cb11-4c19-b20c-d95ce4eb8a9c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -67,14 +82,20 @@
       <Filter>ScriptCode</Filter>
     </ClCompile>
     <ClCompile Include="CScriptMgr.cpp" />
-    <ClCompile Include="CRedButtonScript.cpp">
-      <Filter>ScriptCode\ObjectScript</Filter>
-    </ClCompile>
     <ClCompile Include="CObjEventScript.cpp">
       <Filter>ScriptCode\ObjEventScript</Filter>
     </ClCompile>
+    <ClCompile Include="CRedButtonScript.cpp">
+      <Filter>ScriptCode\ObjectScript\Button</Filter>
+    </ClCompile>
     <ClCompile Include="CStoneDoorScript.cpp">
-      <Filter>ScriptCode\ObjectScript</Filter>
+      <Filter>ScriptCode\ObjectScript\StoneDoor</Filter>
+    </ClCompile>
+    <ClCompile Include="CPushStoneScript.cpp">
+      <Filter>ScriptCode\ObjectScript\PushStone</Filter>
+    </ClCompile>
+    <ClCompile Include="CPushSmallStoneScript.cpp">
+      <Filter>ScriptCode\ObjectScript\PushStone</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

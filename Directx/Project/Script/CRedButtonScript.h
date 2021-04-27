@@ -1,18 +1,20 @@
 #pragma once
 #include <Engine\CScript.h>
 
+// obj name : 빨간 버튼
+// desc : 플레이어가 밟으면 특정 조건 (문이 열린다거나) 실행
+
+class CObjEventScript;
+
 class CRedButtonScript :
     public CScript
 {
 private:
-    Ptr<CTexture>       m_pRedButTex;
-    bool                m_bIsPushed;
+    Ptr<CTexture>           m_pRedButTex;           //버튼 tex
+    Ptr<CMaterial>          m_pMtrl;                //material
 
-
-    //int                 m_iData;
-    //float               m_fData;
-    //Vec2                m_v2Data;
-    //Vec4                m_v4Data;
+    CObjEventScript*        m_pEventScript;         //EventScript
+    bool                    m_bIsPushed;            //눌렸는가?
 
 
 public:

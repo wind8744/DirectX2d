@@ -24,6 +24,7 @@
 #include <Script/CStoneDoorScript.h>
 #include <Script\CObjEventScript.h>
 #include <Script\CMapScript.h>
+#include <Script/CPushStoneScript.h>
 #include "CSaveLoadMgr.h"
 
 void CreateSamplePrefab()
@@ -217,18 +218,11 @@ void CreateTestScene()
 	redbutton->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"Std2DMtrl"));
 
 	redbutton->Collider2D()->SetCollider2DType(COLLIDER2D_TYPE::RECT);
-	
-	Ptr<CMaterial> pMtrl = CResMgr::GetInst()->FindRes<CMaterial>(L"Std2DMtrl");
-	Ptr<CTexture> pButTex = CResMgr::GetInst()->Load<CTexture>(L"redbutton", L"texture\\object\\8.bmp");
-	//temp = 1;
-	//pMtrl->SetData(SHADER_PARAM::INT_0, &temp);
-	pMtrl->SetData(SHADER_PARAM::TEX_0, pButTex.Get());
-
 	pCurScene->AddObject(redbutton, 2);
 
 
 	// ===============
-	// stone object
+	// stonedoor object
 	// ===============
 	pObj = new CGameObject;
 	pObj->SetName(L"stonedoor");
@@ -243,20 +237,40 @@ void CreateTestScene()
 	pObj->Transform()->SetLocalScale(Vec3(64, 80, 1.f));
 	pObj->Transform()->SetLocalRot(Vec3(0.f, 0.f, 0.f));
 
-
-
 	pObj->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
 	pObj->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"Std2DMtrl2"));
 
 	pObj->Collider2D()->SetCollider2DType(COLLIDER2D_TYPE::RECT);
 
-	Ptr<CMaterial> pMtrl2 = CResMgr::GetInst()->FindRes<CMaterial>(L"Std2DMtrl2");
-	Ptr<CTexture> pStoneTex = CResMgr::GetInst()->Load<CTexture>(L"stonedoor", L"texture\\object\\6.jpg");
-	pMtrl2->SetData(SHADER_PARAM::TEX_0, pStoneTex.Get());
 	dynamic_cast<CObjEventScript*>(pObj->GetScript(L"CObjEventScript"))->SetEvnetType(EventType::TriggerOnOff);
 	dynamic_cast<CObjEventScript*>(pObj->GetScript(L"CObjEventScript"))->PushEvnetChild(redbutton);
 
 	pCurScene->AddObject(pObj, 2);
+
+
+	// ===============
+	// push stone object (미는 장애물)
+	// ===============
+	pObj = new CGameObject;
+	pObj->SetName(L"pushstone"); //
+
+	pObj->AddComponent(new CTransform);
+	pObj->AddComponent(new CMeshRender);
+	pObj->AddComponent(new CCollider2D);
+	pObj->AddComponent(new CPushStoneScript); //
+	pObj->AddComponent(new CObjEventScript);
+
+	pObj->Transform()->SetLocalPos(Vec3(0.f, -125.f, 400.f));
+	pObj->Transform()->SetLocalScale(Vec3(64, 64, 1.f));
+	pObj->Transform()->SetLocalRot(Vec3(0.f, 0.f, 0.f));
+
+	pObj->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
+	pObj->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"Std2DMtrl"));
+
+	pObj->Collider2D()->SetCollider2DType(COLLIDER2D_TYPE::RECT);
+
+	pCurScene->AddObject(pObj, 2);
+
 
 
 	

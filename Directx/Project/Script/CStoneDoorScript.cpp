@@ -7,6 +7,7 @@
 
 #include "CRedButtonScript.h"
 #include "CObjEventScript.h"
+
 CStoneDoorScript::CStoneDoorScript()
 	: CScript((int)SCRIPT_TYPE::STONEDOORSCRIPT)
 {
@@ -15,6 +16,11 @@ CStoneDoorScript::CStoneDoorScript()
 	CLayer* pLayer = pCurScene->GetLayer(2);
 	vector<CGameObject*> vecParent = pLayer->GetParentObj();
 	m_pTarScript = vecParent[0]->GetScript();
+
+	Ptr<CTexture> m_pTex = CResMgr::GetInst()->Load<CTexture>(L"stonedoor", L"texture\\object\\6.jpg");
+	Ptr<CMaterial> m_pMtrl = CResMgr::GetInst()->FindRes<CMaterial>(L"Std2DMtrl2");
+	
+	m_pMtrl->SetData(SHADER_PARAM::TEX_0, m_pTex.Get());
 }
 
 CStoneDoorScript::~CStoneDoorScript()
@@ -23,27 +29,27 @@ CStoneDoorScript::~CStoneDoorScript()
 
 void CStoneDoorScript::awake()
 {
+	m_pEventScript = dynamic_cast<CObjEventScript*>(GetGameObject()->GetScript(L"CObjEventScript"));
 }
 
 void CStoneDoorScript::update()
 {
 	/* temp */
 	int a = 1;
+
 	//현재 씬의 버튼 스크립트에서 bool값 받아옴
-	if (GetGameObject()->GetScript(L"CObjEventScript") != nullptr)
+	if (m_pEventScript != nullptr)
 	{
-		if ((dynamic_cast<CObjEventScript*>(GetGameObject()->GetScript(L"CObjEventScript")))->GetTrigger())
+		if (m_pEventScript->GetTrigger())
 		{
 			a = 100;
-			MeshRender()->GetSharedMaterial()->SetData(SHADER_PARAM::INT_1, &a); //쉐이더에 값 전달 
+			MeshRender()->GetSharedMaterial()->SetData(SHADER_PARAM::INT_0, &a); //쉐이더에 값 전달 
 			//100 이면 쉐이더에서 빨간색으로
 		}
 	}
 
-		
-		MeshRender()->GetSharedMaterial()->SetData(SHADER_PARAM::INT_1, &a); //쉐이더에 값 전달
-	
-	//눌린것이 아니면 1을 계속 전달
+	//눌린것이 아니면 1을 계속 전달	
+	MeshRender()->GetSharedMaterial()->SetData(SHADER_PARAM::INT_0, &a); //쉐이더에 값 전달
 }
 
 void CStoneDoorScript::OnCollisionEnter(CGameObject* _pOther)

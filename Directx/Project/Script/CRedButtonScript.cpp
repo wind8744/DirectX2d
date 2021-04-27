@@ -18,6 +18,11 @@ CRedButtonScript::CRedButtonScript()
 	//	m_pRedButTex = CResMgr::GetInst()->Load<CTexture>(L"REDBUTTON", L"texture\\object\\8.jpg");
 	//AddDesc(tDataDesc(SCRIPT_DATA_TYPE::INT, "Int Data", &m_iData));
 	//AddDesc(tDataDesc(SCRIPT_DATA_TYPE::FLOAT, "float Data", &m_fData));
+
+	m_pRedButTex = CResMgr::GetInst()->Load<CTexture>(L"redbutton", L"texture\\object\\8.bmp");
+	m_pMtrl = CResMgr::GetInst()->FindRes<CMaterial>(L"Std2DMtrl");
+
+	m_pMtrl->SetData(SHADER_PARAM::TEX_1, m_pRedButTex.Get());
 }
 
 CRedButtonScript::~CRedButtonScript()
@@ -26,26 +31,31 @@ CRedButtonScript::~CRedButtonScript()
 
 void CRedButtonScript::awake()
 {
+	m_pEventScript = dynamic_cast<CObjEventScript*>(GetGameObject()->GetScript(L"CObjEventScript"));
+
 }
 
 void CRedButtonScript::update()
 {
-	int a = 1;
+	//for debug
+	int temp = 100;
+
+	m_pMtrl->SetData(SHADER_PARAM::INT_1, &temp);
 }
 
 void CRedButtonScript::OnCollisionEnter(CGameObject* _pOther)
 {
-	if (GetGameObject()->GetScript(L"CObjEventScript") != nullptr) {
-		CObjEventScript* Event = dynamic_cast<CObjEventScript*>(GetGameObject()->GetScript(L"CObjEventScript"));
-		Event->SetTrigger(true);
+	if (m_pEventScript != nullptr)
+	{
+		m_pEventScript->SetTrigger(true);
 	}
 }
 
 void CRedButtonScript::OnCollisionExit(CGameObject* _pOther)
 {
-	if (GetGameObject()->GetScript(L"CObjEventScript") != nullptr) {
-		CObjEventScript* Event = dynamic_cast<CObjEventScript*>(GetGameObject()->GetScript(L"CObjEventScript"));
-		Event->SetTrigger(false);
+	if (m_pEventScript != nullptr) 
+	{
+		m_pEventScript->SetTrigger(false);
 	}
 }
 

@@ -7,7 +7,7 @@ class CPlayerScript :
 private:
     Ptr<CPrefab>        m_pMissilePrefab;
     int                 m_iData;
-    float               m_fData;
+    int                 m_fData;
     Vec2                m_v2Data;
     Vec4                m_v4Data;
 

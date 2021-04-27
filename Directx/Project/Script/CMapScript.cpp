@@ -1,11 +1,13 @@
 #include "pch.h"
+
+#include <Engine\extern.h>
+
 #include "CMapScript.h"
 #include <Engine/CTransform.h>
 #include <Engine/CTexture.h>
 #include <Engine/CResMgr.h>
 #include <Engine/CStructuredBuffer.h>
 #include <Engine/CConstBuffer.h>
-
 
 CMapScript::CMapScript():CScript((int)SCRIPT_TYPE::MAPSCRIPT),
 m_tileSize(0),

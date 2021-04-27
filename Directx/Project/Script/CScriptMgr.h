@@ -12,6 +12,8 @@ enum class SCRIPT_TYPE
 	OBJEVENT,
 	OBJEVENTSCRIPT,
 	PLAYERSCRIPT,
+	PUSHSMALLSTONESCRIPT,
+	PUSHSTONESCRIPT,
 	REDBUTTONSCRIPT,
 	STONEDOORSCRIPT,
 	END,
@@ -23,7 +25,6 @@ class CScript;
 
 class CScriptMgr
 {
-	
 public:
 	static void GetScriptInfo(vector<wstring>& _vec);
 	static CScript * GetScript(const wstring& _strScriptName);

@@ -7,6 +7,8 @@
 #include "CMonsterScript.h"
 #include "CObjEventScript.h"
 #include "CPlayerScript.h"
+#include "CPushSmallStoneScript.h"
+#include "CPushStoneScript.h"
 #include "CRedButtonScript.h"
 #include "CStoneDoorScript.h"
 
@@ -18,6 +20,8 @@ void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"CMonsterScript");
 	_vec.push_back(L"CObjEventScript");
 	_vec.push_back(L"CPlayerScript");
+	_vec.push_back(L"CPushSmallStoneScript");
+	_vec.push_back(L"CPushStoneScript");
 	_vec.push_back(L"CRedButtonScript");
 	_vec.push_back(L"CStoneDoorScript");
 }
@@ -36,6 +40,10 @@ CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
 		return new CObjEventScript;
 	if (L"CPlayerScript" == _strScriptName)
 		return new CPlayerScript;
+	if (L"CPushSmallStoneScript" == _strScriptName)
+		return new CPushSmallStoneScript;
+	if (L"CPushStoneScript" == _strScriptName)
+		return new CPushStoneScript;
 	if (L"CRedButtonScript" == _strScriptName)
 		return new CRedButtonScript;
 	if (L"CStoneDoorScript" == _strScriptName)
@@ -59,12 +67,17 @@ CScript * CScriptMgr::GetScript(UINT _iScriptType)
 	case (UINT)SCRIPT_TYPE::MONSTERSCRIPT:
 		return new CMonsterScript;
 		break;
-
 	case (UINT)SCRIPT_TYPE::OBJEVENTSCRIPT:
 		return new CObjEventScript;
 		break;
 	case (UINT)SCRIPT_TYPE::PLAYERSCRIPT:
 		return new CPlayerScript;
+		break;
+	case (UINT)SCRIPT_TYPE::PUSHSMALLSTONESCRIPT:
+		return new CPushSmallStoneScript;
+		break;
+	case (UINT)SCRIPT_TYPE::PUSHSTONESCRIPT:
+		return new CPushStoneScript;
 		break;
 	case (UINT)SCRIPT_TYPE::REDBUTTONSCRIPT:
 		return new CRedButtonScript;
@@ -102,6 +115,14 @@ const wchar_t * CScriptMgr::GetScriptName(CScript * _pScript)
 
 	case SCRIPT_TYPE::PLAYERSCRIPT:
 		return L"CPlayerScript";
+		break;
+
+	case SCRIPT_TYPE::PUSHSMALLSTONESCRIPT:
+		return L"CPushSmallStoneScript";
+		break;
+
+	case SCRIPT_TYPE::PUSHSTONESCRIPT:
+		return L"CPushStoneScript";
 		break;
 
 	case SCRIPT_TYPE::REDBUTTONSCRIPT:

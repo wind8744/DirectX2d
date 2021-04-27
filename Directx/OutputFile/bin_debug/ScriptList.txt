@@ -5,5 +5,7 @@ CMonsterScript
 CObjEvent
 CObjEventScript
 CPlayerScript
+CPushSmallStoneScript
+CPushStoneScript
 CRedButtonScript
 CStoneDoorScript

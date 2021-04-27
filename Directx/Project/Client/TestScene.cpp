@@ -20,6 +20,9 @@
 #include <Script\CPlayerScript.h>
 #include <Script\CMonsterScript.h>
 #include <Script\CMissileScript.h>
+#include <Script/CRedButtonScript.h>
+#include <Script/CStoneDoorScript.h>
+#include <Script\CObjEventScript.h>
 #include <Script\CMapScript.h>
 #include "CSaveLoadMgr.h"
 
@@ -69,12 +72,12 @@ void CreateTestScene()
 	CGameObject* pObj = nullptr;
 
 	// Texture 로딩 테스트
+
 	Ptr<CTexture> pTexture = CResMgr::GetInst()->Load<CTexture>(L"Plane", L"texture\\player.bmp");
 	Ptr<CTexture> pSmokeTex = CResMgr::GetInst()->Load<CTexture>(L"Smoke", L"texture\\smokeparticle.png");
 	Ptr<CTexture> pAnimAtlas = CResMgr::GetInst()->Load<CTexture>(L"Link", L"texture\\link_0.png");
 	Ptr<CTexture> pBackgroundTex = CResMgr::GetInst()->Load<CTexture>(L"Background", L"texture\\Background.png");
-	Ptr<CMaterial> pMtrl = CResMgr::GetInst()->FindRes<CMaterial>(L"Std2DMtrl");
-	pMtrl->SetData(SHADER_PARAM::TEX_0, pTexture.Get());
+
 	int a = 0;
 
 
@@ -194,9 +197,66 @@ void CreateTestScene()
 	pParticleObject->AddComponent(new CParticleSystem);
 	pParticleObject->Transform()->SetLocalPos(Vec3(0.f, 0.f, 500.f));
 	m_pCurScene->AddObject(pParticleObject, 0);*/
+
+	// ===============
+	// Button object
+	// ===============
+	pObj = new CGameObject;
+	pObj->SetName(L"redbutton");
+
+	pObj->AddComponent(new CTransform);
+	pObj->AddComponent(new CMeshRender);
+	pObj->AddComponent(new CCollider2D);
+	pObj->AddComponent(new CRedButtonScript);
+
+	pObj->Transform()->SetLocalPos(Vec3(0.f, 0.f, 400.f));
+	pObj->Transform()->SetLocalScale(Vec3(40.f, 40.f, 1.f));
+	pObj->Transform()->SetLocalRot(Vec3(0.f, 0., 0.f));
+
+	pObj->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
+	pObj->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"Std2DMtrl"));
+
+	pObj->Collider2D()->SetCollider2DType(COLLIDER2D_TYPE::RECT);
+	
+	Ptr<CMaterial> pMtrl = CResMgr::GetInst()->FindRes<CMaterial>(L"Std2DMtrl");
+	Ptr<CTexture> pButTex = CResMgr::GetInst()->Load<CTexture>(L"redbutton", L"texture\\object\\8.bmp");
+	//temp = 1;
+	//pMtrl->SetData(SHADER_PARAM::INT_0, &temp);
+	pMtrl->SetData(SHADER_PARAM::TEX_0, pButTex.Get());
+
+	pCurScene->AddObject(pObj, 2);
+
+
+	// ===============
+	// stone object
+	// ===============
+	pObj = new CGameObject;
+	pObj->SetName(L"stonedoor");
+
+	pObj->AddComponent(new CTransform);
+	pObj->AddComponent(new CMeshRender);
+	pObj->AddComponent(new CCollider2D);
+	pObj->AddComponent(new CStoneDoorScript);
+
+	pObj->Transform()->SetLocalPos(Vec3(127.f, -125.f, 400.f));
+	pObj->Transform()->SetLocalScale(Vec3(64, 80, 1.f));
+	pObj->Transform()->SetLocalRot(Vec3(0.f, 0.f, 0.f));
+
+	pObj->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
+	pObj->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"Std2DMtrl2"));
+
+	pObj->Collider2D()->SetCollider2DType(COLLIDER2D_TYPE::RECT);
+
+	Ptr<CMaterial> pMtrl2 = CResMgr::GetInst()->FindRes<CMaterial>(L"Std2DMtrl2");
+	Ptr<CTexture> pStoneTex = CResMgr::GetInst()->Load<CTexture>(L"stonedoor", L"texture\\object\\6.jpg");
+	pMtrl2->SetData(SHADER_PARAM::TEX_0, pStoneTex.Get());
+
+	pCurScene->AddObject(pObj, 2);
+
+
 	
 	// Collision Check
-	CCollisionMgr::GetInst()->CollisionCheck(0, 1);
+	CCollisionMgr::GetInst()->CollisionCheck(0, 2);
 
 	// Scene Save
 	CSaveLoadMgr::SaveScene(pCurScene, L"scene\\TestScene.scene");

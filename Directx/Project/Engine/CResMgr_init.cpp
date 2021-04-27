@@ -213,9 +213,6 @@ void CResMgr::CreateDefaultShader()
 	AddRes<CGraphicsShader>(L"Collider2DShader", pShader);
 
 
-
-
-
 	pShader = new CGraphicsShader(SHADER_POV::FORWARD);
 
 	pShader->CreateVertexShader(L"shader\\std2d.fx", "VS_TILE");
@@ -247,6 +244,25 @@ void CResMgr::CreateDefaultShader()
 	pShader->SetDSType(DS_TYPE::NO_TEST);
 
 	AddRes<CGraphicsShader>(L"PostEffectShader", pShader);
+
+
+	// ==============
+	// Std2D Shader222222222
+	// ==============
+	pShader = new CGraphicsShader(SHADER_POV::FORWARD);
+	pShader->CreateVertexShader(L"shader\\std2d.fx", "VS_Std2D2");
+	pShader->CreatePixelShader(L"shader\\std2d.fx", "PS_Std2D2");
+
+	// OM
+	pShader->SetBlendType(BLEND_TYPE::ALPHABLEND);
+	//pShader->SetDepthStencilType();
+
+	// Shader Param	
+	pShader->AddShaderParam(SHADER_PARAM::TEX_0, L"Output Texture2");
+
+	AddRes<CGraphicsShader>(L"Std2DShader2", pShader);
+
+
 }
 
 #include "CCopyShaderCS.h"
@@ -307,6 +323,16 @@ void CResMgr::CreateDefaultMaterial()
 	pMtrl->m_bDefault = true;
 	pMtrl->SetShader(FindRes<CGraphicsShader>(L"PostEffectShader"));
 	AddRes<CMaterial>(L"PostEffectMtrl", pMtrl);
+
+	// ===============
+	// std2d material222222
+	// ===============
+	pMtrl = new CMaterial;
+	pMtrl->SetShader(FindRes<CGraphicsShader>(L"Std2DShader2"));
+	pMtrl->m_bDefault = true;
+	AddRes<CMaterial>(L"Std2DMtrl2", pMtrl);
+
+
 }
 
 #include "CGameObject.h"

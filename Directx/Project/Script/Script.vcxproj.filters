@@ -22,10 +22,16 @@
     <ClInclude Include="CMapScript.h">
       <Filter>ScriptCode</Filter>
     </ClInclude>
-    <ClInclude Include="CObjEvent.h">
-      <Filter>ScriptCode</Filter>
-    </ClInclude>
     <ClInclude Include="CScriptMgr.h" />
+    <ClInclude Include="CRedButtonScript.h">
+      <Filter>ScriptCode\ObjectScript</Filter>
+    </ClInclude>
+    <ClInclude Include="CObjEventScript.h">
+      <Filter>ScriptCode\ObjEventScript</Filter>
+    </ClInclude>
+    <ClInclude Include="CStoneDoorScript.h">
+      <Filter>ScriptCode\ObjectScript</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Default">
@@ -33,6 +39,12 @@
     </Filter>
     <Filter Include="ScriptCode">
       <UniqueIdentifier>{1f77e2bc-7650-48f4-8ed5-a35b7b119fd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptCode\ObjectScript">
+      <UniqueIdentifier>{bcb7b891-852d-432a-82f9-ae7e8bea8e0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptCode\ObjEventScript">
+      <UniqueIdentifier>{66244720-4324-465b-a304-74d5ab818220}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -54,9 +66,15 @@
     <ClCompile Include="CMapScript.cpp">
       <Filter>ScriptCode</Filter>
     </ClCompile>
-    <ClCompile Include="CObjEvent.cpp">
-      <Filter>ScriptCode</Filter>
-    </ClCompile>
     <ClCompile Include="CScriptMgr.cpp" />
+    <ClCompile Include="CRedButtonScript.cpp">
+      <Filter>ScriptCode\ObjectScript</Filter>
+    </ClCompile>
+    <ClCompile Include="CObjEventScript.cpp">
+      <Filter>ScriptCode\ObjEventScript</Filter>
+    </ClCompile>
+    <ClCompile Include="CStoneDoorScript.cpp">
+      <Filter>ScriptCode\ObjectScript</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

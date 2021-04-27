@@ -1,3 +1,0 @@
-D:\2d포폴\Directx\External\Library\Engine\struct.cso
-C:\Users\박현아\Desktop\Directx\External\Library\Engine\struct.cso
-C:\Users\박현아\Documents\GitHub\DirectX2d\Directx\External\Library\Engine\struct.cso

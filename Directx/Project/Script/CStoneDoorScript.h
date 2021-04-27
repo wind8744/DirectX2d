@@ -1,6 +1,7 @@
 #pragma once
 #include <Engine\CScript.h>
 
+
 class CStoneDoorScript :
     public CScript
 {

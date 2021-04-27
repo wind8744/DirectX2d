@@ -23,6 +23,7 @@ class CScript;
 
 class CScriptMgr
 {
+	
 public:
 	static void GetScriptInfo(vector<wstring>& _vec);
 	static CScript * GetScript(const wstring& _strScriptName);

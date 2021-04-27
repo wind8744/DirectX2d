@@ -7,6 +7,7 @@
 #include <Engine\CTexture.h>
 
 #include "CMissileScript.h"
+#include "CObjEventScript.h"
 
 CRedButtonScript::CRedButtonScript()
 	: CScript((int)SCRIPT_TYPE::REDBUTTONSCRIPT)
@@ -34,12 +35,18 @@ void CRedButtonScript::update()
 
 void CRedButtonScript::OnCollisionEnter(CGameObject* _pOther)
 {
-	m_bIsPushed = true;
+	if (GetGameObject()->GetScript(L"CObjEventScript") != nullptr) {
+		CObjEventScript* Event = dynamic_cast<CObjEventScript*>(GetGameObject()->GetScript(L"CObjEventScript"));
+		Event->SetTrigger(true);
+	}
 }
 
 void CRedButtonScript::OnCollisionExit(CGameObject* _pOther)
 {
-	m_bIsPushed = false;
+	if (GetGameObject()->GetScript(L"CObjEventScript") != nullptr) {
+		CObjEventScript* Event = dynamic_cast<CObjEventScript*>(GetGameObject()->GetScript(L"CObjEventScript"));
+		Event->SetTrigger(false);
+	}
 }
 
 void CRedButtonScript::SaveToScene(FILE* _pFile)

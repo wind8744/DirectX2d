@@ -6,7 +6,7 @@
 #include <Engine\CGameObject.h>
 
 #include "CRedButtonScript.h"
-
+#include "CObjEventScript.h"
 CStoneDoorScript::CStoneDoorScript()
 	: CScript((int)SCRIPT_TYPE::STONEDOORSCRIPT)
 {
@@ -28,23 +28,21 @@ void CStoneDoorScript::awake()
 void CStoneDoorScript::update()
 {
 	/* temp */
-
-	//현재 씬의 버튼 스크립트에서 bool값 받아옴
-	CRedButtonScript* temp;
-	temp = dynamic_cast<CRedButtonScript*>(m_pTarScript);
-	bool _IsPushed = temp->GetIsPushed();
-
 	int a = 1;
-
-	//버튼이 눌렸으면
-	if(_IsPushed == true)
+	//현재 씬의 버튼 스크립트에서 bool값 받아옴
+	if (GetGameObject()->GetScript(L"CObjEventScript") != nullptr)
 	{
-		a = 100;
-		MeshRender()->GetSharedMaterial()->SetData(SHADER_PARAM::INT_1, &a); //쉐이더에 값 전달 
-		//100 이면 쉐이더에서 빨간색으로
+		if ((dynamic_cast<CObjEventScript*>(GetGameObject()->GetScript(L"CObjEventScript")))->GetTrigger())
+		{
+			a = 100;
+			MeshRender()->GetSharedMaterial()->SetData(SHADER_PARAM::INT_1, &a); //쉐이더에 값 전달 
+			//100 이면 쉐이더에서 빨간색으로
+		}
 	}
+
+		
+		MeshRender()->GetSharedMaterial()->SetData(SHADER_PARAM::INT_1, &a); //쉐이더에 값 전달
 	
-	MeshRender()->GetSharedMaterial()->SetData(SHADER_PARAM::INT_1, &a); //쉐이더에 값 전달
 	//눌린것이 아니면 1을 계속 전달
 }
 

@@ -11,7 +11,7 @@
 #include "CSceneMgr.h"
 #include "CCollisionMgr.h"
 #include "CEventMgr.h"
-
+#include <Script\CScriptMgr.h>
 #include "CConstBuffer.h"
 
 CCore::CCore()
@@ -69,7 +69,7 @@ void CCore::progress()
 	
 	CSceneMgr::GetInst()->progress();
 	CCollisionMgr::GetInst()->update();
-
+	
 	// ======
 	// Render
 	// ======

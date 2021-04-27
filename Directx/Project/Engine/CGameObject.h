@@ -45,6 +45,7 @@ public:
     CComponent* GetComponent(COMPONENT_TYPE _eType) {return m_arrCom[(UINT)_eType];}
     const vector<CScript*>& GetScripts() { return m_vecScript; }
     CScript* GetScript() { if (m_vecScript.empty()) return nullptr; return m_vecScript[0]; }
+    CScript* GetScript(const wstring& _strName);
     CGameObject* GetParent() { return m_pParentObj; }
     const vector<CGameObject*>& GetChild() { return m_vecChild; }
 

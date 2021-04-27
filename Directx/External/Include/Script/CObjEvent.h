@@ -1,5 +1,5 @@
 #pragma once
-#include "D:\2dÆ÷Æú\Directx\External\Include\Engine\CScript.h"
+#include <Engine\CScript.h>
 
 
 enum class EventType {

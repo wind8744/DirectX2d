@@ -9,15 +9,7 @@
   .\Project\Script\CScriptMgr.h
   .\Project\Script\CStoneDoorScript.h
   10개 파일이 복사되었습니다.
-  pch.cpp
-  CCameraScript.cpp
-  CMapScript.cpp
-  CMissileScript.cpp
-  CMonsterScript.cpp
-  CObjEventScript.cpp
-  CPlayerScript.cpp
-  CRedButtonScript.cpp
   CScriptMgr.cpp
-C:\Users\박현아\Documents\GitHub\DirectX2d\Directx\Project\Script\CObjEvent.h(2,10): fatal error C1083: 포함 파일을 열 수 없습니다. 'D:\2d포폴\Directx\External\Include\Engine\CScript.h': No such file or directory
   CStoneDoorScript.cpp
   코드를 생성하고 있습니다...
+  Script.vcxproj -> C:\Users\박현아\Documents\GitHub\DirectX2d\Directx\External\Library\Script\Script_debug.lib

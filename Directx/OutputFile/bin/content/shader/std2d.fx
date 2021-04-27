@@ -287,6 +287,58 @@ float4 PS_TILE(VTX_TILE_OUT _in) : SV_Target
     return vColor;
 }
 
- 
+ // ==========================
+// Std2D Shader22222222222222222222
+// g_tex_1 : Output Texture
+// ==========================
+
+VTX_OUT VS_Std2D2(VTX_INPUT _in)
+{
+    VTX_OUT output = (VTX_OUT) 0.f;
+    
+    float4 vWorldPos = mul(float4(_in.vPos, 1.f), g_matWorld);
+    float4 vViewPos = mul(vWorldPos, g_matView);
+    float4 vProjPos = mul(vViewPos, g_matProj);
+        
+    output.vPosition = vProjPos;
+    output.vColor = _in.vColor;
+    output.vUV = _in.vUV;
+    output.vProjPos = output.vPosition.xy;
+    output.vViewPos = vViewPos.xyz;
+        
+    return output;
+}
+
+float4 PS_Std2D2(VTX_OUT _in) : SV_Target
+{
+    float4 vColor = (float4) 0.f;
+    
+    if (g_Anim2DInfo[0].iAnimUse[0])
+    {
+        float2 AnimUV = float2(g_Anim2DInfo[0].vLeftTop.x + g_Anim2DInfo[0].vStep.x * _in.vUV.x, g_Anim2DInfo[0].vLeftTop.y + g_Anim2DInfo[0].vStep.y * _in.vUV.y);
+        vColor = g_animtex.Sample(g_sam_0, AnimUV);
+    }
+    if (100 == g_int_1)
+    {
+        return float4(1.f, 0.f, 0.f, 1.f);
+    }
+    else
+    {
+        vColor = g_tex_0.Sample(g_sam_0, _in.vUV);
+    }
+     
+    
+    tLightColor LightColor = (tLightColor) 0.f;
+        
+    for (uint i = 0; i < iLight2DCount; ++i)
+    {
+        CalLight2D(LightColor, _in.vViewPos, i);
+    }
+    
+    vColor.rgb = (vColor.rgb * LightColor.vDiff.rgb) + (vColor.rgb * LightColor.vAmb.rgb);
+        
+    return vColor;
+}
+
 #endif
 

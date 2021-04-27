@@ -1,6 +1,6 @@
 ﻿FXC : warning X4717: Effects deprecated for D3DCompiler_47
-D:\2d??��\Directx\Project\Engine\CopyTexture.fx(19,9-35): warning X3203: signed/unsigned mismatch, unsigned assumed
-D:\2d??��\Directx\Project\Engine\CopyTexture.fx(19,40-66): warning X3203: signed/unsigned mismatch, unsigned assumed
+C:\Users\����??Documents\GitHub\DirectX2d\Directx\Project\Engine\CopyTexture.fx(19,9-35): warning X3203: signed/unsigned mismatch, unsigned assumed
+C:\Users\����??Documents\GitHub\DirectX2d\Directx\Project\Engine\CopyTexture.fx(19,40-66): warning X3203: signed/unsigned mismatch, unsigned assumed
   
   //
   // FX Version: fx_5_0
@@ -95,7 +95,7 @@ D:\2d??��\Directx\Project\Engine\CopyTexture.fx(19,40-66): warning X3203: si
   Texture2D g_SrcTex;
   
 FXC : warning X4717: Effects deprecated for D3DCompiler_47
-D:\2d??��\Directx\Project\Engine\func.fx(61,16-61): warning X3206: implicit truncation of vector type
+C:\Users\����??Documents\GitHub\DirectX2d\Directx\Project\Engine\func.fx(61,16-61): warning X3206: implicit truncation of vector type
   
   //
   // FX Version: fx_5_0
@@ -188,7 +188,7 @@ D:\2d??��\Directx\Project\Engine\func.fx(61,16-61): warning X3206: implicit 
   };
   
 FXC : warning X4717: Effects deprecated for D3DCompiler_47
-D:\2d����\Directx\Project\Engine\func.fx(61,16-61): warning X3206: implicit truncation of vector type
+C:\Users\������\Documents\GitHub\DirectX2d\Directx\Project\Engine\func.fx(61,16-61): warning X3206: implicit truncation of vector type
   
   //
   // FX Version: fx_5_0
@@ -375,8 +375,8 @@ FXC : warning X4717: Effects deprecated for D3DCompiler_47
   };
   
 FXC : warning X4717: Effects deprecated for D3DCompiler_47
-D:\2d����\Directx\Project\Engine\func.fx(61,16-61): warning X3206: implicit truncation of vector type
-D:\2d??��\Directx\Project\Engine\std2d.fx(158,11-60): warning X3206: implicit truncation of vector type
+C:\Users\������\Documents\GitHub\DirectX2d\Directx\Project\Engine\func.fx(61,16-61): warning X3206: implicit truncation of vector type
+C:\Users\����??Documents\GitHub\DirectX2d\Directx\Project\Engine\std2d.fx(158,11-60): warning X3206: implicit truncation of vector type
   
   //
   // FX Version: fx_5_0
@@ -473,6 +473,9 @@ D:\2d??��\Directx\Project\Engine\std2d.fx(158,11-60): warning X3206: implici
   
 FXC : warning X4717: Effects deprecated for D3DCompiler_47
   
+  compilation object save succeeded; see C:\Users\박현아\Documents\GitHub\DirectX2d\Directx\External\Library\Engine\struct.cso
+FXC : warning X4717: Effects deprecated for D3DCompiler_47
+  
   //
   // FX Version: fx_5_0
   //
@@ -566,7 +569,7 @@ FXC : warning X4717: Effects deprecated for D3DCompiler_47
   pch.cpp
   CAnimation2D.cpp
   CAnimator2D.cpp
-D:\2d포폴\Directx\Project\Engine\CAnimator2D.cpp(108,36): warning C4267: '초기화 중': 'size_t'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\박현아\Documents\GitHub\DirectX2d\Directx\Project\Engine\CAnimator2D.cpp(108,36): warning C4267: '초기화 중': 'size_t'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   CCamera.cpp
   CCollider2D.cpp
   CCollisionMgr.cpp
@@ -582,13 +585,13 @@ D:\2d포폴\Directx\Project\Engine\CAnimator2D.cpp(108,36): warning C4267: '초�
   CGraphicsShader.cpp
   CInterface.cpp
   CKeyMgr.cpp
-D:\2d포폴\Directx\Project\Engine\CKeyMgr.cpp(123,33): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-D:\2d포폴\Directx\Project\Engine\CKeyMgr.cpp(124,37): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\박현아\Documents\GitHub\DirectX2d\Directx\Project\Engine\CKeyMgr.cpp(123,33): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\박현아\Documents\GitHub\DirectX2d\Directx\Project\Engine\CKeyMgr.cpp(124,37): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   CLayer.cpp
   CLight2D.cpp
   CMaterial.cpp
   코드를 생성하고 있습니다...
-D:\2d포폴\Directx\Project\Engine\CMaterial.cpp(131): warning C4715: 'CMaterial::GetData': 모든 제어 경로에서 값을 반환하지는 않습니다.
+C:\Users\박현아\Documents\GitHub\DirectX2d\Directx\Project\Engine\CMaterial.cpp(131): warning C4715: 'CMaterial::GetData': 모든 제어 경로에서 값을 반환하지는 않습니다.
   컴파일하고 있습니다...
   CMesh.cpp
   CMeshRender.cpp
@@ -609,12 +612,11 @@ D:\2d포폴\Directx\Project\Engine\CMaterial.cpp(131): warning C4715: 'CMaterial
   CTexture.cpp
   CTimeMgr.cpp
   CTransform.cpp
-  Ptr.cpp
+  extern.cpp
   코드를 생성하고 있습니다...
   컴파일하고 있습니다...
-  extern.cpp
   func.cpp
-D:\2d포폴\Directx\Project\Engine\func.cpp(7,24): warning C4267: '초기화 중': 'size_t'에서 'BYTE'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\박현아\Documents\GitHub\DirectX2d\Directx\Project\Engine\func.cpp(7,24): warning C4267: '초기화 중': 'size_t'에서 'BYTE'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\include\xstring(2468,23): warning C4244: '인수': 'wchar_t'에서 'const _Elem'(으)로 변환하면서 데이터가 손실될 수 있습니다.
           with
           [
@@ -640,14 +642,14 @@ C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.2
           [
               _Iter=wchar_t *
           ]
-D:\2d포폴\Directx\Project\Engine\func.cpp(27): message : 컴파일되는 함수 템플릿 인스턴스화 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)'에 대한 참조를 확인하세요.
+C:\Users\박현아\Documents\GitHub\DirectX2d\Directx\Project\Engine\func.cpp(27): message : 컴파일되는 함수 템플릿 인스턴스화 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)'에 대한 참조를 확인하세요.
           with
           [
               _Elem=wchar_t,
               _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
               _Alloc=std::allocator<char>
           ]
-D:\2d포폴\Directx\Project\Engine\func.cpp(27): message : 컴파일되는 함수 템플릿 인스턴스화 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)'에 대한 참조를 확인하세요.
+C:\Users\박현아\Documents\GitHub\DirectX2d\Directx\Project\Engine\func.cpp(27): message : 컴파일되는 함수 템플릿 인스턴스화 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)'에 대한 참조를 확인하세요.
           with
           [
               _Elem=wchar_t,
@@ -679,22 +681,23 @@ C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.2
           [
               _Iter=const wchar_t *
           ]
-D:\2d포폴\Directx\Project\Engine\func.cpp(34): message : 컴파일되는 함수 템플릿 인스턴스화 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)'에 대한 참조를 확인하세요.
+C:\Users\박현아\Documents\GitHub\DirectX2d\Directx\Project\Engine\func.cpp(34): message : 컴파일되는 함수 템플릿 인스턴스화 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)'에 대한 참조를 확인하세요.
           with
           [
               _Elem=wchar_t,
               _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
               _Alloc=std::allocator<char>
           ]
-D:\2d포폴\Directx\Project\Engine\func.cpp(34): message : 컴파일되는 함수 템플릿 인스턴스화 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)'에 대한 참조를 확인하세요.
+C:\Users\박현아\Documents\GitHub\DirectX2d\Directx\Project\Engine\func.cpp(34): message : 컴파일되는 함수 템플릿 인스턴스화 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)'에 대한 참조를 확인하세요.
           with
           [
               _Elem=wchar_t,
               _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
               _Alloc=std::allocator<char>
           ]
+  Ptr.cpp
   코드를 생성하고 있습니다...
-  Engine.vcxproj -> D:\2d포폴\Directx\External\Library\Engine\Engine_debug.lib
+  Engine.vcxproj -> C:\Users\박현아\Documents\GitHub\DirectX2d\Directx\External\Library\Engine\Engine_debug.lib
   .\Project\Engine\CAnimation2D.h
   .\Project\Engine\CAnimator2D.h
   .\Project\Engine\CCamera.h

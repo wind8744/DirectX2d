@@ -5,8 +5,10 @@
 #include "CMapScript.h"
 #include "CMissileScript.h"
 #include "CMonsterScript.h"
-#include "CObjEvent.h"
+#include "CObjEventScript.h"
 #include "CPlayerScript.h"
+#include "CRedButtonScript.h"
+#include "CStoneDoorScript.h"
 
 void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 {
@@ -14,8 +16,10 @@ void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"CMapScript");
 	_vec.push_back(L"CMissileScript");
 	_vec.push_back(L"CMonsterScript");
-	_vec.push_back(L"CObjEvent");
+	_vec.push_back(L"CObjEventScript");
 	_vec.push_back(L"CPlayerScript");
+	_vec.push_back(L"CRedButtonScript");
+	_vec.push_back(L"CStoneDoorScript");
 }
 
 CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
@@ -28,10 +32,14 @@ CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
 		return new CMissileScript;
 	if (L"CMonsterScript" == _strScriptName)
 		return new CMonsterScript;
-	if (L"CObjEvent" == _strScriptName)
-		return new CObjEvent;
+	if (L"CObjEventScript" == _strScriptName)
+		return new CObjEventScript;
 	if (L"CPlayerScript" == _strScriptName)
 		return new CPlayerScript;
+	if (L"CRedButtonScript" == _strScriptName)
+		return new CRedButtonScript;
+	if (L"CStoneDoorScript" == _strScriptName)
+		return new CStoneDoorScript;
 	return nullptr;
 }
 
@@ -51,11 +59,18 @@ CScript * CScriptMgr::GetScript(UINT _iScriptType)
 	case (UINT)SCRIPT_TYPE::MONSTERSCRIPT:
 		return new CMonsterScript;
 		break;
-	case (UINT)SCRIPT_TYPE::OBJEVENT:
-		return new CObjEvent;
+
+	case (UINT)SCRIPT_TYPE::OBJEVENTSCRIPT:
+		return new CObjEventScript;
 		break;
 	case (UINT)SCRIPT_TYPE::PLAYERSCRIPT:
 		return new CPlayerScript;
+		break;
+	case (UINT)SCRIPT_TYPE::REDBUTTONSCRIPT:
+		return new CRedButtonScript;
+		break;
+	case (UINT)SCRIPT_TYPE::STONEDOORSCRIPT:
+		return new CStoneDoorScript;
 		break;
 	}
 	return nullptr;
@@ -81,12 +96,20 @@ const wchar_t * CScriptMgr::GetScriptName(CScript * _pScript)
 		return L"CMonsterScript";
 		break;
 
-	case SCRIPT_TYPE::OBJEVENT:
-		return L"CObjEvent";
+	case SCRIPT_TYPE::OBJEVENTSCRIPT:
+		return L"CObjEventScript";
 		break;
 
 	case SCRIPT_TYPE::PLAYERSCRIPT:
 		return L"CPlayerScript";
+		break;
+
+	case SCRIPT_TYPE::REDBUTTONSCRIPT:
+		return L"CRedButtonScript";
+		break;
+
+	case SCRIPT_TYPE::STONEDOORSCRIPT:
+		return L"CStoneDoorScript";
 		break;
 
 	}

@@ -33,15 +33,19 @@ void CPlayerScript::awake()
 	m_pMissilePrefab = CResMgr::GetInst()->FindRes<CPrefab>(L"Missile");
 
 	//temp
-	//임시로 타일 벡터에 정보 넣음
-	//m_vecTileInfo.push_back
+	//임시로 타일 벡터에 obj정보 넣음
+	int size = 10 * 10;
+	size_t sizet = (size_t)size;
+	m_vecTileInfo.resize(sizet);
+	//int z = _y * m_iCol + _x;
+	//m_vecTileInfo[z]
+
 }
 
 void CPlayerScript::update()
 {
 	//현재 타일 위치 계산
 	UpdateTilePos();
-	int a = 1;
 
 	//키 입력 받음
 	InputKey();
@@ -62,15 +66,18 @@ void CPlayerScript::update()
 // 플레이어의 현재 좌표에 대한 타일 xy 구하기
 void CPlayerScript::UpdateTilePos()
 {
-	POINT vResolution = CCore::GetInst()->GetWndResolution();
+	POINT vResolution;// = CCore::GetInst()->GetWndResolution(); //1600 900
+	vResolution.x = 1600;
+	vResolution.y = 900;
 
 	Vec2 _vPos = { 0,0 }; //타일obj 좌표
 	Vec3 _vPlayerPos = Transform()->GetLocalPos();
-	int _Col = 5;  // temp 맵 타일 사이즈
-	int _Row = 5;
+	int _Col = 10;  // temp 맵 타일 사이즈
+	int _Row = 10;
 
 	m_iTileX = (-1) * (_vPos.x + vResolution.x / 2 - (TileSize_X * _Col / 2) - (_vPlayerPos.x + TileSize_X / 2)) / TileSize_X + 12;// vMousePos.x / TILE_SIZE;
-	m_iTileY = (_vPos.y + vResolution.y / 2 - (TileSize_Y * _Row / 2) - (_vPlayerPos.y)) / TileSize_Y -2; //-
+	m_iTileY = (_vPos.y + vResolution.y / 2 - (TileSize_Y * _Row / 2) - (_vPlayerPos.y)) / TileSize_Y + 3;
+		//(_vPos.y + vResolution.y / 2 - (TileSize_Y * _Row / 2) - (_vPlayerPos.y)) / TileSize_Y ; //-
 
 }
 

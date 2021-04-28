@@ -142,12 +142,12 @@ void CreateTestScene()
 	pObj->AddComponent(new CAnimator2D);
 	pObj->AddComponent(new CPlayerScript);
 
-	pObj->Transform()->SetLocalPos(Vec3(0.f, 0.f, 400.f));
+	pObj->Transform()->SetLocalPos(Vec3(-288.f, 288.f, 400.f));
 	pObj->Transform()->SetLocalScale(Vec3(64.f, 64.f, 1.f));
 	pObj->Transform()->SetLocalRot(Vec3(0.f, 0., 0.f));
 
 	pObj->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
-	pObj->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"Std2DMtrl"));
+	pObj->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"PlayerMtrl"));
 
 	pObj->Collider2D()->SetCollider2DType(COLLIDER2D_TYPE::RECT);
 
@@ -174,7 +174,7 @@ void CreateTestScene()
 	pObj->AddComponent(new CMeshRender);
 	//pObj->AddComponent(new CCollider2D);
 	pObj->AddComponent(new CMapScript);
-	pObj->Transform()->SetLocalPos(Vec3(0.f, 0.f, 400.f));
+	pObj->Transform()->SetLocalPos(Vec3(0.f, 0.f, 500.f));
 	pObj->Transform()->SetLocalScale(Vec3(1000.f, 1000.f, 1.f));
 	pObj->Transform()->SetLocalRot(Vec3(0.f, 0.f, 0.f));
 	//Camera->SetMapTile(pObj);
@@ -227,7 +227,7 @@ void CreateTestScene()
 	redbutton->AddComponent(new CCollider2D);
 	redbutton->AddComponent(new CRedButtonScript);////////
 	redbutton->AddComponent(new CObjEventScript);
-	redbutton->Transform()->SetLocalPos(Vec3(0.f, 0.f, 400.f));
+	redbutton->Transform()->SetLocalPos(Vec3(-95.f, 286.f, 400.f));
 	redbutton->Transform()->SetLocalScale(Vec3(40.f, 40.f, 1.f));
 	redbutton->Transform()->SetLocalRot(Vec3(0.f, 0., 0.f));
 
@@ -250,12 +250,12 @@ void CreateTestScene()
 	pObj->AddComponent(new CStoneDoorScript);////////
 	pObj->AddComponent(new CObjEventScript);
 
-	pObj->Transform()->SetLocalPos(Vec3(127.f, -125.f, 400.f));
+	pObj->Transform()->SetLocalPos(Vec3(-30.f, 43.f, 400.f));
 	pObj->Transform()->SetLocalScale(Vec3(64, 80, 1.f));
 	pObj->Transform()->SetLocalRot(Vec3(0.f, 0.f, 0.f));
 
 	pObj->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
-	pObj->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"Std2DMtrl2"));////////////
+	pObj->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"StoneDoorMtrl"));////////////
 
 	pObj->Collider2D()->SetCollider2DType(COLLIDER2D_TYPE::RECT);
 
@@ -277,7 +277,7 @@ void CreateTestScene()
 	pObj->AddComponent(new CPushStoneScript); ////
 	pObj->AddComponent(new CObjEventScript);
 
-	pObj->Transform()->SetLocalPos(Vec3(0.f, -120.f, 400.f));
+	pObj->Transform()->SetLocalPos(Vec3(-286.f, 170.f, 400.f));
 	pObj->Transform()->SetLocalScale(Vec3(64, 80, 1.f));
 	pObj->Transform()->SetLocalRot(Vec3(0.f, 0.f, 0.f));
 

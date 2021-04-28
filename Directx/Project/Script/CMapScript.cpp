@@ -37,7 +37,7 @@ void CMapScript::awake()
 
 	
 	//m_TSharedBuffer->CreateRW(sizeof(tTileShared), 1, nullptr);
-	SetTileNum(5, 5);
+	SetTileNum(10, 10);
 }
 
 void CMapScript::update()

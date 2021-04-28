@@ -324,6 +324,13 @@ void CResMgr::CreateDefaultMaterial()
 	pMtrl->SetShader(FindRes<CGraphicsShader>(L"PostEffectShader"));
 	AddRes<CMaterial>(L"PostEffectMtrl", pMtrl);
 
+	//============================================================================= Player Material
+
+	pMtrl = new CMaterial;
+	pMtrl->SetShader(FindRes<CGraphicsShader>(L"Std2DShader2"));
+	pMtrl->m_bDefault = true;
+	AddRes<CMaterial>(L"PlayerMtrl", pMtrl);
+
 	//============================================================================== OBJ Material
 
 	// ==================
@@ -332,7 +339,7 @@ void CResMgr::CreateDefaultMaterial()
 	pMtrl = new CMaterial;
 	pMtrl->SetShader(FindRes<CGraphicsShader>(L"Std2DShader"));
 	pMtrl->m_bDefault = true;
-	AddRes<CMaterial>(L"Std2DMtrl2", pMtrl);
+	AddRes<CMaterial>(L"StoneDoorMtrl", pMtrl);
 
 	// ==================
 	// RedButton material

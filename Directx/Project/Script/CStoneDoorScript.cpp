@@ -18,7 +18,7 @@ CStoneDoorScript::CStoneDoorScript()
 	m_pTarScript = vecParent[0]->GetScript();
 
 	m_pStoneDoorTex = CResMgr::GetInst()->FindRes<CTexture>(L"stonedoor");
-	m_pMtrl = CResMgr::GetInst()->FindRes<CMaterial>(L"Std2DMtrl2");
+	m_pMtrl = CResMgr::GetInst()->FindRes<CMaterial>(L"StoneDoorMtrl");
 	m_pMtrl->SetData(SHADER_PARAM::TEX_0, m_pStoneDoorTex.Get());
 }
 
@@ -34,7 +34,7 @@ void CStoneDoorScript::awake()
 void CStoneDoorScript::update()
 {
 	/* temp */
-	int a = 1;
+	int a = 22;
 
 	//현재 씬의 버튼 스크립트에서 bool값 받아옴
 	if (m_pEventScript != nullptr)

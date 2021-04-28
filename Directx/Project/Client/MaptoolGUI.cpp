@@ -37,7 +37,7 @@ void MaptoolGUI::init()
 	m_size = m_Map->GetTileSIze();
 
 
-	m_CollVector.resize(25);
+	m_CollVector.resize(100);
 
 }
 void MaptoolGUI::update()

@@ -38,6 +38,9 @@
     <ClInclude Include="CPushSmallStoneScript.h">
       <Filter>ScriptCode\ObjectScript\PushStone</Filter>
     </ClInclude>
+    <ClInclude Include="CTileCollsion.h">
+      <Filter>ScriptCode</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Default">
@@ -96,6 +99,9 @@
     </ClCompile>
     <ClCompile Include="CPushSmallStoneScript.cpp">
       <Filter>ScriptCode\ObjectScript\PushStone</Filter>
+    </ClCompile>
+    <ClCompile Include="CTileCollsion.cpp">
+      <Filter>ScriptCode</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

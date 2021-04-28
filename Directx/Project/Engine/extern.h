@@ -2,6 +2,7 @@
 
 extern tTransform g_transform;
 extern tGlobalValue g_global;
+extern Vec3 CamaraPos;
 
 class CScript;
 typedef void (*pSaveFunc)(CScript*, FILE*);

@@ -25,6 +25,7 @@
 #include <Script\CObjEventScript.h>
 #include <Script\CMapScript.h>
 #include <Script/CPushStoneScript.h>
+#include <Script\CTileCollsion.h>
 #include "CSaveLoadMgr.h"
 
 void CreateSamplePrefab()
@@ -42,7 +43,22 @@ void CreateSamplePrefab()
 	//pPrefab->Save(L"prefab\\missile.pref");
 	//CResMgr::GetInst()->AddRes<CPrefab>(L"Missile", pPrefab);
 
+	/*CGameObject* pObject = new CGameObject;
+	pObject->AddComponent(new CTransform);
+	pObject->AddComponent(new CCollider2D);
+	pObject->AddComponent(new CTileCollsion);
+
+	pObject->Transform()->SetLocalScale(Vec3(TileSize_X, TileSize_Y, 400.f));
+
+
+	Ptr<CPrefab> pPrefab = new CPrefab(pObject);
+	pPrefab->Save(L"prefab\\TileCollsion.pref");
+	CResMgr::GetInst()->AddRes<CPrefab>(L"TileCollsion", pPrefab);
+	*/
+
+
 	CResMgr::GetInst()->Load<CPrefab>(L"Missile", L"prefab\\missile.pref");
+	CResMgr::GetInst()->Load<CPrefab>(L"TileCollsion", L"prefab\\TileCollsion.pref");
 }
 
 
@@ -158,7 +174,7 @@ void CreateTestScene()
 	pObj->AddComponent(new CMeshRender);
 	//pObj->AddComponent(new CCollider2D);
 	pObj->AddComponent(new CMapScript);
-	pObj->Transform()->SetLocalPos(Vec3(0.f, 0.f, 500.f));
+	pObj->Transform()->SetLocalPos(Vec3(0.f, 0.f, 400.f));
 	pObj->Transform()->SetLocalScale(Vec3(1000.f, 1000.f, 1.f));
 	pObj->Transform()->SetLocalRot(Vec3(0.f, 0.f, 0.f));
 	//Camera->SetMapTile(pObj);

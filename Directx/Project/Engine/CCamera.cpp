@@ -35,7 +35,7 @@ CCamera::~CCamera()
 
 void CCamera::update()
 {
-	if (KEY_HOLD(KEY_TYPE::NUM_1))
+	/*if (KEY_HOLD(KEY_TYPE::NUM_1))
 	{
 		m_vScale += 1.f * fDT;
 	}
@@ -43,18 +43,18 @@ void CCamera::update()
 	{
 		m_vScale -= 1.f * fDT;
 	}
-
+	*/
 	Vec3 vPos = Transform()->GetLocalPos();
 
 	if (KEY_HOLD(KEY_TYPE::KEY_W))
 	{
-		Vec3 vFront = Transform()->GetWorldDir(DIR_TYPE::FRONT);		
+		Vec3 vFront = Transform()->GetWorldDir(DIR_TYPE::UP);
 		vPos += vFront * fDT * 500.f;
 	}
 
 	if (KEY_HOLD(KEY_TYPE::KEY_S))
 	{
-		Vec3 vBack = -Transform()->GetWorldDir(DIR_TYPE::FRONT);
+		Vec3 vBack = -Transform()->GetWorldDir(DIR_TYPE::UP);
 		vPos += vBack * fDT * 500.f;
 	}
 	
@@ -81,8 +81,9 @@ void CCamera::update()
 
 		Transform()->SetLocalRot(vRot);
 	}*/
-
+	
 	Transform()->SetLocalPos(vPos);
+	CamaraPos = vPos;
 }
 
 void CCamera::finalupdate()
@@ -166,7 +167,11 @@ void CCamera::SortObject()
 						m_vecForward.push_back(vecObj[j]);
 					else if(SHADER_POV::POSTEFFECT == ePOV)
 						m_vecPostEffect.push_back(vecObj[j]);
-				}				
+				}
+				else if (!vecObj[j]->MeshRender() && vecObj[j]->Collider2D())
+				{
+					m_vecForward.push_back(vecObj[j]);
+				}
 			}
 		}
 	}
@@ -179,7 +184,8 @@ void CCamera::render_forward()
 
 	for (size_t i = 0; i < m_vecForward.size(); ++i)
 	{
-		m_vecForward[i]->MeshRender()->render();
+		if(m_vecForward[i]->MeshRender())
+			m_vecForward[i]->MeshRender()->render();
 
 		if (m_vecForward[i]->Collider2D())
 			m_vecForward[i]->Collider2D()->render();

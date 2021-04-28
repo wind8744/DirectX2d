@@ -330,7 +330,7 @@ void CResMgr::CreateDefaultMaterial()
 	// StoneDoor material
 	// ==================
 	pMtrl = new CMaterial;
-	pMtrl->SetShader(FindRes<CGraphicsShader>(L"Std2DShader2"));
+	pMtrl->SetShader(FindRes<CGraphicsShader>(L"Std2DShader"));
 	pMtrl->m_bDefault = true;
 	AddRes<CMaterial>(L"Std2DMtrl2", pMtrl);
 

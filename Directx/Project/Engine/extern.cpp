@@ -4,6 +4,8 @@
 tTransform g_transform = {};
 tGlobalValue g_global = {};
 
+Vec3 CamaraPos = {};
+
 pSaveFunc g_pScriptSave = nullptr;
 pLoadFunc g_pScriptLoad = nullptr;
 

@@ -11,6 +11,7 @@
 #include "CPushStoneScript.h"
 #include "CRedButtonScript.h"
 #include "CStoneDoorScript.h"
+#include "CTileCollsion.h"
 
 void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 {
@@ -24,6 +25,7 @@ void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"CPushStoneScript");
 	_vec.push_back(L"CRedButtonScript");
 	_vec.push_back(L"CStoneDoorScript");
+	_vec.push_back(L"CTileCollsion");
 }
 
 CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
@@ -48,6 +50,8 @@ CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
 		return new CRedButtonScript;
 	if (L"CStoneDoorScript" == _strScriptName)
 		return new CStoneDoorScript;
+	if (L"CTileCollsion" == _strScriptName)
+		return new CTileCollsion;
 	return nullptr;
 }
 
@@ -84,6 +88,9 @@ CScript * CScriptMgr::GetScript(UINT _iScriptType)
 		break;
 	case (UINT)SCRIPT_TYPE::STONEDOORSCRIPT:
 		return new CStoneDoorScript;
+		break;
+	case (UINT)SCRIPT_TYPE::TILECOLLSION:
+		return new CTileCollsion;
 		break;
 	}
 	return nullptr;
@@ -131,6 +138,10 @@ const wchar_t * CScriptMgr::GetScriptName(CScript * _pScript)
 
 	case SCRIPT_TYPE::STONEDOORSCRIPT:
 		return L"CStoneDoorScript";
+		break;
+
+	case SCRIPT_TYPE::TILECOLLSION:
+		return L"CTileCollsion";
 		break;
 
 	}

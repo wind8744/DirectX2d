@@ -9,3 +9,4 @@ CPushSmallStoneScript
 CPushStoneScript
 CRedButtonScript
 CStoneDoorScript
+CTileCollsion

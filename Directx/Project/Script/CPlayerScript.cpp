@@ -15,7 +15,10 @@ CPlayerScript::CPlayerScript()
 	 ,m_pPlayerTex(nullptr)         
 	 ,m_PlayerState(PLAYER_STATE::IDLE)
 	 ,m_iTileX(0)               
-	 ,m_iTileY(0)               
+	 ,m_iTileY(0)
+	,m_iMapCol(10)
+	,m_iMapRow(10)
+	, m_PlayerKey(KEY_TYPE::KEY_UP)
 {
 	AddDesc(tDataDesc(SCRIPT_DATA_TYPE::INT, "Int Data", &m_iData));
 	AddDesc(tDataDesc(SCRIPT_DATA_TYPE::FLOAT, "float Data", &m_fData));
@@ -37,8 +40,46 @@ void CPlayerScript::awake()
 	int size = 10 * 10;
 	size_t sizet = (size_t)size;
 	m_vecTileInfo.resize(sizet);
-	//int z = _y * m_iCol + _x;
-	//m_vecTileInfo[z]
+	
+	//미는 돌 좌표
+	int _x = 0;
+	int _y = 2;
+	int z = _y * m_iMapCol + _x;
+
+	//미는 돌 정보
+	tile_info _pushstone = {};
+	_pushstone.IsObj = true;
+	_pushstone.IsPush = true;
+	_pushstone.IsBlock = true;
+
+	//미는돌 정보 넣음
+	m_vecTileInfo[z] = _pushstone;
+
+
+	//버튼 좌표
+	 _x = 3;
+	 _y = 0;
+	 z = _y * m_iMapCol + _x;
+
+	//버튼 정보
+	 _pushstone = {};
+	_pushstone.IsObj = true;
+	_pushstone.IsPush = false;
+	_pushstone.IsBlock = false;
+
+	//버튼 정보 넣음
+	m_vecTileInfo[z] = _pushstone;
+
+
+	//돌문 좌표
+	_x = 4;
+	_y = 4;
+	z = _y * m_iMapCol + _x;
+	_pushstone = {};
+	_pushstone.IsObj = true;
+	_pushstone.IsPush = false;
+	_pushstone.IsBlock = true;
+	m_vecTileInfo[z] = _pushstone;
 
 }
 
@@ -72,8 +113,8 @@ void CPlayerScript::UpdateTilePos()
 
 	Vec2 _vPos = { 0,0 }; //타일obj 좌표
 	Vec3 _vPlayerPos = Transform()->GetLocalPos();
-	int _Col = 10;  // temp 맵 타일 사이즈
-	int _Row = 10;
+	int _Col = m_iMapCol;  // temp 맵 타일 사이즈
+	int _Row = m_iMapRow;
 
 	m_iTileX = (-1) * (_vPos.x + vResolution.x / 2 - (TileSize_X * _Col / 2) - (_vPlayerPos.x + TileSize_X / 2)) / TileSize_X + 12;// vMousePos.x / TILE_SIZE;
 	m_iTileY = (_vPos.y + vResolution.y / 2 - (TileSize_Y * _Row / 2) - (_vPlayerPos.y)) / TileSize_Y + 3;
@@ -83,26 +124,71 @@ void CPlayerScript::UpdateTilePos()
 
 void CPlayerScript::InputKey()
 {
+	PLAYER_STATE _CurPlayerState = m_PlayerState;//PLAYER_STATE::STOP;
+	KEY_TYPE _Curkey = m_PlayerKey;
+
 	// 키 입력에 따른 이동
 	Vec3 vPos = Transform()->GetLocalPos();
 	Vec3 vRot = Transform()->GetLocalRot();
 
-	if (KEY_HOLD(KEY_TYPE::KEY_LEFT))
+	//현재 플레이어 위치
+	tile_info _curtileinfo = m_vecTileInfo[m_iTileY * m_iMapCol + m_iTileX];
+
+	//if (_curtileinfo.IsBlock == true)
+	
+	if (KEY_HOLD(KEY_TYPE::KEY_LEFT))// && m_vecTileInfo[m_iTileY * m_iMapCol + (m_iTileX - 1)].IsBlock == false)
 	{
-		vPos.x -= 200.f * fDT;
+		if (_CurPlayerState == PLAYER_STATE::STOP && _Curkey == KEY_TYPE::KEY_LEFT)
+		{
+
+		}
+		else
+		{
+			vPos.x -= 200.f * fDT;
+			_Curkey = KEY_TYPE::KEY_LEFT;
+		}
 	}
-	if (KEY_HOLD(KEY_TYPE::KEY_RIGHT))
+	if (KEY_HOLD(KEY_TYPE::KEY_RIGHT))// && m_vecTileInfo[m_iTileY * m_iMapCol + (m_iTileX+1)].IsBlock == false)
 	{
-		vPos.x += 200.f * fDT;
+		if (_CurPlayerState == PLAYER_STATE::STOP && _Curkey == KEY_TYPE::KEY_RIGHT)
+		{
+
+		}
+		else
+		{
+			vPos.x += 200.f * fDT;
+			_Curkey = KEY_TYPE::KEY_RIGHT;
+		}
+		
 	}
-	if (KEY_HOLD(KEY_TYPE::KEY_UP))
+	if (KEY_HOLD(KEY_TYPE::KEY_UP))// && m_vecTileInfo[(m_iTileY - 1) * m_iMapCol + m_iTileX].IsBlock == false)
 	{
-		vPos.y += 200.f * fDT;
+		if (_CurPlayerState == PLAYER_STATE::STOP && _Curkey == KEY_TYPE::KEY_UP)
+		{
+
+		}
+		else
+		{
+			vPos.y += 200.f * fDT;
+			_Curkey = KEY_TYPE::KEY_UP;
+		}
+		
 	}
-	if (KEY_HOLD(KEY_TYPE::KEY_DOWN))
+	if (KEY_HOLD(KEY_TYPE::KEY_DOWN))// && m_vecTileInfo[(m_iTileY + 1) * m_iMapCol + m_iTileX].IsBlock == false)
 	{
-		vPos.y -= 200.f * fDT;
+		if (_CurPlayerState == PLAYER_STATE::STOP && _Curkey == KEY_TYPE::KEY_DOWN)
+		{
+
+		}
+		else
+		{
+			vPos.y -= 200.f * fDT;
+			_Curkey = KEY_TYPE::KEY_DOWN;
+		}
+		
 	}
+	
+
 	//if (KEY_HOLD(KEY_TYPE::KEY_Z))
 	//{
 	//	vRot.z += fDT * XM_PI;
@@ -111,6 +197,8 @@ void CPlayerScript::InputKey()
 	//{
 	//	CreateMissile();
 	//}
+
+	m_PlayerKey = _Curkey;
 	Transform()->SetLocalPos(vPos);
 	Transform()->SetLocalRot(vRot);
 }
@@ -142,7 +230,12 @@ void CPlayerScript::PlayerMove()
 
 void CPlayerScript::OnCollisionEnter(CGameObject* _pOther)
 {
-	
+	m_PlayerState = PLAYER_STATE::STOP;
+}
+
+void CPlayerScript::OnCollisionExit(CGameObject* _pOther)
+{
+	m_PlayerState = PLAYER_STATE::IDLE;
 }
 
 void CPlayerScript::SaveToScene(FILE* _pFile)

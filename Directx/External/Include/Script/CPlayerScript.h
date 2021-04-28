@@ -9,6 +9,7 @@ enum class PLAYER_STATE
     RIGHT,
     LEFT,
     IDLE,
+    STOP,
     ATTACK,
     SKILL,
     PUSH,
@@ -21,6 +22,7 @@ typedef struct tile_info
 {
     bool IsObj;                                 //타일이면 false object이면 true
     bool IsPush;                                //밀수있는 오브젝트?
+    bool IsBlock;                               //장애물?
     void TileInit() { IsObj = false; IsPush = false; } //초기화
 
 }TILE_INFO;
@@ -32,11 +34,16 @@ class CPlayerScript :
 private:
     Ptr<CTexture>       m_pPlayerTex;           //플레이어 tex
     PLAYER_STATE        m_PlayerState;          //플레이어의 현재 상태
+    KEY_TYPE            m_PlayerKey;            //눌린키
+
     //vector<tile_info*>& m_vecTileInfo;        //현재 씬의 타일 정보 vector (현재씬에서 받아옴)
     vector<tile_info>   m_vecTileInfo;          //temp
 
     int                 m_iTileX;               //플레이어 타일 X pos
     int                 m_iTileY;               //플레이어 타일 Y pos
+
+    int                 m_iMapCol;              //현재 맵의 크기
+    int                 m_iMapRow;
 
 private:
     Ptr<CPrefab>        m_pMissilePrefab;
@@ -64,6 +71,7 @@ private:
 
 public:
     virtual void OnCollisionEnter(CGameObject* _pOther);
+    virtual void OnCollisionExit(CGameObject* _pOther);
 
 public:
     CLONE(CPlayerScript);

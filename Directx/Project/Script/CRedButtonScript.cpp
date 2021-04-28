@@ -6,7 +6,6 @@
 #include <Engine\CResMgr.h>
 #include <Engine\CTexture.h>
 
-#include "CMissileScript.h"
 #include "CObjEventScript.h"
 
 CRedButtonScript::CRedButtonScript()

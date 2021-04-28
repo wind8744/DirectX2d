@@ -13,7 +13,7 @@ CStoneDoorScript::CStoneDoorScript()
 {
 	//테스트 씬에서 redbutton 스크립트 받아옴
 	CScene* pCurScene = CSceneMgr::GetInst()->GetCurScene(); 
-	CLayer* pLayer = pCurScene->GetLayer(2);
+	CLayer* pLayer = pCurScene->GetLayer(3);
 	vector<CGameObject*> vecParent = pLayer->GetParentObj();
 	m_pTarScript = vecParent[0]->GetScript();
 

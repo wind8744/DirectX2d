@@ -2,21 +2,6 @@
 #include <Engine\CScript.h>
 
 
-enum class PLAYER_STATE
-{
-    UP,
-    DOWN,
-    RIGHT,
-    LEFT,
-    IDLE,
-    STOP,
-    ATTACK,
-    SKILL,
-    PUSH,
-    BREAK,
-    ITEM,
-    NONE
-};
 
 typedef struct tile_info
 {
@@ -34,6 +19,7 @@ class CPlayerScript :
 private:
     Ptr<CTexture>       m_pPlayerTex;           //플레이어 tex
     PLAYER_STATE        m_PlayerState;          //플레이어의 현재 상태
+    PLAYER_STATE        m_StopPlayerState;      //충돌 시 마지막 눌린 상태
     KEY_TYPE            m_PlayerKey;            //눌린키
 
     //vector<tile_info*>& m_vecTileInfo;        //현재 씬의 타일 정보 vector (현재씬에서 받아옴)
@@ -52,6 +38,12 @@ private:
     Vec2                m_v2Data;
     Vec4                m_v4Data;
 
+public:
+    //GET SET
+    PLAYER_STATE GetStopPlayerState() { return m_StopPlayerState; } //key로 바꿀?
+    PLAYER_STATE GetPlayerState() { return m_PlayerState; }
+    int GetPlayerTileX() { return m_iTileX; }
+    int GetPlayerTileY() { return m_iTileY; }
 
 
 public:

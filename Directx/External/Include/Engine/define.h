@@ -200,3 +200,21 @@ enum class SCENE_STATE
 	STOP,
 	END,
 };
+
+
+//플레이어 상태
+enum class PLAYER_STATE
+{
+	UP,
+	DOWN,
+	RIGHT,
+	LEFT,
+	IDLE,
+	STOP,
+	ATTACK,
+	SKILL,
+	PUSH,
+	BREAK,
+	ITEM,
+	NONE
+};

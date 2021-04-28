@@ -3,14 +3,14 @@
 
 // obj name : 미는 돌( 큰돌 )
 // desc : 플레이어가 밀 수 있음, 지나갈 수 없음, 버튼을 누를 수 있음
-
+class CPlayerScript;
 class CPushStoneScript :
     public CScript
 {
 private:
     Ptr<CTexture>           m_pStoneTex;       //tex
     Ptr<CMaterial>          m_pMtrl;           //material
-
+    CPlayerScript*          m_pPlayerScript;
     bool                    m_bIsPushed;
 
 

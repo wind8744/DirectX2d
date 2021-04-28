@@ -235,7 +235,7 @@ void CreateTestScene()
 	redbutton->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"RedButtonMtrl"));////////
 
 	redbutton->Collider2D()->SetCollider2DType(COLLIDER2D_TYPE::RECT);
-	pCurScene->AddObject(redbutton, 2);
+	pCurScene->AddObject(redbutton, 3);
 
 
 	// ===============
@@ -288,11 +288,13 @@ void CreateTestScene()
 
 	pCurScene->AddObject(pObj, 2);
 
+	// 0번 Player / 2번 장애물 / 3번 (장애물 아닌)버튼
 
 
 	
 	// Collision Check
-	CCollisionMgr::GetInst()->CollisionCheck(0, 2);
+	CCollisionMgr::GetInst()->CollisionCheck(0, 2); 
+	CCollisionMgr::GetInst()->CollisionCheck(2, 3);
 
 	// Scene Save
 	CSaveLoadMgr::SaveScene(pCurScene, L"scene\\TestScene.scene");

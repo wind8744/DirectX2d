@@ -19,6 +19,7 @@ CPlayerScript::CPlayerScript()
 	,m_iMapCol(10)
 	,m_iMapRow(10)
 	, m_PlayerKey(KEY_TYPE::KEY_UP)
+	, m_StopPlayerState(PLAYER_STATE::NONE)
 {
 	AddDesc(tDataDesc(SCRIPT_DATA_TYPE::INT, "Int Data", &m_iData));
 	AddDesc(tDataDesc(SCRIPT_DATA_TYPE::FLOAT, "float Data", &m_fData));
@@ -138,56 +139,67 @@ void CPlayerScript::InputKey()
 	
 	if (KEY_HOLD(KEY_TYPE::KEY_LEFT))// && m_vecTileInfo[m_iTileY * m_iMapCol + (m_iTileX - 1)].IsBlock == false)
 	{
-		if (_CurPlayerState == PLAYER_STATE::STOP && _Curkey == KEY_TYPE::KEY_LEFT)
+		if (m_StopPlayerState == PLAYER_STATE::LEFT && _Curkey == KEY_TYPE::KEY_LEFT)
 		{
-
+			//vPos.x += 2;
 		}
 		else
 		{
 			vPos.x -= 200.f * fDT;
 			_Curkey = KEY_TYPE::KEY_LEFT;
+			_CurPlayerState = PLAYER_STATE::LEFT;
 		}
 	}
 	if (KEY_HOLD(KEY_TYPE::KEY_RIGHT))// && m_vecTileInfo[m_iTileY * m_iMapCol + (m_iTileX+1)].IsBlock == false)
 	{
-		if (_CurPlayerState == PLAYER_STATE::STOP && _Curkey == KEY_TYPE::KEY_RIGHT)
+		if (m_StopPlayerState == PLAYER_STATE::RIGHT && _Curkey == KEY_TYPE::KEY_RIGHT)
 		{
-
+			//vPos.x -= 2;
 		}
 		else
 		{
 			vPos.x += 200.f * fDT;
 			_Curkey = KEY_TYPE::KEY_RIGHT;
+			//_CurPlayerState = PLAYER_STATE::RIGHT;
 		}
 		
 	}
 	if (KEY_HOLD(KEY_TYPE::KEY_UP))// && m_vecTileInfo[(m_iTileY - 1) * m_iMapCol + m_iTileX].IsBlock == false)
 	{
-		if (_CurPlayerState == PLAYER_STATE::STOP && _Curkey == KEY_TYPE::KEY_UP)
+		if (m_StopPlayerState == PLAYER_STATE::UP && _Curkey == KEY_TYPE::KEY_UP)
 		{
-
+			//vPos.y -= 2;
 		}
 		else
 		{
 			vPos.y += 200.f * fDT;
 			_Curkey = KEY_TYPE::KEY_UP;
+			_CurPlayerState = PLAYER_STATE::UP;
 		}
 		
 	}
 	if (KEY_HOLD(KEY_TYPE::KEY_DOWN))// && m_vecTileInfo[(m_iTileY + 1) * m_iMapCol + m_iTileX].IsBlock == false)
 	{
-		if (_CurPlayerState == PLAYER_STATE::STOP && _Curkey == KEY_TYPE::KEY_DOWN)
+		if (m_StopPlayerState == PLAYER_STATE::DOWN && _Curkey == KEY_TYPE::KEY_DOWN)
 		{
-
+			//vPos.y += 2;
 		}
 		else
 		{
 			vPos.y -= 200.f * fDT;
 			_Curkey = KEY_TYPE::KEY_DOWN;
+			_CurPlayerState = PLAYER_STATE::DOWN;
 		}
 		
 	}
-	
+	if (KEY_HOLD(KEY_TYPE::KEY_Z)) //스페이스바 하면 일시정지 눌려서 터짐
+	{
+		_CurPlayerState = PLAYER_STATE::PUSH;
+	}
+	if (KEY_TAP(KEY_TYPE::KEY_Z))
+	{
+
+	}
 
 	//if (KEY_HOLD(KEY_TYPE::KEY_Z))
 	//{
@@ -198,6 +210,7 @@ void CPlayerScript::InputKey()
 	//	CreateMissile();
 	//}
 
+	m_PlayerState = _CurPlayerState;
 	m_PlayerKey = _Curkey;
 	Transform()->SetLocalPos(vPos);
 	Transform()->SetLocalRot(vRot);
@@ -230,12 +243,19 @@ void CPlayerScript::PlayerMove()
 
 void CPlayerScript::OnCollisionEnter(CGameObject* _pOther)
 {
-	m_PlayerState = PLAYER_STATE::STOP;
+	Vec3 vPos = Transform()->GetLocalPos();
+
+	if (m_PlayerKey == KEY_TYPE::KEY_LEFT) m_StopPlayerState = PLAYER_STATE::LEFT;	
+	else if (m_PlayerKey == KEY_TYPE::KEY_RIGHT) m_StopPlayerState = PLAYER_STATE::RIGHT;
+	else if (m_PlayerKey == KEY_TYPE::KEY_DOWN) m_StopPlayerState = PLAYER_STATE::DOWN;
+	else if (m_PlayerKey == KEY_TYPE::KEY_UP) m_StopPlayerState = PLAYER_STATE::UP;
+
+	Transform()->SetLocalPos(vPos);
 }
 
 void CPlayerScript::OnCollisionExit(CGameObject* _pOther)
 {
-	m_PlayerState = PLAYER_STATE::IDLE;
+	m_StopPlayerState = PLAYER_STATE::NONE;
 }
 
 void CPlayerScript::SaveToScene(FILE* _pFile)

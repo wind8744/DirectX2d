@@ -17,10 +17,9 @@ CStoneDoorScript::CStoneDoorScript()
 	vector<CGameObject*> vecParent = pLayer->GetParentObj();
 	m_pTarScript = vecParent[0]->GetScript();
 
-	Ptr<CTexture> m_pTex = CResMgr::GetInst()->Load<CTexture>(L"stonedoor", L"texture\\object\\6.jpg");
-	Ptr<CMaterial> m_pMtrl = CResMgr::GetInst()->FindRes<CMaterial>(L"Std2DMtrl2");
-	
-	m_pMtrl->SetData(SHADER_PARAM::TEX_0, m_pTex.Get());
+	m_pStoneDoorTex = CResMgr::GetInst()->FindRes<CTexture>(L"stonedoor");
+	m_pMtrl = CResMgr::GetInst()->FindRes<CMaterial>(L"Std2DMtrl2");
+	m_pMtrl->SetData(SHADER_PARAM::TEX_0, m_pStoneDoorTex.Get());
 }
 
 CStoneDoorScript::~CStoneDoorScript()

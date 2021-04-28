@@ -19,9 +19,8 @@ CRedButtonScript::CRedButtonScript()
 	//AddDesc(tDataDesc(SCRIPT_DATA_TYPE::INT, "Int Data", &m_iData));
 	//AddDesc(tDataDesc(SCRIPT_DATA_TYPE::FLOAT, "float Data", &m_fData));
 
-	m_pRedButTex = CResMgr::GetInst()->Load<CTexture>(L"redbutton", L"texture\\object\\8.bmp");
-	m_pMtrl = CResMgr::GetInst()->FindRes<CMaterial>(L"Std2DMtrl");
-
+	m_pRedButTex = CResMgr::GetInst()->FindRes<CTexture>(L"redbutton");
+	m_pMtrl = CResMgr::GetInst()->FindRes<CMaterial>(L"RedButtonMtrl");
 	m_pMtrl->SetData(SHADER_PARAM::TEX_0, m_pRedButTex.Get());
 }
 

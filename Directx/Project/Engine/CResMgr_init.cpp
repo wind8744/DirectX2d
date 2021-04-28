@@ -258,7 +258,7 @@ void CResMgr::CreateDefaultShader()
 	//pShader->SetDepthStencilType();
 
 	// Shader Param	
-	pShader->AddShaderParam(SHADER_PARAM::TEX_0, L"Output Texture2");
+	//pShader->AddShaderParam(SHADER_PARAM::TEX_0, L"Output Texture2");
 
 	AddRes<CGraphicsShader>(L"Std2DShader2", pShader);
 
@@ -324,14 +324,31 @@ void CResMgr::CreateDefaultMaterial()
 	pMtrl->SetShader(FindRes<CGraphicsShader>(L"PostEffectShader"));
 	AddRes<CMaterial>(L"PostEffectMtrl", pMtrl);
 
-	// ===============
-	// std2d material222222
-	// ===============
+	//============================================================================== OBJ Material
+
+	// ==================
+	// StoneDoor material
+	// ==================
 	pMtrl = new CMaterial;
 	pMtrl->SetShader(FindRes<CGraphicsShader>(L"Std2DShader2"));
 	pMtrl->m_bDefault = true;
 	AddRes<CMaterial>(L"Std2DMtrl2", pMtrl);
 
+	// ==================
+	// RedButton material
+	// ==================
+	pMtrl = new CMaterial;
+	pMtrl->SetShader(FindRes<CGraphicsShader>(L"Std2DShader"));
+	pMtrl->m_bDefault = true;
+	AddRes<CMaterial>(L"RedButtonMtrl", pMtrl);
+
+	// ==================
+	// PushStone material
+	// ==================
+	pMtrl = new CMaterial;
+	pMtrl->SetShader(FindRes<CGraphicsShader>(L"Std2DShader"));
+	pMtrl->m_bDefault = true;
+	AddRes<CMaterial>(L"PushStoneMtrl", pMtrl);
 
 }
 

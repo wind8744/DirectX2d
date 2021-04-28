@@ -51,10 +51,10 @@ float4 PS_Std2D(VTX_OUT _in) : SV_Target
         float2 AnimUV = float2(g_Anim2DInfo[0].vLeftTop.x + g_Anim2DInfo[0].vStep.x * _in.vUV.x, g_Anim2DInfo[0].vLeftTop.y + g_Anim2DInfo[0].vStep.y * _in.vUV.y);
         vColor = g_animtex.Sample(g_sam_0, AnimUV);        
     }
-    else if (101 == g_int_0)
-    {
-        vColor = g_tex_1.Sample(g_sam_0, _in.vUV);
-    }
+    //else if (101 == g_int_1)
+    //{
+    //    vColor = g_tex_1.Sample(g_sam_0, _in.vUV);
+    //}
     else //if (100 == g_int_0)
     {
         vColor = g_tex_0.Sample(g_sam_0, _in.vUV);

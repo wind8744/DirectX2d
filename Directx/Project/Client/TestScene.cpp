@@ -68,7 +68,8 @@ void CreateTestScene()
 		//Ptr<CCopyShaderCS> pCS = (CCopyShaderCS*)CResMgr::GetInst()->FindRes<CComputeShader>(L"CopyTextureShader").Get();
 		//pCS->SetDestTex(pRWTex);
 		//pCS->Excute();
-
+	
+	SceneInit();
 
 	CGameObject* pObj = nullptr;
 
@@ -125,8 +126,8 @@ void CreateTestScene()
 	pObj->AddComponent(new CAnimator2D);
 	pObj->AddComponent(new CPlayerScript);
 
-	pObj->Transform()->SetLocalPos(Vec3(-200.f, 0.f, 400.f));
-	pObj->Transform()->SetLocalScale(Vec3(70.f, 70.f, 1.f));
+	pObj->Transform()->SetLocalPos(Vec3(0.f, 0.f, 400.f));
+	pObj->Transform()->SetLocalScale(Vec3(64.f, 64.f, 1.f));
 	pObj->Transform()->SetLocalRot(Vec3(0.f, 0., 0.f));
 
 	pObj->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
@@ -203,19 +204,19 @@ void CreateTestScene()
 	// Button object
 	// ===============
 	CGameObject* redbutton = new CGameObject;
-	redbutton->SetName(L"redbutton");
+	redbutton->SetName(L"redbutton");////////
 
 	redbutton->AddComponent(new CTransform);
 	redbutton->AddComponent(new CMeshRender);
 	redbutton->AddComponent(new CCollider2D);
-	redbutton->AddComponent(new CRedButtonScript);
+	redbutton->AddComponent(new CRedButtonScript);////////
 	redbutton->AddComponent(new CObjEventScript);
 	redbutton->Transform()->SetLocalPos(Vec3(0.f, 0.f, 400.f));
 	redbutton->Transform()->SetLocalScale(Vec3(40.f, 40.f, 1.f));
 	redbutton->Transform()->SetLocalRot(Vec3(0.f, 0., 0.f));
 
 	redbutton->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
-	redbutton->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"Std2DMtrl"));
+	redbutton->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"RedButtonMtrl"));////////
 
 	redbutton->Collider2D()->SetCollider2DType(COLLIDER2D_TYPE::RECT);
 	pCurScene->AddObject(redbutton, 2);
@@ -225,12 +226,12 @@ void CreateTestScene()
 	// stonedoor object
 	// ===============
 	pObj = new CGameObject;
-	pObj->SetName(L"stonedoor");
+	pObj->SetName(L"stonedoor");//////////
 
 	pObj->AddComponent(new CTransform);
 	pObj->AddComponent(new CMeshRender);
 	pObj->AddComponent(new CCollider2D);
-	pObj->AddComponent(new CStoneDoorScript);
+	pObj->AddComponent(new CStoneDoorScript);////////
 	pObj->AddComponent(new CObjEventScript);
 
 	pObj->Transform()->SetLocalPos(Vec3(127.f, -125.f, 400.f));
@@ -238,7 +239,7 @@ void CreateTestScene()
 	pObj->Transform()->SetLocalRot(Vec3(0.f, 0.f, 0.f));
 
 	pObj->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
-	pObj->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"Std2DMtrl2"));
+	pObj->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"Std2DMtrl2"));////////////
 
 	pObj->Collider2D()->SetCollider2DType(COLLIDER2D_TYPE::RECT);
 
@@ -252,20 +253,20 @@ void CreateTestScene()
 	// push stone object (미는 장애물)
 	// ===============
 	pObj = new CGameObject;
-	pObj->SetName(L"pushstone"); //
+	pObj->SetName(L"pushstone"); /////
 
 	pObj->AddComponent(new CTransform);
 	pObj->AddComponent(new CMeshRender);
 	pObj->AddComponent(new CCollider2D);
-	pObj->AddComponent(new CPushStoneScript); //
+	pObj->AddComponent(new CPushStoneScript); ////
 	pObj->AddComponent(new CObjEventScript);
 
-	pObj->Transform()->SetLocalPos(Vec3(0.f, -125.f, 400.f));
-	pObj->Transform()->SetLocalScale(Vec3(64, 64, 1.f));
+	pObj->Transform()->SetLocalPos(Vec3(0.f, -120.f, 400.f));
+	pObj->Transform()->SetLocalScale(Vec3(64, 80, 1.f));
 	pObj->Transform()->SetLocalRot(Vec3(0.f, 0.f, 0.f));
 
 	pObj->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
-	pObj->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"Std2DMtrl"));
+	pObj->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"PushStoneMtrl"));/////
 
 	pObj->Collider2D()->SetCollider2DType(COLLIDER2D_TYPE::RECT);
 
@@ -283,4 +284,17 @@ void CreateTestScene()
 	// Scene Initialize()
 	//pCurScene->awake();
 	//pCurScene->start();
+}
+
+void SceneInit()
+{
+	// Load Obj img 
+	CResMgr::GetInst()->Load<CTexture>(L"redbutton", L"texture\\object\\8.bmp");			//빨간 버튼
+	CResMgr::GetInst()->Load<CTexture>(L"stonedoor", L"texture\\object\\6.jpg");			//돌로 된 문 (버튼을 밟으면 열림)
+	CResMgr::GetInst()->Load<CTexture>(L"pushstone", L"texture\\object\\17.jpg");			//밀 수 있는 돌
+	CResMgr::GetInst()->Load<CTexture>(L"pushsmallstone", L"texture\\object\\12.jpg");		//밀 수 있는 작은돌
+	CResMgr::GetInst()->Load<CTexture>(L"breakablestone", L"texture\\object\\15.jpg");		//부실 수 있는 돌
+	CResMgr::GetInst()->Load<CTexture>(L"block", L"texture\\object\\18.jpg");				//지나갈 수 없는 장애물
+	CResMgr::GetInst()->Load<CTexture>(L"sharpblock", L"texture\\object\\13.jpg");			//가시 달린 장애물
+
 }

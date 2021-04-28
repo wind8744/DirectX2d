@@ -13,9 +13,6 @@
     <ClInclude Include="CMonsterScript.h">
       <Filter>ScriptCode</Filter>
     </ClInclude>
-    <ClInclude Include="CPlayerScript.h">
-      <Filter>ScriptCode</Filter>
-    </ClInclude>
     <ClInclude Include="CCameraScript.h">
       <Filter>ScriptCode</Filter>
     </ClInclude>
@@ -37,6 +34,9 @@
     </ClInclude>
     <ClInclude Include="CPushSmallStoneScript.h">
       <Filter>ScriptCode\ObjectScript\PushStone</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayerScript.h">
+      <Filter>ScriptCode\PlayerScript</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +61,9 @@
     <Filter Include="ScriptCode\ObjectScript\StoneDoor">
       <UniqueIdentifier>{a874d686-cb11-4c19-b20c-d95ce4eb8a9c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ScriptCode\PlayerScript">
+      <UniqueIdentifier>{04f6b9cc-62d3-421c-ad9c-7f492d8a9e57}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -70,9 +73,6 @@
       <Filter>ScriptCode</Filter>
     </ClCompile>
     <ClCompile Include="CMonsterScript.cpp">
-      <Filter>ScriptCode</Filter>
-    </ClCompile>
-    <ClCompile Include="CPlayerScript.cpp">
       <Filter>ScriptCode</Filter>
     </ClCompile>
     <ClCompile Include="CCameraScript.cpp">
@@ -96,6 +96,9 @@
     </ClCompile>
     <ClCompile Include="CPushSmallStoneScript.cpp">
       <Filter>ScriptCode\ObjectScript\PushStone</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayerScript.cpp">
+      <Filter>ScriptCode\PlayerScript</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

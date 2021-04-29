@@ -8,18 +8,23 @@
 #include <Engine\CLayer.h>
 #include <Engine\CGameObject.h>
 
+#include "CPushStoneScript.h"
 #include "CMissileScript.h"
 
 CPlayerScript::CPlayerScript()
 	: CScript((int)SCRIPT_TYPE::PLAYERSCRIPT)
 	 ,m_pPlayerTex(nullptr)         
-	 ,m_PlayerState(PLAYER_STATE::IDLE)
 	 ,m_iTileX(0)               
 	 ,m_iTileY(0)
-	,m_iMapCol(10)
-	,m_iMapRow(10)
-	, m_PlayerKey(KEY_TYPE::KEY_UP)
-	, m_StopPlayerState(PLAYER_STATE::NONE)
+	, m_iMapCol(10)
+	, m_iMapRow(10)
+	, m_fPlayerSpeed(200.f)
+	, m_iHP(100)
+	, m_eCurState(PLAYER_STATE::IDLE)            //플레이어의 현재 상태
+	, m_ePrevState(PLAYER_STATE::IDLE)           //이전 상태
+	, m_eCurDir(DIR::DOWN)              //현재 방향
+	, m_ePreDir(DIR::DOWN)              //이전 방향
+	, m_IsOnCol(false)
 {
 	AddDesc(tDataDesc(SCRIPT_DATA_TYPE::INT, "Int Data", &m_iData));
 	AddDesc(tDataDesc(SCRIPT_DATA_TYPE::FLOAT, "float Data", &m_fData));
@@ -35,53 +40,42 @@ CPlayerScript::~CPlayerScript()
 void CPlayerScript::awake()
 {
 	m_pMissilePrefab = CResMgr::GetInst()->FindRes<CPrefab>(L"Missile");
-
 	//temp
 	//임시로 타일 벡터에 obj정보 넣음
-	int size = 10 * 10;
-	size_t sizet = (size_t)size;
-	m_vecTileInfo.resize(sizet);
-	
-	//미는 돌 좌표
-	int _x = 0;
-	int _y = 2;
-	int z = _y * m_iMapCol + _x;
-
-	//미는 돌 정보
-	tile_info _pushstone = {};
-	_pushstone.IsObj = true;
-	_pushstone.IsPush = true;
-	_pushstone.IsBlock = true;
-
-	//미는돌 정보 넣음
-	m_vecTileInfo[z] = _pushstone;
-
-
-	//버튼 좌표
-	 _x = 3;
-	 _y = 0;
-	 z = _y * m_iMapCol + _x;
-
-	//버튼 정보
-	 _pushstone = {};
-	_pushstone.IsObj = true;
-	_pushstone.IsPush = false;
-	_pushstone.IsBlock = false;
-
-	//버튼 정보 넣음
-	m_vecTileInfo[z] = _pushstone;
-
-
-	//돌문 좌표
-	_x = 4;
-	_y = 4;
-	z = _y * m_iMapCol + _x;
-	_pushstone = {};
-	_pushstone.IsObj = true;
-	_pushstone.IsPush = false;
-	_pushstone.IsBlock = true;
-	m_vecTileInfo[z] = _pushstone;
-
+	//int size = 10 * 10;
+	//size_t sizet = (size_t)size;
+	//m_vecTileInfo.resize(sizet);
+	////미는 돌 좌표
+	//int _x = 0;
+	//int _y = 2;
+	//int z = _y * m_iMapCol + _x;
+	////미는 돌 정보
+	//tile_info _pushstone = {};
+	//_pushstone.IsObj = true;
+	//_pushstone.IsPush = true;
+	//_pushstone.IsBlock = true;
+	////미는돌 정보 넣음
+	//m_vecTileInfo[z] = _pushstone;
+	////버튼 좌표
+	// _x = 3;
+	// _y = 0;
+	// z = _y * m_iMapCol + _x;
+	////버튼 정보
+	// _pushstone = {};
+	//_pushstone.IsObj = true;
+	//_pushstone.IsPush = false;
+	//_pushstone.IsBlock = false;
+	////버튼 정보 넣음
+	//m_vecTileInfo[z] = _pushstone;
+	////돌문 좌표
+	//_x = 4;
+	//_y = 4;
+	//z = _y * m_iMapCol + _x;
+	//_pushstone = {};
+	//_pushstone.IsObj = true;
+	//_pushstone.IsPush = false;
+	//_pushstone.IsBlock = true;
+	//m_vecTileInfo[z] = _pushstone;
 }
 
 void CPlayerScript::update()
@@ -90,7 +84,7 @@ void CPlayerScript::update()
 	UpdateTilePos();
 
 	//키 입력 받음
-	InputKey();
+	CheckState();
 
 	//현재 상태에 맞는 애니메이션 재생
 	PlayAnimation();
@@ -123,83 +117,92 @@ void CPlayerScript::UpdateTilePos()
 
 }
 
-void CPlayerScript::InputKey()
+void CPlayerScript::CheckState()
 {
-	PLAYER_STATE _CurPlayerState = m_PlayerState;//PLAYER_STATE::STOP;
-	KEY_TYPE _Curkey = m_PlayerKey;
-
 	// 키 입력에 따른 이동
 	Vec3 vPos = Transform()->GetLocalPos();
 	Vec3 vRot = Transform()->GetLocalRot();
 
-	//현재 플레이어 위치
-	tile_info _curtileinfo = m_vecTileInfo[m_iTileY * m_iMapCol + m_iTileX];
+	//현재 상태를 이전 상태로 저장해 둠
+	m_ePrevState = m_eCurState; 
+	m_ePreDir = m_eCurDir;
 
-	//if (_curtileinfo.IsBlock == true)
-	
-	if (KEY_HOLD(KEY_TYPE::KEY_LEFT))// && m_vecTileInfo[m_iTileY * m_iMapCol + (m_iTileX - 1)].IsBlock == false)
+	if (m_eCurState == PLAYER_STATE::MOVE || m_eCurState == PLAYER_STATE::IDLE || m_eCurState == PLAYER_STATE::PUSH)
 	{
-		if (m_StopPlayerState == PLAYER_STATE::LEFT && _Curkey == KEY_TYPE::KEY_LEFT)
+		if (KEY_HOLD(KEY_TYPE::KEY_LEFT))// && m_vecTileInfo[m_iTileY * m_iMapCol + (m_iTileX - 1)].IsBlock == false)
 		{
-			//vPos.x += 2;
+			if (m_IsOnCol == true && m_ePreDir == DIR::LEFT)
+			{
+				//움직임X
+			}
+			else
+			{
+				vPos.x -= m_fPlayerSpeed * fDT;
+				m_eCurState = PLAYER_STATE::MOVE;
+				m_eCurDir = DIR::LEFT;
+			}
 		}
-		else
+		if (KEY_HOLD(KEY_TYPE::KEY_RIGHT))// && m_vecTileInfo[m_iTileY * m_iMapCol + (m_iTileX+1)].IsBlock == false)
 		{
-			vPos.x -= 200.f * fDT;
-			_Curkey = KEY_TYPE::KEY_LEFT;
-			_CurPlayerState = PLAYER_STATE::LEFT;
+			if (m_IsOnCol == true && m_ePreDir == DIR::RIGHT)
+			{
+				//vPos.x -= 2;
+			}
+			else
+			{
+				vPos.x += m_fPlayerSpeed * fDT;
+				m_eCurState = PLAYER_STATE::MOVE;
+				m_eCurDir = DIR::RIGHT;
+			}
+
 		}
-	}
-	if (KEY_HOLD(KEY_TYPE::KEY_RIGHT))// && m_vecTileInfo[m_iTileY * m_iMapCol + (m_iTileX+1)].IsBlock == false)
-	{
-		if (m_StopPlayerState == PLAYER_STATE::RIGHT && _Curkey == KEY_TYPE::KEY_RIGHT)
+		if (KEY_HOLD(KEY_TYPE::KEY_UP))// && m_vecTileInfo[(m_iTileY - 1) * m_iMapCol + m_iTileX].IsBlock == false)
 		{
-			//vPos.x -= 2;
+			if (m_IsOnCol == true && m_ePreDir == DIR::UP)
+			{
+				//vPos.y -= 2;
+			}
+			else
+			{
+				vPos.y += m_fPlayerSpeed * fDT;
+				m_eCurState = PLAYER_STATE::MOVE;
+				m_eCurDir = DIR::UP;
+			}
+
 		}
-		else
+		if (KEY_HOLD(KEY_TYPE::KEY_DOWN))// && m_vecTileInfo[(m_iTileY + 1) * m_iMapCol + m_iTileX].IsBlock == false)
 		{
-			vPos.x += 200.f * fDT;
-			_Curkey = KEY_TYPE::KEY_RIGHT;
-			//_CurPlayerState = PLAYER_STATE::RIGHT;
+			if (m_IsOnCol == true && m_ePreDir == DIR::DOWN)
+			{
+				//vPos.y -= 2;
+			}
+			else
+			{
+				vPos.y -= m_fPlayerSpeed * fDT;
+				m_eCurState = PLAYER_STATE::MOVE;
+				m_eCurDir = DIR::DOWN;
+			}
+
 		}
-		
-	}
-	if (KEY_HOLD(KEY_TYPE::KEY_UP))// && m_vecTileInfo[(m_iTileY - 1) * m_iMapCol + m_iTileX].IsBlock == false)
-	{
-		if (m_StopPlayerState == PLAYER_STATE::UP && _Curkey == KEY_TYPE::KEY_UP)
+		if (KEY_HOLD(KEY_TYPE::KEY_Z))
 		{
-			//vPos.y -= 2;
+			m_eCurState = PLAYER_STATE::PUSH;
 		}
-		else
+		if (KEY_TAP(KEY_TYPE::KEY_Z))
 		{
-			vPos.y += 200.f * fDT;
-			_Curkey = KEY_TYPE::KEY_UP;
-			_CurPlayerState = PLAYER_STATE::UP;
+
 		}
-		
-	}
-	if (KEY_HOLD(KEY_TYPE::KEY_DOWN))// && m_vecTileInfo[(m_iTileY + 1) * m_iMapCol + m_iTileX].IsBlock == false)
-	{
-		if (m_StopPlayerState == PLAYER_STATE::DOWN && _Curkey == KEY_TYPE::KEY_DOWN)
-		{
-			//vPos.y += 2;
-		}
-		else
-		{
-			vPos.y -= 200.f * fDT;
-			_Curkey = KEY_TYPE::KEY_DOWN;
-			_CurPlayerState = PLAYER_STATE::DOWN;
-		}
-		
-	}
-	if (KEY_HOLD(KEY_TYPE::KEY_Z)) //스페이스바 하면 일시정지 눌려서 터짐
-	{
-		_CurPlayerState = PLAYER_STATE::PUSH;
-	}
-	if (KEY_TAP(KEY_TYPE::KEY_Z))
-	{
 
 	}
+
+	//스피드 발판으로 움직여질 때
+	else if (m_eCurState == PLAYER_STATE::SLIDE && m_IsOnCol == false)
+	{
+		if (m_eCurDir == DIR::DOWN) vPos.y -= 800.f * fDT;
+		
+		
+	}
+
 
 	//if (KEY_HOLD(KEY_TYPE::KEY_Z))
 	//{
@@ -210,8 +213,6 @@ void CPlayerScript::InputKey()
 	//	CreateMissile();
 	//}
 
-	m_PlayerState = _CurPlayerState;
-	m_PlayerKey = _Curkey;
 	Transform()->SetLocalPos(vPos);
 	Transform()->SetLocalRot(vRot);
 }
@@ -243,19 +244,20 @@ void CPlayerScript::PlayerMove()
 
 void CPlayerScript::OnCollisionEnter(CGameObject* _pOther)
 {
-	Vec3 vPos = Transform()->GetLocalPos();
+	const wstring& _str = _pOther->GetName();
 
-	if (m_PlayerKey == KEY_TYPE::KEY_LEFT) m_StopPlayerState = PLAYER_STATE::LEFT;	
-	else if (m_PlayerKey == KEY_TYPE::KEY_RIGHT) m_StopPlayerState = PLAYER_STATE::RIGHT;
-	else if (m_PlayerKey == KEY_TYPE::KEY_DOWN) m_StopPlayerState = PLAYER_STATE::DOWN;
-	else if (m_PlayerKey == KEY_TYPE::KEY_UP) m_StopPlayerState = PLAYER_STATE::UP;
-
-	Transform()->SetLocalPos(vPos);
+	if (_str ==L"PushStone" || _str == L"StoneDoor") //
+	{
+		m_IsOnCol = true;
+		//CCamera::GetInst()->SetVibration(0.5f, 10.f, 10.f);  //카메라 진동
+	}
 }
 
 void CPlayerScript::OnCollisionExit(CGameObject* _pOther)
 {
-	m_StopPlayerState = PLAYER_STATE::NONE;
+
+	m_IsOnCol = false;
+	//m_StopPlayerState = PLAYER_STATE::NONE;
 }
 
 void CPlayerScript::SaveToScene(FILE* _pFile)

@@ -1,12 +1,14 @@
+CBarbedBlockScript
+CBlockScript
 CCameraScript
 CMapScript
 CMissileScript
 CMonsterScript
-CObjEvent
 CObjEventScript
 CPlayerScript
 CPushSmallStoneScript
 CPushStoneScript
 CRedButtonScript
+CSpeedUpScript
 CStoneDoorScript
 CTileCollsion

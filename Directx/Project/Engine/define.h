@@ -218,3 +218,11 @@ enum class PLAYER_STATE
 	ITEM,
 	NONE
 };
+
+enum class DIR
+{
+	UP,
+	DOWN,
+	RIGHT,
+	LEFT
+};

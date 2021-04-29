@@ -38,6 +38,16 @@
     <ClInclude Include="CPlayerScript.h">
       <Filter>ScriptCode\PlayerScript</Filter>
     </ClInclude>
+    <ClInclude Include="CTileCollsion.h" />
+    <ClInclude Include="CSpeedUpScript.h">
+      <Filter>ScriptCode\ObjectScript\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="CBlockScript.h">
+      <Filter>ScriptCode\ObjectScript\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="CBarbedBlockScript.h">
+      <Filter>ScriptCode\ObjectScript\Block</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Default">
@@ -63,6 +73,15 @@
     </Filter>
     <Filter Include="ScriptCode\PlayerScript">
       <UniqueIdentifier>{04f6b9cc-62d3-421c-ad9c-7f492d8a9e57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptCode\ObjectScript\Block">
+      <UniqueIdentifier>{54e8d2c9-4987-4ffe-afdd-1f3fe7c9ef9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptCode\ObjectScript\BreakableStone">
+      <UniqueIdentifier>{057f1fd7-3962-472f-8ad3-40a910beb34c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptCode\ObjectScript\Etc">
+      <UniqueIdentifier>{c297793b-878f-46c5-95b8-cfe7665fecda}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -99,6 +118,16 @@
     </ClCompile>
     <ClCompile Include="CPlayerScript.cpp">
       <Filter>ScriptCode\PlayerScript</Filter>
+    </ClCompile>
+    <ClCompile Include="CTileCollsion.cpp" />
+    <ClCompile Include="CSpeedUpScript.cpp">
+      <Filter>ScriptCode\ObjectScript\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="CBlockScript.cpp">
+      <Filter>ScriptCode\ObjectScript\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="CBarbedBlockScript.cpp">
+      <Filter>ScriptCode\ObjectScript\Block</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

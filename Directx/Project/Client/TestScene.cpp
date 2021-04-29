@@ -20,12 +20,18 @@
 #include <Script\CPlayerScript.h>
 #include <Script\CMonsterScript.h>
 #include <Script\CMissileScript.h>
+
 #include <Script/CRedButtonScript.h>
 #include <Script/CStoneDoorScript.h>
+#include <Script/CPushStoneScript.h>
+#include <Script/CSpeedUpScript.h>
+#include <Script/CBlockScript.h>
+#include <Script/CBarbedBlockScript.h>
+
+#include <Script\CTileCollsion.h>
 #include <Script\CObjEventScript.h>
 #include <Script\CMapScript.h>
-#include <Script/CPushStoneScript.h>
-#include <Script\CTileCollsion.h>
+
 #include "CSaveLoadMgr.h"
 
 void CreateSamplePrefab()
@@ -220,7 +226,7 @@ void CreateTestScene()
 	// Button object
 	// ===============
 	CGameObject* redbutton = new CGameObject;
-	redbutton->SetName(L"redbutton");////////
+	redbutton->SetName(L"RedButton");////////
 
 	redbutton->AddComponent(new CTransform);
 	redbutton->AddComponent(new CMeshRender);
@@ -238,11 +244,11 @@ void CreateTestScene()
 	pCurScene->AddObject(redbutton, 3);
 
 
-	// ===============
-	// stonedoor object
-	// ===============
+	 //===============
+	 //stonedoor object
+	 //===============
 	pObj = new CGameObject;
-	pObj->SetName(L"stonedoor");//////////
+	pObj->SetName(L"StoneDoor");//////////
 
 	pObj->AddComponent(new CTransform);
 	pObj->AddComponent(new CMeshRender);
@@ -250,7 +256,7 @@ void CreateTestScene()
 	pObj->AddComponent(new CStoneDoorScript);////////
 	pObj->AddComponent(new CObjEventScript);
 
-	pObj->Transform()->SetLocalPos(Vec3(-30.f, 43.f, 400.f));
+	pObj->Transform()->SetLocalPos(Vec3(-30.f, -88.f, 400.f));
 	pObj->Transform()->SetLocalScale(Vec3(64, 80, 1.f));
 	pObj->Transform()->SetLocalRot(Vec3(0.f, 0.f, 0.f));
 
@@ -269,7 +275,7 @@ void CreateTestScene()
 	// push stone object (미는 장애물)
 	// ===============
 	pObj = new CGameObject;
-	pObj->SetName(L"pushstone"); /////
+	pObj->SetName(L"PushStone"); /////
 
 	pObj->AddComponent(new CTransform);
 	pObj->AddComponent(new CMeshRender);
@@ -288,12 +294,58 @@ void CreateTestScene()
 
 	pCurScene->AddObject(pObj, 2);
 
-	// 0번 Player / 2번 장애물 / 3번 (장애물 아닌)버튼
+
+	// ===============
+	// Speed Up Board ( 스피드 업 발판 )
+	// ===============
+	pObj = new CGameObject;
+	pObj->SetName(L"SpeedUp"); /////
+
+	pObj->AddComponent(new CTransform);
+	pObj->AddComponent(new CMeshRender);
+	pObj->AddComponent(new CCollider2D);
+	pObj->AddComponent(new CSpeedUpScript); ////
+
+	pObj->Transform()->SetLocalPos(Vec3(-30.f, 160.f, 400.f));
+	pObj->Transform()->SetLocalScale(Vec3(64, 64, 1.f));
+	pObj->Transform()->SetLocalRot(Vec3(0.f, 0.f, 0.f));
+
+	pObj->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
+	pObj->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"SpeedUpMtrl"));/////
+
+	pObj->Collider2D()->SetCollider2DType(COLLIDER2D_TYPE::RECT);
+
+	pCurScene->AddObject(pObj, 3);
+
+	// ===============
+	// Barbed Block (가시 있는 장애물)
+	// ===============
+	pObj = new CGameObject;
+	pObj->SetName(L"BarbedBlock"); /////
+
+	pObj->AddComponent(new CTransform);
+	pObj->AddComponent(new CMeshRender);
+	pObj->AddComponent(new CCollider2D);
+	pObj->AddComponent(new CBarbedBlockScript); ////
+
+	pObj->Transform()->SetLocalPos(Vec3(64.f, 0.f, 400.f));
+	pObj->Transform()->SetLocalScale(Vec3(64, 64, 1.f));
+	pObj->Transform()->SetLocalRot(Vec3(0.f, 0.f, 0.f));
+
+	pObj->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
+	pObj->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"BarbedBlockMtrl"));/////
+
+	pObj->Collider2D()->SetCollider2DType(COLLIDER2D_TYPE::RECT);
+
+	pCurScene->AddObject(pObj, 2);
+
+	// 0번 Player / 1번 배경 / 2번 장애물 / 3번 (장애물 아닌)버튼
 
 
 	
 	// Collision Check
-	CCollisionMgr::GetInst()->CollisionCheck(0, 2); 
+	CCollisionMgr::GetInst()->CollisionCheck(0, 2);
+	CCollisionMgr::GetInst()->CollisionCheck(0, 3);
 	CCollisionMgr::GetInst()->CollisionCheck(2, 3);
 
 	// Scene Save
@@ -304,6 +356,7 @@ void CreateTestScene()
 	//pCurScene->start();
 }
 
+//이미지 로드
 void SceneInit()
 {
 	// Load Obj img 
@@ -313,6 +366,7 @@ void SceneInit()
 	CResMgr::GetInst()->Load<CTexture>(L"pushsmallstone", L"texture\\object\\12.jpg");		//밀 수 있는 작은돌
 	CResMgr::GetInst()->Load<CTexture>(L"breakablestone", L"texture\\object\\15.jpg");		//부실 수 있는 돌
 	CResMgr::GetInst()->Load<CTexture>(L"block", L"texture\\object\\18.jpg");				//지나갈 수 없는 장애물
-	CResMgr::GetInst()->Load<CTexture>(L"sharpblock", L"texture\\object\\13.jpg");			//가시 달린 장애물
+	CResMgr::GetInst()->Load<CTexture>(L"barbedblock", L"texture\\object\\13.jpg");			//가시 달린 장애물
+	CResMgr::GetInst()->Load<CTexture>(L"speedup", L"texture\\object\\9.jpg");				//스피드 업 발판
 
 }

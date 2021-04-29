@@ -244,9 +244,9 @@ void CreateTestScene()
 	pCurScene->AddObject(redbutton, 3);
 
 
-	 //===============
-	 //stonedoor object
-	 //===============
+	// ===============
+	// stonedoor object
+	// ===============
 	pObj = new CGameObject;
 	pObj->SetName(L"StoneDoor");//////////
 
@@ -256,7 +256,7 @@ void CreateTestScene()
 	pObj->AddComponent(new CStoneDoorScript);////////
 	pObj->AddComponent(new CObjEventScript);
 
-	pObj->Transform()->SetLocalPos(Vec3(-30.f, -88.f, 400.f));
+	pObj->Transform()->SetLocalPos(Vec3(-30.f,-88.f, 400.f));
 	pObj->Transform()->SetLocalScale(Vec3(64, 80, 1.f));
 	pObj->Transform()->SetLocalRot(Vec3(0.f, 0.f, 0.f));
 

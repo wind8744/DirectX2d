@@ -199,8 +199,6 @@ void CPlayerScript::CheckState()
 	else if (m_eCurState == PLAYER_STATE::SLIDE && m_IsOnCol == false)
 	{
 		if (m_eCurDir == DIR::DOWN) vPos.y -= 800.f * fDT;
-		
-		
 	}
 
 
@@ -245,19 +243,15 @@ void CPlayerScript::PlayerMove()
 void CPlayerScript::OnCollisionEnter(CGameObject* _pOther)
 {
 	const wstring& _str = _pOther->GetName();
-
-	if (_str ==L"PushStone" || _str == L"StoneDoor") //
+	if (_str == L"PushStone" || _str == L"StoneDoor")
 	{
 		m_IsOnCol = true;
-		//CCamera::GetInst()->SetVibration(0.5f, 10.f, 10.f);  //카메라 진동
 	}
 }
 
 void CPlayerScript::OnCollisionExit(CGameObject* _pOther)
 {
-
 	m_IsOnCol = false;
-	//m_StopPlayerState = PLAYER_STATE::NONE;
 }
 
 void CPlayerScript::SaveToScene(FILE* _pFile)

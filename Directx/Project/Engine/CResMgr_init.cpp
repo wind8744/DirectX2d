@@ -381,6 +381,25 @@ void CResMgr::CreateDefaultMaterial()
 	pMtrl->m_bDefault = true;
 	AddRes<CMaterial>(L"BarbedBlockMtrl", pMtrl);
 
+	// ==================
+	// BreakableStone material
+	// ==================
+	pMtrl = new CMaterial;
+	pMtrl->SetShader(FindRes<CGraphicsShader>(L"Std2DShader"));
+	pMtrl->m_bDefault = true;
+	AddRes<CMaterial>(L"BreakableStoneMtrl", pMtrl);
+
+	// ==================
+	// BombFlower material
+	// ==================
+	pMtrl = new CMaterial;
+	pMtrl->SetShader(FindRes<CGraphicsShader>(L"Std2DShader"));
+	pMtrl->m_bDefault = true;
+	AddRes<CMaterial>(L"BombFlowerMtrl", pMtrl);
+
+
+
+	
 
 }
 

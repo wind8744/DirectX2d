@@ -179,8 +179,11 @@ call CodeGen.exe</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CBombFlowerScript.h" />
+    <ClInclude Include="CBreakableSmallStoneScript.h" />
     <ClInclude Include="CBarbedBlockScript.h" />
     <ClInclude Include="CBlockScript.h" />
+    <ClInclude Include="CBreakableStoneScript.h" />
     <ClInclude Include="CCameraScript.h" />
     <ClInclude Include="CMapScript.h" />
     <ClInclude Include="CMissileScript.h" />
@@ -200,8 +203,11 @@ call CodeGen.exe</Command>
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CBombFlowerScript.cpp" />
+    <ClCompile Include="CBreakableSmallStoneScript.cpp" />
     <ClCompile Include="CBarbedBlockScript.cpp" />
     <ClCompile Include="CBlockScript.cpp" />
+    <ClCompile Include="CBreakableStoneScript.cpp" />
     <ClCompile Include="CCameraScript.cpp" />
     <ClCompile Include="CMapScript.cpp" />
     <ClCompile Include="CMissileScript.cpp" />

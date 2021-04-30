@@ -25,9 +25,10 @@ CPlayerScript::CPlayerScript()
 	, m_eCurDir(DIR::DOWN)              //현재 방향
 	, m_ePreDir(DIR::DOWN)              //이전 방향
 	, m_IsOnCol(false)
+	, m_fAtime(0.f)
 {
-	AddDesc(tDataDesc(SCRIPT_DATA_TYPE::INT, "Int Data", &m_iData));
-	AddDesc(tDataDesc(SCRIPT_DATA_TYPE::FLOAT, "float Data", &m_fData));
+	AddDesc(tDataDesc(SCRIPT_DATA_TYPE::INT, "HP", &m_iHP));
+	AddDesc(tDataDesc(SCRIPT_DATA_TYPE::FLOAT, "Speed", &m_fPlayerSpeed));
 	AddDesc(tDataDesc(SCRIPT_DATA_TYPE::VEC2, "Vec2 Data", &m_v2Data));
 	AddDesc(tDataDesc(SCRIPT_DATA_TYPE::VEC4, "Vec4 Data", &m_v4Data));
 	AddDesc(tDataDesc(SCRIPT_DATA_TYPE::PREFAB, "Missile", &m_pMissilePrefab));
@@ -131,10 +132,7 @@ void CPlayerScript::CheckState()
 	{
 		if (KEY_HOLD(KEY_TYPE::KEY_LEFT))// && m_vecTileInfo[m_iTileY * m_iMapCol + (m_iTileX - 1)].IsBlock == false)
 		{
-			if (m_IsOnCol == true && m_ePreDir == DIR::LEFT)
-			{
-				//움직임X
-			}
+			if (m_IsOnCol == true && m_ePreDir == DIR::LEFT) {} //움직임X
 			else
 			{
 				vPos.x -= m_fPlayerSpeed * fDT;
@@ -144,10 +142,7 @@ void CPlayerScript::CheckState()
 		}
 		if (KEY_HOLD(KEY_TYPE::KEY_RIGHT))// && m_vecTileInfo[m_iTileY * m_iMapCol + (m_iTileX+1)].IsBlock == false)
 		{
-			if (m_IsOnCol == true && m_ePreDir == DIR::RIGHT)
-			{
-				//vPos.x -= 2;
-			}
+			if (m_IsOnCol == true && m_ePreDir == DIR::RIGHT) {} //움직임X
 			else
 			{
 				vPos.x += m_fPlayerSpeed * fDT;
@@ -158,10 +153,7 @@ void CPlayerScript::CheckState()
 		}
 		if (KEY_HOLD(KEY_TYPE::KEY_UP))// && m_vecTileInfo[(m_iTileY - 1) * m_iMapCol + m_iTileX].IsBlock == false)
 		{
-			if (m_IsOnCol == true && m_ePreDir == DIR::UP)
-			{
-				//vPos.y -= 2;
-			}
+			if (m_IsOnCol == true && m_ePreDir == DIR::UP) {} //움직임X
 			else
 			{
 				vPos.y += m_fPlayerSpeed * fDT;
@@ -172,10 +164,7 @@ void CPlayerScript::CheckState()
 		}
 		if (KEY_HOLD(KEY_TYPE::KEY_DOWN))// && m_vecTileInfo[(m_iTileY + 1) * m_iMapCol + m_iTileX].IsBlock == false)
 		{
-			if (m_IsOnCol == true && m_ePreDir == DIR::DOWN)
-			{
-				//vPos.y -= 2;
-			}
+			if (m_IsOnCol == true && m_ePreDir == DIR::DOWN) {} //움직임X
 			else
 			{
 				vPos.y -= m_fPlayerSpeed * fDT;
@@ -186,7 +175,11 @@ void CPlayerScript::CheckState()
 		}
 		if (KEY_HOLD(KEY_TYPE::KEY_Z))
 		{
-			m_eCurState = PLAYER_STATE::PUSH;
+			//충돌한 물체 스크립트 이넘값 받아옴
+			UINT _OnColScript = m_pTarScript->GetScriptType();
+			if(11 == _OnColScript ||12 == _OnColScript)	m_eCurState = PLAYER_STATE::PUSH; //밀수 있는 돌일 때
+			if (3 == _OnColScript || 4 == _OnColScript) m_eCurState = PLAYER_STATE::BREAK; //부실 수 있는 돌일 때
+
 		}
 		if (KEY_TAP(KEY_TYPE::KEY_Z))
 		{
@@ -195,10 +188,23 @@ void CPlayerScript::CheckState()
 
 	}
 
-	//스피드 발판으로 움직여질 때
+	//슬라이드 상태 : 스피드 발판 위
 	else if (m_eCurState == PLAYER_STATE::SLIDE && m_IsOnCol == false)
 	{
 		if (m_eCurDir == DIR::DOWN) vPos.y -= 800.f * fDT;
+		else if (m_eCurDir == DIR::UP) vPos.y += 800.f * fDT;
+		else if (m_eCurDir == DIR::RIGHT) vPos.x += 800.f * fDT;
+		else if (m_eCurDir == DIR::LEFT) vPos.x -= 800.f * fDT;
+	}
+	//브레이크 상태 : 돌 부술 때
+	else if (m_eCurState == PLAYER_STATE::BREAK)
+	{
+		m_fAtime += fDT;
+		if (m_fAtime > 0.7f)
+		{
+			m_eCurState = PLAYER_STATE::IDLE;
+			m_fAtime = 0.f;
+		}
 	}
 
 
@@ -242,8 +248,10 @@ void CPlayerScript::PlayerMove()
 
 void CPlayerScript::OnCollisionEnter(CGameObject* _pOther)
 {
+	m_pTarScript = _pOther->GetScript();
+
 	const wstring& _str = _pOther->GetName();
-	if (_str == L"PushStone" || _str == L"StoneDoor")
+	if (_str == L"PushStone" || _str == L"StoneDoor" || _str == L"BreakableStone")
 	{
 		m_IsOnCol = true;
 	}

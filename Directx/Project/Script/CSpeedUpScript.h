@@ -13,13 +13,14 @@ private:
     Ptr<CTexture>           m_pRedButTex;           //버튼 tex
     Ptr<CMaterial>          m_pMtrl;                //material
     CPlayerScript*          m_pPlayerScript;        //플레이어 참조
-    
-    bool                    m_bIsPushed;            //눌렸는가?
+    DIR                     m_eSpeedDir;            //발판 방향
 
+    bool                    m_bIsPushed;            //눌렸는가?
     float                   m_fAtime;               //스피드 유지되는 시간
 
 public:
     bool GetIsPushed() { return m_bIsPushed; }
+    void PushDir(DIR _dir) { m_eSpeedDir = _dir; }
 
 public:
     virtual void awake();

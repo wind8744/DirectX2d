@@ -10,15 +10,19 @@ class CBarbedBlockScript :
     public CScript
 {
 private:
-    Ptr<CTexture>           m_pRedButTex;           //버튼 tex
+    Ptr<CTexture>           m_pTex;                 //버튼 tex
     Ptr<CMaterial>          m_pMtrl;                //material
     CPlayerScript*          m_pPlayerScript;        //플레이어 참조
+    float                   m_fDir;                   //dir
+    float                   m_fSpeed;
+    float                   m_fRange;
+    Vec2                    m_vStartPos;
 
-    bool                    m_bIsPushed;            //눌렸는가?
+    //bool                    m_bIsPushed;            //눌렸는가?
 
 
 public:
-    bool GetIsPushed() { return m_bIsPushed; }
+   // bool GetIsPushed() { return m_bIsPushed; }
 
 public:
     virtual void awake();

@@ -10,34 +10,16 @@
 //
 //}TILE_INFO;
 
-//enum class PLAYER_STATE
-//{
-//    MOVE,
-//    STOP,
-//    IDLE,
-//    ATTACK,
-//    SKILL,
-//    PUSH,
-//    BREAK,
-//    ITEM,
-//    NONE
-//};
-
-//enum class DIR
-//{
-//    UP,
-//    DOWN,
-//    RIGHT,
-//    LEFT
-//};
 class CPlayerScript :
     public CScript
 {
 private:
     bool                m_IsOnCol;              //충돌중?
     Ptr<CTexture>       m_pPlayerTex;           //플레이어 tex
+    
+    CScript*            m_pTarScript;           //부딪힌 타겟 스크립트
+    CGameObject*        m_pTarObj;              //부딪힌 타겟 게임 오브젝트
 
-    //수정할 것
     PLAYER_STATE        m_eCurState;            //플레이어의 현재 상태
     PLAYER_STATE        m_ePrevState;           //이전 상태
     DIR                 m_eCurDir;              //현재 방향
@@ -45,6 +27,7 @@ private:
 
     UINT                m_iHP;                  //플레이어 체력
     float               m_fPlayerSpeed;         //플레이어 스피드
+    float               m_fAtime;               //누적시간
 
     //vector<tile_info*>& m_vecTileInfo;        //현재 씬의 타일 정보 vector (현재씬에서 받아옴)
     //vector<tile_info>   m_vecTileInfo;        //temp
@@ -64,9 +47,6 @@ private:
 
 public:
     //GET SET
-    //PLAYER_STATE GetStopPlayerState() { return m_StopPlayerState; } //key로 바꿀?
-    //void SetStopPlayerState(PLAYER_STATE _stopstate) { m_StopPlayerState = _stopstate; } //key로 바꿀?
-
     PLAYER_STATE GetPlayerState() { return m_eCurState; }
     void SetPlayerState(PLAYER_STATE _state) { m_eCurState = _state; }
 

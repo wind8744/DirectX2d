@@ -3,6 +3,9 @@
 
 #include "CBarbedBlockScript.h"
 #include "CBlockScript.h"
+#include "CBombFlowerScript.h"
+#include "CBreakableSmallStoneScript.h"
+#include "CBreakableStoneScript.h"
 #include "CCameraScript.h"
 #include "CMapScript.h"
 #include "CMissileScript.h"
@@ -20,6 +23,9 @@ void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 {
 	_vec.push_back(L"CBarbedBlockScript");
 	_vec.push_back(L"CBlockScript");
+	_vec.push_back(L"CBombFlowerScript");
+	_vec.push_back(L"CBreakableSmallStoneScript");
+	_vec.push_back(L"CBreakableStoneScript");
 	_vec.push_back(L"CCameraScript");
 	_vec.push_back(L"CMapScript");
 	_vec.push_back(L"CMissileScript");
@@ -40,6 +46,12 @@ CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
 		return new CBarbedBlockScript;
 	if (L"CBlockScript" == _strScriptName)
 		return new CBlockScript;
+	if (L"CBombFlowerScript" == _strScriptName)
+		return new CBombFlowerScript;
+	if (L"CBreakableSmallStoneScript" == _strScriptName)
+		return new CBreakableSmallStoneScript;
+	if (L"CBreakableStoneScript" == _strScriptName)
+		return new CBreakableStoneScript;
 	if (L"CCameraScript" == _strScriptName)
 		return new CCameraScript;
 	if (L"CMapScript" == _strScriptName)
@@ -76,6 +88,15 @@ CScript * CScriptMgr::GetScript(UINT _iScriptType)
 		break;
 	case (UINT)SCRIPT_TYPE::BLOCKSCRIPT:
 		return new CBlockScript;
+		break;
+	case (UINT)SCRIPT_TYPE::BOMBFLOWERSCRIPT:
+		return new CBombFlowerScript;
+		break;
+	case (UINT)SCRIPT_TYPE::BREAKABLESMALLSTONESCRIPT:
+		return new CBreakableSmallStoneScript;
+		break;
+	case (UINT)SCRIPT_TYPE::BREAKABLESTONESCRIPT:
+		return new CBreakableStoneScript;
 		break;
 	case (UINT)SCRIPT_TYPE::CAMERASCRIPT:
 		return new CCameraScript;
@@ -127,6 +148,18 @@ const wchar_t * CScriptMgr::GetScriptName(CScript * _pScript)
 
 	case SCRIPT_TYPE::BLOCKSCRIPT:
 		return L"CBlockScript";
+		break;
+
+	case SCRIPT_TYPE::BOMBFLOWERSCRIPT:
+		return L"CBombFlowerScript";
+		break;
+
+	case SCRIPT_TYPE::BREAKABLESMALLSTONESCRIPT:
+		return L"CBreakableSmallStoneScript";
+		break;
+
+	case SCRIPT_TYPE::BREAKABLESTONESCRIPT:
+		return L"CBreakableStoneScript";
 		break;
 
 	case SCRIPT_TYPE::CAMERASCRIPT:

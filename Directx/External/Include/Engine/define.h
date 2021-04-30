@@ -210,9 +210,10 @@ enum class PLAYER_STATE
 	STOP,
 	ATTACK,
 	SKILL,
-	PUSH,
-	SLIDE,
 	ITEM,
+	SLIDE,
+	BREAK,
+	PUSH,
 	NONE
 };
 

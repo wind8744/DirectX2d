@@ -7,12 +7,6 @@
     <ClInclude Include="framework.h">
       <Filter>Default</Filter>
     </ClInclude>
-    <ClInclude Include="CMissileScript.h">
-      <Filter>ScriptCode</Filter>
-    </ClInclude>
-    <ClInclude Include="CMonsterScript.h">
-      <Filter>ScriptCode</Filter>
-    </ClInclude>
     <ClInclude Include="CCameraScript.h">
       <Filter>ScriptCode</Filter>
     </ClInclude>
@@ -27,13 +21,13 @@
       <Filter>ScriptCode\ObjectScript\Button</Filter>
     </ClInclude>
     <ClInclude Include="CStoneDoorScript.h">
-      <Filter>ScriptCode\ObjectScript\StoneDoor</Filter>
+      <Filter>ScriptCode\ObjectScript\Stone\StoneDoor</Filter>
     </ClInclude>
     <ClInclude Include="CPushStoneScript.h">
-      <Filter>ScriptCode\ObjectScript\PushStone</Filter>
+      <Filter>ScriptCode\ObjectScript\Stone\PushStone</Filter>
     </ClInclude>
     <ClInclude Include="CPushSmallStoneScript.h">
-      <Filter>ScriptCode\ObjectScript\PushStone</Filter>
+      <Filter>ScriptCode\ObjectScript\Stone\PushStone</Filter>
     </ClInclude>
     <ClInclude Include="CPlayerScript.h">
       <Filter>ScriptCode\PlayerScript</Filter>
@@ -47,6 +41,21 @@
     </ClInclude>
     <ClInclude Include="CBarbedBlockScript.h">
       <Filter>ScriptCode\ObjectScript\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="CBreakableStoneScript.h">
+      <Filter>ScriptCode\ObjectScript\Stone\BreakableStone</Filter>
+    </ClInclude>
+    <ClInclude Include="CBreakableSmallStoneScript.h">
+      <Filter>ScriptCode\ObjectScript\Stone\BreakableStone</Filter>
+    </ClInclude>
+    <ClInclude Include="CBombFlowerScript.h">
+      <Filter>ScriptCode\ObjectScript\Etc</Filter>
+    </ClInclude>
+    <ClInclude Include="CMonsterScript.h">
+      <Filter>ScriptCode\MonsterScript</Filter>
+    </ClInclude>
+    <ClInclude Include="CMissileScript.h">
+      <Filter>ScriptCode\PlayerScript</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -65,34 +74,34 @@
     <Filter Include="ScriptCode\ObjectScript\Button">
       <UniqueIdentifier>{6311a4f4-76f2-429d-9ac5-6b2d07bc047a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ScriptCode\ObjectScript\PushStone">
-      <UniqueIdentifier>{8d41792e-6dba-40d0-9053-7c5c4cf559a8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ScriptCode\ObjectScript\StoneDoor">
-      <UniqueIdentifier>{a874d686-cb11-4c19-b20c-d95ce4eb8a9c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ScriptCode\PlayerScript">
       <UniqueIdentifier>{04f6b9cc-62d3-421c-ad9c-7f492d8a9e57}</UniqueIdentifier>
     </Filter>
     <Filter Include="ScriptCode\ObjectScript\Block">
       <UniqueIdentifier>{54e8d2c9-4987-4ffe-afdd-1f3fe7c9ef9f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ScriptCode\ObjectScript\BreakableStone">
-      <UniqueIdentifier>{057f1fd7-3962-472f-8ad3-40a910beb34c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ScriptCode\ObjectScript\Etc">
       <UniqueIdentifier>{c297793b-878f-46c5-95b8-cfe7665fecda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptCode\ObjectScript\Stone">
+      <UniqueIdentifier>{4b0be1f6-ee3a-4dfc-8d07-fb394711b7bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptCode\ObjectScript\Stone\BreakableStone">
+      <UniqueIdentifier>{057f1fd7-3962-472f-8ad3-40a910beb34c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptCode\ObjectScript\Stone\PushStone">
+      <UniqueIdentifier>{8d41792e-6dba-40d0-9053-7c5c4cf559a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptCode\ObjectScript\Stone\StoneDoor">
+      <UniqueIdentifier>{a874d686-cb11-4c19-b20c-d95ce4eb8a9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptCode\MonsterScript">
+      <UniqueIdentifier>{c06b2d1a-e74e-4664-9f31-d82d48337bd9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
       <Filter>Default</Filter>
-    </ClCompile>
-    <ClCompile Include="CMissileScript.cpp">
-      <Filter>ScriptCode</Filter>
-    </ClCompile>
-    <ClCompile Include="CMonsterScript.cpp">
-      <Filter>ScriptCode</Filter>
     </ClCompile>
     <ClCompile Include="CCameraScript.cpp">
       <Filter>ScriptCode</Filter>
@@ -108,13 +117,13 @@
       <Filter>ScriptCode\ObjectScript\Button</Filter>
     </ClCompile>
     <ClCompile Include="CStoneDoorScript.cpp">
-      <Filter>ScriptCode\ObjectScript\StoneDoor</Filter>
+      <Filter>ScriptCode\ObjectScript\Stone\StoneDoor</Filter>
     </ClCompile>
     <ClCompile Include="CPushStoneScript.cpp">
-      <Filter>ScriptCode\ObjectScript\PushStone</Filter>
+      <Filter>ScriptCode\ObjectScript\Stone\PushStone</Filter>
     </ClCompile>
     <ClCompile Include="CPushSmallStoneScript.cpp">
-      <Filter>ScriptCode\ObjectScript\PushStone</Filter>
+      <Filter>ScriptCode\ObjectScript\Stone\PushStone</Filter>
     </ClCompile>
     <ClCompile Include="CPlayerScript.cpp">
       <Filter>ScriptCode\PlayerScript</Filter>
@@ -128,6 +137,21 @@
     </ClCompile>
     <ClCompile Include="CBarbedBlockScript.cpp">
       <Filter>ScriptCode\ObjectScript\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="CBreakableStoneScript.cpp">
+      <Filter>ScriptCode\ObjectScript\Stone\BreakableStone</Filter>
+    </ClCompile>
+    <ClCompile Include="CBreakableSmallStoneScript.cpp">
+      <Filter>ScriptCode\ObjectScript\Stone\BreakableStone</Filter>
+    </ClCompile>
+    <ClCompile Include="CBombFlowerScript.cpp">
+      <Filter>ScriptCode\ObjectScript\Etc</Filter>
+    </ClCompile>
+    <ClCompile Include="CMissileScript.cpp">
+      <Filter>ScriptCode\PlayerScript</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonsterScript.cpp">
+      <Filter>ScriptCode\MonsterScript</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

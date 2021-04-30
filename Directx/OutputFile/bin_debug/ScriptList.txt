@@ -1,5 +1,8 @@
 CBarbedBlockScript
 CBlockScript
+CBombFlowerScript
+CBreakableSmallStoneScript
+CBreakableStoneScript
 CCameraScript
 CMapScript
 CMissileScript

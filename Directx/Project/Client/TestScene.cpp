@@ -21,12 +21,15 @@
 #include <Script\CMonsterScript.h>
 #include <Script\CMissileScript.h>
 
+// Obj script
 #include <Script/CRedButtonScript.h>
 #include <Script/CStoneDoorScript.h>
 #include <Script/CPushStoneScript.h>
 #include <Script/CSpeedUpScript.h>
 #include <Script/CBlockScript.h>
 #include <Script/CBarbedBlockScript.h>
+#include <Script/CBreakableStoneScript.h>
+#include <Script/CBombFlowerScript.h>
 
 #include <Script\CTileCollsion.h>
 #include <Script\CObjEventScript.h>
@@ -199,31 +202,26 @@ void CreateTestScene()
 	// =============
 	// PostEffect
 	// =============
-	/*CGameObject* pPostEffect = new CGameObject;
-	pPostEffect->SetName(L"PostEffect Object");
-
-	pPostEffect->AddComponent(new CTransform);
-	pPostEffect->AddComponent(new CMeshRender);
-
-	pPostEffect->Transform()->SetLocalPos(Vec3(0.f, 0.f, 100.f));
-	pPostEffect->Transform()->SetLocalScale(Vec3(1600.f, 900.f, 1.f));
-
-	pPostEffect->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
-	pPostEffect->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"PostEffectMtrl"));
-
-	pCurScene->AddObject(pPostEffect, 1);*/
-
+	///*CGameObject* pPostEffect = new CGameObject;
+	//pPostEffect->SetName(L"PostEffect Object");
+	//pPostEffect->AddComponent(new CTransform);
+	//pPostEffect->AddComponent(new CMeshRender);
+	//pPostEffect->Transform()->SetLocalPos(Vec3(0.f, 0.f, 100.f));
+	//pPostEffect->Transform()->SetLocalScale(Vec3(1600.f, 900.f, 1.f));
+	//pPostEffect->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
+	//pPostEffect->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"PostEffectMtrl"));
+	//pCurScene->AddObject(pPostEffect, 1);*/
 	// ===============
 	// particle object
 	// ===============
-	/*CGameObject* pParticleObject = new CGameObject;
-	pParticleObject->AddComponent(new CTransform);
-	pParticleObject->AddComponent(new CParticleSystem);
-	pParticleObject->Transform()->SetLocalPos(Vec3(0.f, 0.f, 500.f));
-	m_pCurScene->AddObject(pParticleObject, 0);*/
+	//CGameObject* pParticleObject = new CGameObject;
+	//pParticleObject->AddComponent(new CTransform);
+	//pParticleObject->AddComponent(new CParticleSystem);
+	//pParticleObject->Transform()->SetLocalPos(Vec3(0.f, 0.f, 500.f));
+	//m_pCurScene->AddObject(pParticleObject, 0);*/
 
 	// ===============
-	// Button object
+	// Button object (빨간버튼)
 	// ===============
 	CGameObject* redbutton = new CGameObject;
 	redbutton->SetName(L"RedButton");////////
@@ -245,7 +243,7 @@ void CreateTestScene()
 
 
 	// ===============
-	// stonedoor object
+	// stonedoor object (열리는 돌문)
 	// ===============
 	pObj = new CGameObject;
 	pObj->SetName(L"StoneDoor");//////////
@@ -300,21 +298,17 @@ void CreateTestScene()
 	// ===============
 	pObj = new CGameObject;
 	pObj->SetName(L"SpeedUp"); /////
-
 	pObj->AddComponent(new CTransform);
 	pObj->AddComponent(new CMeshRender);
 	pObj->AddComponent(new CCollider2D);
 	pObj->AddComponent(new CSpeedUpScript); ////
-
 	pObj->Transform()->SetLocalPos(Vec3(-30.f, 160.f, 400.f));
 	pObj->Transform()->SetLocalScale(Vec3(64, 64, 1.f));
 	pObj->Transform()->SetLocalRot(Vec3(0.f, 0.f, 0.f));
-
 	pObj->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
 	pObj->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"SpeedUpMtrl"));/////
-
 	pObj->Collider2D()->SetCollider2DType(COLLIDER2D_TYPE::RECT);
-
+	dynamic_cast<CSpeedUpScript*>(pObj->GetScript(L"CSpeedUpScript"))->PushDir(DIR::DOWN); //방향 선택
 	pCurScene->AddObject(pObj, 3);
 
 	// ===============
@@ -327,19 +321,66 @@ void CreateTestScene()
 	pObj->AddComponent(new CMeshRender);
 	pObj->AddComponent(new CCollider2D);
 	pObj->AddComponent(new CBarbedBlockScript); ////
-
-	pObj->Transform()->SetLocalPos(Vec3(64.f, 0.f, 400.f));
+	pObj->Transform()->SetLocalPos(Vec3(228.f, 200.f, 400.f));
 	pObj->Transform()->SetLocalScale(Vec3(64, 64, 1.f));
 	pObj->Transform()->SetLocalRot(Vec3(0.f, 0.f, 0.f));
-
 	pObj->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
 	pObj->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"BarbedBlockMtrl"));/////
-
 	pObj->Collider2D()->SetCollider2DType(COLLIDER2D_TYPE::RECT);
-
 	pCurScene->AddObject(pObj, 2);
 
-	// 0번 Player / 1번 배경 / 2번 장애물 / 3번 (장애물 아닌)버튼
+	// ===============
+	// Block (일반 장애물)
+	// ===============
+	pObj = new CGameObject;
+	pObj->SetName(L"Block"); /////
+	pObj->AddComponent(new CTransform);
+	pObj->AddComponent(new CMeshRender);
+	pObj->AddComponent(new CCollider2D);
+	pObj->AddComponent(new CBlockScript); ////
+	pObj->Transform()->SetLocalPos(Vec3(-222.f, -222.f, 400.f));
+	pObj->Transform()->SetLocalScale(Vec3(64, 80, 1.f));
+	pObj->Transform()->SetLocalRot(Vec3(0.f, 0.f, 0.f));
+	pObj->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
+	pObj->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"BlockMtrl"));/////
+	pObj->Collider2D()->SetCollider2DType(COLLIDER2D_TYPE::RECT);
+	pCurScene->AddObject(pObj, 2);
+
+	// ===============
+	// BreakableStone (부술 수 있는 돌)
+	// ===============
+	pObj = new CGameObject;
+	pObj->SetName(L"BreakableStone"); /////
+	pObj->AddComponent(new CTransform);
+	pObj->AddComponent(new CMeshRender);
+	pObj->AddComponent(new CCollider2D);
+	pObj->AddComponent(new CBreakableStoneScript); ////
+	pObj->Transform()->SetLocalPos(Vec3(-224.f, -30.f, 400.f));
+	pObj->Transform()->SetLocalScale(Vec3(64, 64, 1.f));
+	pObj->Transform()->SetLocalRot(Vec3(0.f, 0.f, 0.f));
+	pObj->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
+	pObj->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"BreakableStoneMtrl"));/////
+	pObj->Collider2D()->SetCollider2DType(COLLIDER2D_TYPE::RECT);
+	pCurScene->AddObject(pObj, 2);
+
+	// ===============
+	// BombFlower (폭탄꽃)
+	// ===============
+	pObj = new CGameObject;
+	pObj->SetName(L"BombFlower"); /////
+	pObj->AddComponent(new CTransform);
+	pObj->AddComponent(new CMeshRender);
+	pObj->AddComponent(new CCollider2D);
+	pObj->AddComponent(new CBombFlowerScript); ////
+	pObj->Transform()->SetLocalPos(Vec3(100.f, 100.f, 400.f));
+	pObj->Transform()->SetLocalScale(Vec3(64, 80, 1.f));
+	pObj->Transform()->SetLocalRot(Vec3(0.f, 0.f, 0.f));
+	pObj->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
+	pObj->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"BombFlowerMtrl"));/////
+	pObj->Collider2D()->SetCollider2DType(COLLIDER2D_TYPE::RECT);
+	pCurScene->AddObject(pObj, 3);
+
+	// 0번 Player / 1번 배경 / 2번 장애물 / 3번 버튼,폭탄꽃
 
 
 	
@@ -368,5 +409,6 @@ void SceneInit()
 	CResMgr::GetInst()->Load<CTexture>(L"block", L"texture\\object\\18.jpg");				//지나갈 수 없는 장애물
 	CResMgr::GetInst()->Load<CTexture>(L"barbedblock", L"texture\\object\\13.jpg");			//가시 달린 장애물
 	CResMgr::GetInst()->Load<CTexture>(L"speedup", L"texture\\object\\9.jpg");				//스피드 업 발판
+	CResMgr::GetInst()->Load<CTexture>(L"bombflower", L"texture\\object\\14.jpg");			//폭탄꽃
 
 }

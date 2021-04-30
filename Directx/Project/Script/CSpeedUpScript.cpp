@@ -15,6 +15,7 @@ CSpeedUpScript::CSpeedUpScript()
 	, m_bIsPushed(false)
 	, m_pPlayerScript(nullptr)
 	, m_fAtime(0.f)
+	,m_eSpeedDir(DIR::DOWN)
 {
 	m_pRedButTex = CResMgr::GetInst()->FindRes<CTexture>(L"speedup");
 	m_pMtrl = CResMgr::GetInst()->FindRes<CMaterial>(L"SpeedUpMtrl");
@@ -43,7 +44,7 @@ void CSpeedUpScript::update()
 		if (m_fAtime < 0.5f)
 		{
 			m_pPlayerScript->SetPlayerState(PLAYER_STATE::SLIDE);
-			m_pPlayerScript->SetPlayerDir(DIR::DOWN); //왼쪽 발판일때 왼쪽으로 강제로 바꾸어줌
+			m_pPlayerScript->SetPlayerDir(m_eSpeedDir); //왼쪽 발판일때 왼쪽으로 강제로 바꾸어줌
 		}
 		else
 		{
@@ -63,10 +64,6 @@ void CSpeedUpScript::OnCollisionEnter(CGameObject* _pOther)
 
 void CSpeedUpScript::OnCollisionExit(CGameObject* _pOther)
 {
-	//m_bIsPushed = false;
-	//충돌이 끝나면 플레이어 상태를 처음으로 다시 되돌려 줌
-	//m_pPlayerScript->SetPlayerState(PLAYER_STATE::NONE);
-	//m_pPlayerScript->SetPlayerKey(KEY_TYPE::KEY_DOWN); //왼쪽 발판일때 왼쪽으로 강제로 바꾸어줌
 }
 
 void CSpeedUpScript::SaveToScene(FILE* _pFile)

@@ -11,15 +11,14 @@ class CBlockScript :
     public CScript
 {
 private:
-    Ptr<CTexture>           m_pRedButTex;           //버튼 tex
+    Ptr<CTexture>           m_pTex;                 //버튼 tex
     Ptr<CMaterial>          m_pMtrl;                //material
-    CPlayerScript*          m_pPlayerScript;        //플레이어 참조
-
-    bool                    m_bIsPushed;            //눌렸는가?
+//  CPlayerScript*          m_pPlayerScript;        //플레이어 참조
+//  bool                    m_bIsPushed;            //눌렸는가?
 
 
 public:
-    bool GetIsPushed() { return m_bIsPushed; }
+//    bool GetIsPushed() { return m_bIsPushed; }
 
 public:
     virtual void awake();
@@ -27,8 +26,8 @@ public:
 
 
 public:
-    virtual void OnCollisionEnter(CGameObject* _pOther);
-    virtual void OnCollisionExit(CGameObject* _pOther);
+    //virtual void OnCollisionEnter(CGameObject* _pOther);
+    //virtual void OnCollisionExit(CGameObject* _pOther);
 
 public:
     CLONE(CBlockScript);

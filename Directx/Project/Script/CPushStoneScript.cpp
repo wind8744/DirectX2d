@@ -69,7 +69,6 @@ void CPushStoneScript::update()
 
 	Transform()->SetLocalPos(vPos);
 
-
 }
 
 void CPushStoneScript::OnCollisionEnter(CGameObject* _pOther)

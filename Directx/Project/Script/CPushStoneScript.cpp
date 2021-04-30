@@ -43,25 +43,25 @@ void CPushStoneScript::update()
 
 	Vec3 vPos = Transform()->GetLocalPos();
 
-	PLAYER_STATE _stopstate = m_pPlayerScript->GetStopPlayerState();
 	PLAYER_STATE _curstate = m_pPlayerScript->GetPlayerState();
+	DIR _curdir = m_pPlayerScript->GetPlayerDir();
 
 	//충돌상태이고 플레이어가 z키를 누르고있을때 
 	if (m_bIsPushed == true && _curstate == PLAYER_STATE::PUSH)
 	{
-		if (_stopstate == PLAYER_STATE::RIGHT)
+		if (_curdir == DIR::RIGHT)
 		{
 			vPos.x += 1;
 		}
-		if (_stopstate == PLAYER_STATE::LEFT)
+		if (_curdir == DIR::LEFT)
 		{
 			vPos.x -= 1;
 		}
-		if (_stopstate == PLAYER_STATE::DOWN)
+		if (_curdir == DIR::DOWN)
 		{
 			vPos.y -= 1;
 		}
-		if (_stopstate == PLAYER_STATE::UP)
+		if (_curdir == DIR::UP)
 		{
 			vPos.y += 1;
 		}

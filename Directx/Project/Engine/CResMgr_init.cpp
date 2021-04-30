@@ -357,6 +357,31 @@ void CResMgr::CreateDefaultMaterial()
 	pMtrl->m_bDefault = true;
 	AddRes<CMaterial>(L"PushStoneMtrl", pMtrl);
 
+	// ==================
+	// SpeedUp material
+	// ==================
+	pMtrl = new CMaterial;
+	pMtrl->SetShader(FindRes<CGraphicsShader>(L"Std2DShader"));
+	pMtrl->m_bDefault = true;
+	AddRes<CMaterial>(L"SpeedUpMtrl", pMtrl);
+
+	// ==================
+	// Block material
+	// ==================
+	pMtrl = new CMaterial;
+	pMtrl->SetShader(FindRes<CGraphicsShader>(L"Std2DShader"));
+	pMtrl->m_bDefault = true;
+	AddRes<CMaterial>(L"BlockMtrl", pMtrl);
+
+	// ==================
+	// barbedBlock material
+	// ==================
+	pMtrl = new CMaterial;
+	pMtrl->SetShader(FindRes<CGraphicsShader>(L"Std2DShader"));
+	pMtrl->m_bDefault = true;
+	AddRes<CMaterial>(L"BarbedBlockMtrl", pMtrl);
+
+
 }
 
 #include "CGameObject.h"

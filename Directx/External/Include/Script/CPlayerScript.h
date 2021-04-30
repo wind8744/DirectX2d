@@ -1,29 +1,53 @@
 #pragma once
 #include <Engine\CScript.h>
 
+//typedef struct tile_info
+//{
+//    bool IsObj;                                 //타일이면 false object이면 true
+//    bool IsPush;                                //밀수있는 오브젝트?
+//    bool IsBlock;                               //장애물?
+//    void TileInit() { IsObj = false; IsPush = false; } //초기화
+//
+//}TILE_INFO;
 
+//enum class PLAYER_STATE
+//{
+//    MOVE,
+//    STOP,
+//    IDLE,
+//    ATTACK,
+//    SKILL,
+//    PUSH,
+//    BREAK,
+//    ITEM,
+//    NONE
+//};
 
-typedef struct tile_info
-{
-    bool IsObj;                                 //타일이면 false object이면 true
-    bool IsPush;                                //밀수있는 오브젝트?
-    bool IsBlock;                               //장애물?
-    void TileInit() { IsObj = false; IsPush = false; } //초기화
-
-}TILE_INFO;
-
-
+//enum class DIR
+//{
+//    UP,
+//    DOWN,
+//    RIGHT,
+//    LEFT
+//};
 class CPlayerScript :
     public CScript
 {
 private:
+    bool                m_IsOnCol;              //충돌중?
     Ptr<CTexture>       m_pPlayerTex;           //플레이어 tex
-    PLAYER_STATE        m_PlayerState;          //플레이어의 현재 상태
-    PLAYER_STATE        m_StopPlayerState;      //충돌 시 마지막 눌린 상태
-    KEY_TYPE            m_PlayerKey;            //눌린키
+
+    //수정할 것
+    PLAYER_STATE        m_eCurState;            //플레이어의 현재 상태
+    PLAYER_STATE        m_ePrevState;           //이전 상태
+    DIR                 m_eCurDir;              //현재 방향
+    DIR                 m_ePreDir;              //이전 방향
+
+    UINT                m_iHP;                  //플레이어 체력
+    float               m_fPlayerSpeed;         //플레이어 스피드
 
     //vector<tile_info*>& m_vecTileInfo;        //현재 씬의 타일 정보 vector (현재씬에서 받아옴)
-    vector<tile_info>   m_vecTileInfo;          //temp
+    //vector<tile_info>   m_vecTileInfo;        //temp
 
     int                 m_iTileX;               //플레이어 타일 X pos
     int                 m_iTileY;               //플레이어 타일 Y pos
@@ -40,8 +64,18 @@ private:
 
 public:
     //GET SET
-    PLAYER_STATE GetStopPlayerState() { return m_StopPlayerState; } //key로 바꿀?
-    PLAYER_STATE GetPlayerState() { return m_PlayerState; }
+    //PLAYER_STATE GetStopPlayerState() { return m_StopPlayerState; } //key로 바꿀?
+    //void SetStopPlayerState(PLAYER_STATE _stopstate) { m_StopPlayerState = _stopstate; } //key로 바꿀?
+
+    PLAYER_STATE GetPlayerState() { return m_eCurState; }
+    void SetPlayerState(PLAYER_STATE _state) { m_eCurState = _state; }
+
+    DIR GetPlayerDir() { return m_eCurDir; }
+    void SetPlayerDir(DIR _key) { m_eCurDir = _key; }
+
+    float GetPlayerSpeed() { return m_fPlayerSpeed; }
+    void SetPlayerSpeed(float _speed) { m_fPlayerSpeed = _speed; }
+
     int GetPlayerTileX() { return m_iTileX; }
     int GetPlayerTileY() { return m_iTileY; }
 
@@ -54,7 +88,7 @@ private:
     void CreateMissile();   
     void UpdateTilePos();
     
-    void InputKey();
+    void CheckState();
     void PlayAnimation();
     void SetState();
     void SetCurPlayerKey();

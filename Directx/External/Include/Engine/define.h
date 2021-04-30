@@ -205,16 +205,21 @@ enum class SCENE_STATE
 //플레이어 상태
 enum class PLAYER_STATE
 {
-	UP,
-	DOWN,
-	RIGHT,
-	LEFT,
+	MOVE,
 	IDLE,
 	STOP,
 	ATTACK,
 	SKILL,
 	PUSH,
-	BREAK,
+	SLIDE,
 	ITEM,
 	NONE
+};
+
+enum class DIR
+{
+	UP,
+	DOWN,
+	RIGHT,
+	LEFT
 };

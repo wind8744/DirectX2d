@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "CScriptMgr.h"
 
+#include "CBarbedBlockScript.h"
+#include "CBlockScript.h"
 #include "CCameraScript.h"
 #include "CMapScript.h"
 #include "CMissileScript.h"
@@ -10,11 +12,14 @@
 #include "CPushSmallStoneScript.h"
 #include "CPushStoneScript.h"
 #include "CRedButtonScript.h"
+#include "CSpeedUpScript.h"
 #include "CStoneDoorScript.h"
 #include "CTileCollsion.h"
 
 void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 {
+	_vec.push_back(L"CBarbedBlockScript");
+	_vec.push_back(L"CBlockScript");
 	_vec.push_back(L"CCameraScript");
 	_vec.push_back(L"CMapScript");
 	_vec.push_back(L"CMissileScript");
@@ -24,12 +29,17 @@ void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"CPushSmallStoneScript");
 	_vec.push_back(L"CPushStoneScript");
 	_vec.push_back(L"CRedButtonScript");
+	_vec.push_back(L"CSpeedUpScript");
 	_vec.push_back(L"CStoneDoorScript");
 	_vec.push_back(L"CTileCollsion");
 }
 
 CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
 {
+	if (L"CBarbedBlockScript" == _strScriptName)
+		return new CBarbedBlockScript;
+	if (L"CBlockScript" == _strScriptName)
+		return new CBlockScript;
 	if (L"CCameraScript" == _strScriptName)
 		return new CCameraScript;
 	if (L"CMapScript" == _strScriptName)
@@ -48,6 +58,8 @@ CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
 		return new CPushStoneScript;
 	if (L"CRedButtonScript" == _strScriptName)
 		return new CRedButtonScript;
+	if (L"CSpeedUpScript" == _strScriptName)
+		return new CSpeedUpScript;
 	if (L"CStoneDoorScript" == _strScriptName)
 		return new CStoneDoorScript;
 	if (L"CTileCollsion" == _strScriptName)
@@ -59,6 +71,12 @@ CScript * CScriptMgr::GetScript(UINT _iScriptType)
 {
 	switch (_iScriptType)
 	{
+	case (UINT)SCRIPT_TYPE::BARBEDBLOCKSCRIPT:
+		return new CBarbedBlockScript;
+		break;
+	case (UINT)SCRIPT_TYPE::BLOCKSCRIPT:
+		return new CBlockScript;
+		break;
 	case (UINT)SCRIPT_TYPE::CAMERASCRIPT:
 		return new CCameraScript;
 		break;
@@ -86,6 +104,9 @@ CScript * CScriptMgr::GetScript(UINT _iScriptType)
 	case (UINT)SCRIPT_TYPE::REDBUTTONSCRIPT:
 		return new CRedButtonScript;
 		break;
+	case (UINT)SCRIPT_TYPE::SPEEDUPSCRIPT:
+		return new CSpeedUpScript;
+		break;
 	case (UINT)SCRIPT_TYPE::STONEDOORSCRIPT:
 		return new CStoneDoorScript;
 		break;
@@ -100,6 +121,14 @@ const wchar_t * CScriptMgr::GetScriptName(CScript * _pScript)
 {
 	switch ((SCRIPT_TYPE)_pScript->GetScriptType())
 	{
+	case SCRIPT_TYPE::BARBEDBLOCKSCRIPT:
+		return L"CBarbedBlockScript";
+		break;
+
+	case SCRIPT_TYPE::BLOCKSCRIPT:
+		return L"CBlockScript";
+		break;
+
 	case SCRIPT_TYPE::CAMERASCRIPT:
 		return L"CCameraScript";
 		break;
@@ -134,6 +163,10 @@ const wchar_t * CScriptMgr::GetScriptName(CScript * _pScript)
 
 	case SCRIPT_TYPE::REDBUTTONSCRIPT:
 		return L"CRedButtonScript";
+		break;
+
+	case SCRIPT_TYPE::SPEEDUPSCRIPT:
+		return L"CSpeedUpScript";
 		break;
 
 	case SCRIPT_TYPE::STONEDOORSCRIPT:

@@ -179,6 +179,8 @@ call CodeGen.exe</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CBarbedBlockScript.h" />
+    <ClInclude Include="CBlockScript.h" />
     <ClInclude Include="CCameraScript.h" />
     <ClInclude Include="CMapScript.h" />
     <ClInclude Include="CMissileScript.h" />
@@ -191,12 +193,15 @@ call CodeGen.exe</Command>
     <ClInclude Include="CPushStoneScript.h" />
     <ClInclude Include="CRedButtonScript.h" />
     <ClInclude Include="CScriptMgr.h" />
+    <ClInclude Include="CSpeedUpScript.h" />
     <ClInclude Include="CStoneDoorScript.h" />
     <ClInclude Include="CTileCollsion.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CBarbedBlockScript.cpp" />
+    <ClCompile Include="CBlockScript.cpp" />
     <ClCompile Include="CCameraScript.cpp" />
     <ClCompile Include="CMapScript.cpp" />
     <ClCompile Include="CMissileScript.cpp" />
@@ -209,6 +214,7 @@ call CodeGen.exe</Command>
     <ClCompile Include="CPushStoneScript.cpp" />
     <ClCompile Include="CRedButtonScript.cpp" />
     <ClCompile Include="CScriptMgr.cpp" />
+    <ClCompile Include="CSpeedUpScript.cpp" />
     <ClCompile Include="CStoneDoorScript.cpp" />
     <ClCompile Include="CTileCollsion.cpp" />
     <ClCompile Include="pch.cpp">

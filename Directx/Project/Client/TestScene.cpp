@@ -56,14 +56,54 @@ void CreateSamplePrefab()
 	CResMgr::GetInst()->AddRes<CPrefab>(L"TileCollsion", pPrefab);
 	*/
 
+	/*CGameObject* pObj = new CGameObject;
+	pObj->SetName(L"stonedoor");//////////
+	pObj->AddComponent(new CTransform);
+	pObj->AddComponent(new CMeshRender);
+	pObj->AddComponent(new CCollider2D);
+	pObj->AddComponent(new CStoneDoorScript);////////
+	pObj->AddComponent(new CObjEventScript);
+	pObj->Transform()->SetLocalScale(Vec3(128, 140, 1.f));
+	pObj->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
+	pObj->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"StoneDoorMtrl"));////////////
+	pObj->Collider2D()->SetCollider2DType(COLLIDER2D_TYPE::RECT);
+	Ptr<CPrefab> pPrefab = new CPrefab(pObj);
+	pPrefab->SetOffSet(Vec3(0.f, -26.f, 1.f));
+	pPrefab->Save(L"prefab\\stonedoor.pref");
+	//dynamic_cast<CObjEventScript*>(pObj->GetScript(L"CObjEventScript"))->SetEvnetType(EventType::TriggerOnOff);
+	//dynamic_cast<CObjEventScript*>(pObj->GetScript(L"CObjEventScript"))->PushEvnetChild(redbutton);
+	
+	
+	CGameObject* redbutton = new CGameObject;
+	redbutton->SetName(L"redbutton");////////
 
-	CResMgr::GetInst()->Load<CPrefab>(L"Missile", L"prefab\\missile.pref");
+	redbutton->AddComponent(new CTransform);
+	redbutton->AddComponent(new CMeshRender);
+	redbutton->AddComponent(new CCollider2D);
+	redbutton->AddComponent(new CRedButtonScript);////////
+	redbutton->AddComponent(new CObjEventScript);
+	redbutton->Transform()->SetLocalScale(Vec3(40.f, 40.f, 1.f));
+	redbutton->Transform()->SetLocalRot(Vec3(0.f, 0., 0.f));
+
+	redbutton->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
+	redbutton->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"RedButtonMtrl"));////////
+
+	redbutton->Collider2D()->SetCollider2DType(COLLIDER2D_TYPE::RECT);
+
+	pPrefab = new CPrefab(redbutton);
+	pPrefab->Save(L"prefab\\redbutton.pref");
+	*/
+
+	//CResMgr::GetInst()->Load<CPrefab>(L"Missile", L"prefab\\missile.pref");
 	CResMgr::GetInst()->Load<CPrefab>(L"TileCollsion", L"prefab\\TileCollsion.pref");
+	CResMgr::GetInst()->Load<CPrefab>(L"stonedoor", L"prefab\\stonedoor.pref");
+	CResMgr::GetInst()->Load<CPrefab>(L"redbutton", L"prefab\\redbutton.pref");
 }
 
 
 void CreateTestScene()
 {
+	SceneInit();
 	CreateSamplePrefab();
 	
 	CScene* pCurScene = CSceneMgr::GetInst()->GetCurScene();
@@ -85,7 +125,7 @@ void CreateTestScene()
 		//pCS->SetDestTex(pRWTex);
 		//pCS->Excute();
 	
-	SceneInit();
+	
 
 	CGameObject* pObj = nullptr;
 
@@ -219,7 +259,7 @@ void CreateTestScene()
 	// ===============
 	// Button object
 	// ===============
-	CGameObject* redbutton = new CGameObject;
+/*	CGameObject* redbutton = new CGameObject;
 	redbutton->SetName(L"redbutton");////////
 
 	redbutton->AddComponent(new CTransform);
@@ -236,12 +276,12 @@ void CreateTestScene()
 
 	redbutton->Collider2D()->SetCollider2DType(COLLIDER2D_TYPE::RECT);
 	pCurScene->AddObject(redbutton, 3);
-
+	*/
 
 	// ===============
 	// stonedoor object
 	// ===============
-	pObj = new CGameObject;
+	/*pObj = new CGameObject;
 	pObj->SetName(L"stonedoor");//////////
 
 	pObj->AddComponent(new CTransform);
@@ -251,7 +291,7 @@ void CreateTestScene()
 	pObj->AddComponent(new CObjEventScript);
 
 	pObj->Transform()->SetLocalPos(Vec3(-30.f, 43.f, 400.f));
-	pObj->Transform()->SetLocalScale(Vec3(64, 80, 1.f));
+	pObj->Transform()->SetLocalScale(Vec3(128, 140, 1.f));
 	pObj->Transform()->SetLocalRot(Vec3(0.f, 0.f, 0.f));
 
 	pObj->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
@@ -263,7 +303,7 @@ void CreateTestScene()
 	dynamic_cast<CObjEventScript*>(pObj->GetScript(L"CObjEventScript"))->PushEvnetChild(redbutton);
 
 	pCurScene->AddObject(pObj, 2);
-
+	*/
 
 	// ===============
 	// push stone object (미는 장애물)

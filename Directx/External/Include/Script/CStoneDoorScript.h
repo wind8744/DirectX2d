@@ -14,7 +14,7 @@ private:
     Ptr<CTexture>           m_pStoneDoorTex;        //tex
     Ptr<CMaterial>          m_pMtrl;                //material
 
-    CScript*                m_pTarScript;           //юс╫ц
+
     CObjEventScript*        m_pEventScript;         //EventScript
 
 

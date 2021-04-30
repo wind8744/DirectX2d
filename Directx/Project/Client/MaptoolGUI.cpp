@@ -30,7 +30,7 @@ void MaptoolGUI::init()
 		m_TileTex = CResMgr::GetInst()->Load<CTexture>(L"TILE", L"texture\\TIle.bmp");
 	p_Collsion= CResMgr::GetInst()->FindRes<CPrefab>(L"TileCollsion");
 
-	m_Map =(CMapScript*)CSceneMgr::GetInst()->GetCurScene()->FindObjectByName(L"Background")->GetScript();
+	m_Map =(CMapScript*)CSceneMgr::GetInst()->GetCurScene()->FindObjectByName(L"Background")->GetScript(L"CMapScript");
 	
 	m_x = m_TileTex.Get()->Width() / TileSize_X;
 	m_y = m_TileTex.Get()->Height() / TileSize_Y;
@@ -79,8 +79,9 @@ void MaptoolGUI::update()
 				int z = y * m_Map->GetTileX() + x;
 				if (m_CollVector[(size_t)z] == nullptr)
 				{
-					Vec3 Pos = Vec3(-(xsize * 64) + (x * 64) + 32, (ysize * 64) - (y * 64) - 32, 400.f);
+					Vec3 Pos = Vec3(-(xsize * TileSize_X) + (x * TileSize_X) + TileSize_X/2, (ysize * TileSize_Y) - (y * TileSize_Y) - TileSize_Y/2, 400.f);
 					CGameObject* pObject = p_Collsion->Instantiate();
+					pObject->SetName(L"Tile_Collsion");
 					pObject->Transform()->SetLocalPos(Pos);
 					m_CollVector[(size_t)z] = pObject;
 					tEvent even = {};
@@ -127,7 +128,7 @@ void MaptoolGUI::render()
 	static int Data2 = 0;
 	bool bOpen = true;
 
-	ImGui::Begin("##Maptool", &bOpen);
+	ImGui::Begin("Maptool", &bOpen);
 
 	ImGui::PushItemWidth(50);
 	ImGui::Text("Tile Size"); ImGui::SameLine(); ImGui::InputInt("##Size1", &Data1, 0);

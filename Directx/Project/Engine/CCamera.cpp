@@ -45,7 +45,7 @@ void CCamera::update()
 	}
 	*/
 	Vec3 vPos = Transform()->GetLocalPos();
-
+	/*
 	if (KEY_HOLD(KEY_TYPE::KEY_W))
 	{
 		Vec3 vFront = Transform()->GetWorldDir(DIR_TYPE::UP);
@@ -69,7 +69,7 @@ void CCamera::update()
 		Vec3 vRight = Transform()->GetWorldDir(DIR_TYPE::RIGHT);		
 		vPos += vRight * fDT * 500.f;		
 	}
-		
+		*/
 	/*if (KEY_HOLD(KEY_TYPE::RBTN))
 	{
 		Vec2 vMouseDir = CKeyMgr::GetInst()->GetMouseDir();

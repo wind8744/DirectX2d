@@ -16,12 +16,18 @@
 
 #include "ResInfoGUI.h"
 #include "MaterialGUI.h"
+#include <Engine\CEventMgr.h>
+
+
+
+
 
 InspectorGUI::InspectorGUI()
     : m_arrComGUI{}
     , m_arrResInfoGUI{}
     , m_pTargetObj(nullptr)
     , m_pTargetRes(nullptr)
+    , m_ID(0)
 {
 }
 
@@ -113,6 +119,8 @@ void InspectorGUI::render()
 
     if (m_pTargetObj)
     {
+        string strName = GetString(m_pTargetObj->GetName());
+        ImGui::Text(strName.c_str());
         for(UINT i = 0; i < (UINT)COMPONENT_TYPE::END; ++i)
         {
             if (nullptr == m_arrComGUI[i])
@@ -133,9 +141,28 @@ void InspectorGUI::render()
             m_vecScriptGUI[i]->SetScript(vecScript[i]);
             m_vecScriptGUI[i]->render();
         }
+
+        if (ImGui::Button("Delete", { 50, 20 }))
+        {
+            tEvent even = {};
+            even.eEvent = EVENT_TYPE::DELETE_OBJECT;
+            even.lParam = (DWORD_PTR)m_pTargetObj;
+            even.wParam = (DWORD_PTR)0;
+            CEventMgr::GetInst()->AddEvent(even);
+            m_pTargetObj = nullptr;
+        }
+
     }
     else if (m_pTargetRes)
     {
+        string strName = GetString(m_pTargetRes->GetKey().c_str());
+        ImGui::Text(strName.c_str());
+        ImGui::Text("Object Name "); ImGui::SameLine();
+       string n = m_ObjectName;
+      
+       ImGui::InputText("##Obj_Name", (char*)n.c_str(),100);
+
+       m_ObjectName = n;
         if (nullptr != m_arrResInfoGUI[(UINT)m_eResType])
         {
             m_arrResInfoGUI[(UINT)m_eResType]->render();
@@ -143,4 +170,19 @@ void InspectorGUI::render()
     }
 
     ImGui::End();
+}
+
+void InspectorGUI::SetTargetResource(CRes* _pRes, RES_TYPE _eType)
+{
+    m_pTargetRes = _pRes;
+    m_eResType = _eType;
+    m_ObjectName = GetString(_pRes->GetKey().c_str())+to_string(m_ID);
+    if (nullptr != m_pTargetRes)
+        m_pTargetObj = nullptr;
+}
+void InspectorGUI::ID_Plus()
+{
+    m_ID++;
+    
+    m_ObjectName = GetString(m_pTargetRes->GetKey().c_str()) + to_string(m_ID);
 }

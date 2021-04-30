@@ -35,6 +35,7 @@ void HierachyGUI::Reset()
 
 		for (size_t j = 0; j < vecParent.size(); ++j)
 		{
+			if(!vecParent[j]->IsDead())
 			AddGameObject(pDummyItem, vecParent[j]);
 		}
 	}	

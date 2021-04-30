@@ -20,7 +20,8 @@ private:
 
     CRes*           m_pTargetRes;
     RES_TYPE        m_eResType;
-
+    unsigned int    m_ID;
+    string          m_ObjectName;
 public:
     virtual void init();
     virtual void update();
@@ -34,15 +35,12 @@ public:
             m_pTargetRes = nullptr;
     }
 
-    void SetTargetResource(CRes* _pRes, RES_TYPE _eType)
-    {
-        m_pTargetRes = _pRes;
-        m_eResType = _eType;
+    void SetTargetResource(CRes* _pRes, RES_TYPE _eType);
 
-        if (nullptr != m_pTargetRes)
-            m_pTargetObj = nullptr;
-    }
+    string GetObjectName() { return m_ObjectName; }
 
+    CGameObject* GetTargetObj() { return m_pTargetObj; }
+    void ID_Plus();
 public:
     InspectorGUI();
     ~InspectorGUI();

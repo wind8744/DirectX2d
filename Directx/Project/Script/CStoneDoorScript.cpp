@@ -12,10 +12,7 @@ CStoneDoorScript::CStoneDoorScript()
 	: CScript((int)SCRIPT_TYPE::STONEDOORSCRIPT)
 {
 	//테스트 씬에서 redbutton 스크립트 받아옴
-	CScene* pCurScene = CSceneMgr::GetInst()->GetCurScene(); 
-	CLayer* pLayer = pCurScene->GetLayer(3);
-	vector<CGameObject*> vecParent = pLayer->GetParentObj();
-	m_pTarScript = vecParent[0]->GetScript();
+	
 
 	m_pStoneDoorTex = CResMgr::GetInst()->FindRes<CTexture>(L"stonedoor");
 	m_pMtrl = CResMgr::GetInst()->FindRes<CMaterial>(L"StoneDoorMtrl");

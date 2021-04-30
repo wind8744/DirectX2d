@@ -38,7 +38,7 @@ void CPlayerScript::awake()
 
 	//temp
 	//임시로 타일 벡터에 obj정보 넣음
-	int size = 10 * 10;
+	/*int size = 10 * 10;
 	size_t sizet = (size_t)size;
 	m_vecTileInfo.resize(sizet);
 	
@@ -81,7 +81,7 @@ void CPlayerScript::awake()
 	_pushstone.IsPush = false;
 	_pushstone.IsBlock = true;
 	m_vecTileInfo[z] = _pushstone;
-
+	*/
 }
 
 void CPlayerScript::update()
@@ -133,7 +133,7 @@ void CPlayerScript::InputKey()
 	Vec3 vRot = Transform()->GetLocalRot();
 
 	//현재 플레이어 위치
-	tile_info _curtileinfo = m_vecTileInfo[m_iTileY * m_iMapCol + m_iTileX];
+	//tile_info _curtileinfo = m_vecTileInfo[m_iTileY * m_iMapCol + m_iTileX];
 
 	//if (_curtileinfo.IsBlock == true)
 	

@@ -43,7 +43,7 @@ void CEventMgr::update()
 	// Event Ã³¸®
 	// ==========
 	m_bEvent = false;
-
+	
 	while (!m_event.empty())
 	{
 		const tEvent& event = m_event.top();
@@ -52,6 +52,8 @@ void CEventMgr::update()
 
 		m_event.pop();
 	}
+
+	
 }
 
 void CEventMgr::ExcuteEvent(const tEvent& _event)

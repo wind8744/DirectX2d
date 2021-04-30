@@ -7,6 +7,7 @@
 
 CPrefab::CPrefab()
     : m_pProtoObj(nullptr)
+    , m_OffSet(0.f, 0.f, 0.f)
 {
 }
 
@@ -36,7 +37,7 @@ void CPrefab::Save(const wstring& _strRelativePath)
     assert(pFile);
 
     m_pProtoObj->SaveToScene(pFile);
-
+    fwrite(&m_OffSet, sizeof(Vec3), 1, pFile);
     fclose(pFile);
 }
 
@@ -48,6 +49,6 @@ void CPrefab::Load(const wstring& _strFilePath)
 
     m_pProtoObj = new CGameObject;
     m_pProtoObj->LoadFromScene(pFile);
-
+    fread(&m_OffSet, sizeof(Vec3), 1, pFile);
     fclose(pFile);
 }

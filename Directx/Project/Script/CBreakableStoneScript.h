@@ -15,8 +15,6 @@ private:
     CPlayerScript*          m_pPlayerScript;
     bool                    m_bIsPushed;
 
-    float                   m_fAtime;
-
 
 public:
     bool GetIsPushed() { return m_bIsPushed; }

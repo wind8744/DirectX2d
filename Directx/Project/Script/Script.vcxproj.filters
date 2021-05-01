@@ -48,14 +48,23 @@
     <ClInclude Include="CBreakableSmallStoneScript.h">
       <Filter>ScriptCode\ObjectScript\Stone\BreakableStone</Filter>
     </ClInclude>
-    <ClInclude Include="CBombFlowerScript.h">
-      <Filter>ScriptCode\ObjectScript\Etc</Filter>
-    </ClInclude>
     <ClInclude Include="CMonsterScript.h">
       <Filter>ScriptCode\MonsterScript</Filter>
     </ClInclude>
     <ClInclude Include="CMissileScript.h">
       <Filter>ScriptCode\PlayerScript</Filter>
+    </ClInclude>
+    <ClInclude Include="CFireWoodScript.h">
+      <Filter>ScriptCode\ObjectScript\Etc\Fire</Filter>
+    </ClInclude>
+    <ClInclude Include="CBombFlowerScript.h">
+      <Filter>ScriptCode\ObjectScript\Etc\Bomb</Filter>
+    </ClInclude>
+    <ClInclude Include="CBombScript.h">
+      <Filter>ScriptCode\ObjectScript\Etc\Bomb</Filter>
+    </ClInclude>
+    <ClInclude Include="CFireBowlScript.h">
+      <Filter>ScriptCode\ObjectScript\Etc\Fire</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +106,12 @@
     </Filter>
     <Filter Include="ScriptCode\MonsterScript">
       <UniqueIdentifier>{c06b2d1a-e74e-4664-9f31-d82d48337bd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptCode\ObjectScript\Etc\Bomb">
+      <UniqueIdentifier>{828ce875-22bd-4552-9314-5b52593703b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptCode\ObjectScript\Etc\Fire">
+      <UniqueIdentifier>{48a81d76-5dab-467a-a478-add5a696f84f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -144,14 +159,23 @@
     <ClCompile Include="CBreakableSmallStoneScript.cpp">
       <Filter>ScriptCode\ObjectScript\Stone\BreakableStone</Filter>
     </ClCompile>
-    <ClCompile Include="CBombFlowerScript.cpp">
-      <Filter>ScriptCode\ObjectScript\Etc</Filter>
-    </ClCompile>
     <ClCompile Include="CMissileScript.cpp">
       <Filter>ScriptCode\PlayerScript</Filter>
     </ClCompile>
     <ClCompile Include="CMonsterScript.cpp">
       <Filter>ScriptCode\MonsterScript</Filter>
+    </ClCompile>
+    <ClCompile Include="CBombFlowerScript.cpp">
+      <Filter>ScriptCode\ObjectScript\Etc\Bomb</Filter>
+    </ClCompile>
+    <ClCompile Include="CFireWoodScript.cpp">
+      <Filter>ScriptCode\ObjectScript\Etc\Fire</Filter>
+    </ClCompile>
+    <ClCompile Include="CBombScript.cpp">
+      <Filter>ScriptCode\ObjectScript\Etc\Bomb</Filter>
+    </ClCompile>
+    <ClCompile Include="CFireBowlScript.cpp">
+      <Filter>ScriptCode\ObjectScript\Etc\Fire</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

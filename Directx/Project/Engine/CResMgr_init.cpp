@@ -397,6 +397,30 @@ void CResMgr::CreateDefaultMaterial()
 	pMtrl->m_bDefault = true;
 	AddRes<CMaterial>(L"BombFlowerMtrl", pMtrl);
 
+	// ==================
+	// Bomb material
+	// ==================
+	pMtrl = new CMaterial;
+	pMtrl->SetShader(FindRes<CGraphicsShader>(L"Std2DShader"));
+	pMtrl->m_bDefault = true;
+	AddRes<CMaterial>(L"BombMtrl", pMtrl);
+
+	// ==================
+	// FireWood material
+	// ==================
+	pMtrl = new CMaterial;
+	pMtrl->SetShader(FindRes<CGraphicsShader>(L"Std2DShader"));
+	pMtrl->m_bDefault = true;
+	AddRes<CMaterial>(L"FireWoodMtrl", pMtrl);
+
+	// ==================
+	// FireBowl material
+	// ==================
+	pMtrl = new CMaterial;
+	pMtrl->SetShader(FindRes<CGraphicsShader>(L"Std2DShader"));
+	pMtrl->m_bDefault = true;
+	AddRes<CMaterial>(L"FireBowlMtrl", pMtrl);
+
 
 
 	

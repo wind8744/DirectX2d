@@ -46,7 +46,7 @@ void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"CTileCollsion");
 }
 
-CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
+CScript* CScriptMgr::GetScript(const wstring& _strScriptName)
 {
 	if (L"CBarbedBlockScript" == _strScriptName)
 		return new CBarbedBlockScript;
@@ -91,7 +91,7 @@ CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
 	return nullptr;
 }
 
-CScript * CScriptMgr::GetScript(UINT _iScriptType)
+CScript* CScriptMgr::GetScript(UINT _iScriptType)
 {
 	switch (_iScriptType)
 	{
@@ -159,7 +159,7 @@ CScript * CScriptMgr::GetScript(UINT _iScriptType)
 	return nullptr;
 }
 
-const wchar_t * CScriptMgr::GetScriptName(CScript * _pScript)
+const wchar_t* CScriptMgr::GetScriptName(CScript* _pScript)
 {
 	switch ((SCRIPT_TYPE)_pScript->GetScriptType())
 	{

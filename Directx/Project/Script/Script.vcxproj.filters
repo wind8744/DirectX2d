@@ -44,9 +44,6 @@
     <ClInclude Include="CBreakableSmallStoneScript.h">
       <Filter>ScriptCode\ObjectScript\Stone\BreakableStone</Filter>
     </ClInclude>
-    <ClInclude Include="CBombFlowerScript.h">
-      <Filter>ScriptCode\ObjectScript\Etc</Filter>
-    </ClInclude>
     <ClInclude Include="CMonsterScript.h">
       <Filter>ScriptCode\MonsterScript</Filter>
     </ClInclude>
@@ -58,6 +55,18 @@
     </ClInclude>
     <ClInclude Include="CTileCollsion.h">
       <Filter>ScriptCode\MapTile\TileCollsion</Filter>
+    </ClInclude>
+    <ClInclude Include="CBombFlowerScript.h">
+      <Filter>ScriptCode\ObjectScript\Etc\Bomb</Filter>
+    </ClInclude>
+    <ClInclude Include="CBombScript.h">
+      <Filter>ScriptCode\ObjectScript\Etc\Bomb</Filter>
+    </ClInclude>
+    <ClInclude Include="CFireWoodScript.h">
+      <Filter>ScriptCode\ObjectScript\Etc\Fire</Filter>
+    </ClInclude>
+    <ClInclude Include="CFireBowlScript.h">
+      <Filter>ScriptCode\ObjectScript\Etc\Fire</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +115,12 @@
     <Filter Include="ScriptCode\MapTile\TileCollsion">
       <UniqueIdentifier>{c092d1b3-85fa-4047-8c83-085f7755765b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ScriptCode\ObjectScript\Etc\Bomb">
+      <UniqueIdentifier>{959f3a76-b618-4459-8dcc-01f2f4e40eb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptCode\ObjectScript\Etc\Fire">
+      <UniqueIdentifier>{2e2888cf-07a3-46f4-a900-ccace28bdff3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -148,9 +163,6 @@
     <ClCompile Include="CBreakableSmallStoneScript.cpp">
       <Filter>ScriptCode\ObjectScript\Stone\BreakableStone</Filter>
     </ClCompile>
-    <ClCompile Include="CBombFlowerScript.cpp">
-      <Filter>ScriptCode\ObjectScript\Etc</Filter>
-    </ClCompile>
     <ClCompile Include="CMissileScript.cpp">
       <Filter>ScriptCode\PlayerScript</Filter>
     </ClCompile>
@@ -162,6 +174,18 @@
     </ClCompile>
     <ClCompile Include="CTileCollsion.cpp">
       <Filter>ScriptCode\MapTile\TileCollsion</Filter>
+    </ClCompile>
+    <ClCompile Include="CBombFlowerScript.cpp">
+      <Filter>ScriptCode\ObjectScript\Etc\Bomb</Filter>
+    </ClCompile>
+    <ClCompile Include="CBombScript.cpp">
+      <Filter>ScriptCode\ObjectScript\Etc\Bomb</Filter>
+    </ClCompile>
+    <ClCompile Include="CFireWoodScript.cpp">
+      <Filter>ScriptCode\ObjectScript\Etc\Fire</Filter>
+    </ClCompile>
+    <ClCompile Include="CFireBowlScript.cpp">
+      <Filter>ScriptCode\ObjectScript\Etc\Fire</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

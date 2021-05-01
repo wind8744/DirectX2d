@@ -1,12 +1,9 @@
 CBarbedBlockScript
 CBlockScript
 CBombFlowerScript
-CBombScript
 CBreakableSmallStoneScript
 CBreakableStoneScript
 CCameraScript
-CFireBowlScript
-CFireWoodScript
 CMapScript
 CMissileScript
 CMonsterScript
@@ -15,7 +12,6 @@ CPlayerScript
 CPushSmallStoneScript
 CPushStoneScript
 CRedButtonScript
-CScriptMgr
 CSpeedUpScript
 CStoneDoorScript
 CTileCollsion

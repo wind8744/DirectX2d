@@ -12,7 +12,7 @@ CObjEventScript::CObjEventScript()
 	b_TriggerOn(false),
 	m_pParentObj(nullptr)
 {
-
+	
 	AddDesc(tDataDesc(SCRIPT_DATA_TYPE::INT, "HP", &a));
 }
 
@@ -42,12 +42,12 @@ CObjEventScript::~CObjEventScript()
 
 void CObjEventScript::awake()
 {
-
+	
 }
 
 void CObjEventScript::update()
 {
-
+	
 	if (ChildTrigger.size() > 0)
 	{
 		switch (E_EvnetType)
@@ -108,7 +108,7 @@ void CObjEventScript::ReleaseEvent(int _num)
 			break;
 		}
 	}
-
+	
 
 }
 

@@ -23,7 +23,7 @@ void CResMgr::ClearCloneRes()
 		for (iter; iter != m_vecCloneRes[i].end();)
 		{
 			if (0 == (*iter)->GetRefCount())
-				iter = m_vecCloneRes[i].erase(iter);
+				iter = m_vecCloneRes[i].erase(iter);			
 			else
 				++iter;
 		}
@@ -93,8 +93,8 @@ void CResMgr::CreateDefaultMesh()
 	// RectMesh ª˝º∫
 	pMesh = new CMesh;
 	pMesh->Create(vecVtx.data(), (UINT)vecVtx.size(), vecIdx.data(), (UINT)vecIdx.size());
-	AddRes<CMesh>(L"RectMesh", pMesh);
-
+	AddRes<CMesh>(L"RectMesh", pMesh);	
+	
 	vecIdx.clear();
 
 	// ====================
@@ -107,8 +107,8 @@ void CResMgr::CreateDefaultMesh()
 	vecIdx.push_back(1);
 	vecIdx.push_back(2);
 	vecIdx.push_back(3);
-	vecIdx.push_back(0);
-
+	vecIdx.push_back(0);	
+		
 	pMesh = new CMesh;
 	pMesh->Create(vecVtx.data(), (UINT)vecVtx.size(), vecIdx.data(), (UINT)vecIdx.size());
 	pMesh->SetTopology(D3D_PRIMITIVE_TOPOLOGY_LINESTRIP);
@@ -135,7 +135,7 @@ void CResMgr::CreateDefaultMesh()
 	for (int i = 0; i < iSliceCount + 1; ++i)
 	{
 		v.vPos = Vec3(fRadius * cosf(fTheta), fRadius * sinf(fTheta), 0.f);
-		v.vColor = Vec4(1.f, 1.f, 1.f, 1.f);
+		v.vColor = Vec4(1.f, 1.f, 1.f, 1.f);		
 		v.vUV = Vec2(v.vPos.x + 0.5f, -v.vPos.y + 0.5f);
 		vecVtx.push_back(v);
 
@@ -147,13 +147,13 @@ void CResMgr::CreateDefaultMesh()
 	{
 		vecIdx.push_back(0);
 		vecIdx.push_back(i + 2);
-		vecIdx.push_back(i + 1);
+		vecIdx.push_back(i + 1);	
 	}
 
 	pMesh = new CMesh;
 	pMesh->Create(vecVtx.data(), (UINT)vecVtx.size(), vecIdx.data(), (UINT)vecIdx.size());
 	AddRes<CMesh>(L"CircleMesh", pMesh);
-
+	
 	vecIdx.clear();
 
 	// =====================
@@ -164,7 +164,7 @@ void CResMgr::CreateDefaultMesh()
 	// ¿Œµ¶Ω∫
 	for (int i = 0; i < iSliceCount; ++i)
 	{
-		vecIdx.push_back(i);
+		vecIdx.push_back(i);		
 	}
 	vecIdx.push_back(0);
 
@@ -183,7 +183,7 @@ void CResMgr::CreateDefaultShader()
 	CGraphicsShader::AddInputLayout("POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, false);
 	CGraphicsShader::AddInputLayout("COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, false);
 	CGraphicsShader::AddInputLayout("TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, false);
-
+	
 	Ptr<CGraphicsShader> pShader;
 
 	// ==============
@@ -225,13 +225,13 @@ void CResMgr::CreateDefaultShader()
 	// ======================
 	// Particle Render Shader
 	// ======================
-	pShader = new CGraphicsShader(SHADER_POV::PARTICLE);
+	pShader = new CGraphicsShader(SHADER_POV::PARTICLE);	
 
 	pShader->CreateVertexShader(L"shader\\std2d.fx", "VS_Particle");
 	pShader->CreateGeometryShader(L"shader\\std2d.fx", "GS_Particle");
 	pShader->CreatePixelShader(L"shader\\std2d.fx", "PS_Particle");
 	pShader->SetBlendType(BLEND_TYPE::ALPHA_ONE);
-	pShader->SetDSType(DS_TYPE::LESS_NO_WRITE);
+	pShader->SetDSType(DS_TYPE::LESS_NO_WRITE);	
 
 	AddRes<CGraphicsShader>(L"ParticleRenderShader", pShader);
 
@@ -270,7 +270,7 @@ void CResMgr::CreateDefaultShader()
 void CResMgr::CreateComputeShader()
 {
 	Ptr<CComputeShader> pCS = nullptr;
-
+	
 	// CopyTextureShader
 	pCS = new CCopyShaderCS;
 	pCS->CreateComputeShader(L"shader\\CopyTexture.fx", "CS_CopyTex");
@@ -397,33 +397,9 @@ void CResMgr::CreateDefaultMaterial()
 	pMtrl->m_bDefault = true;
 	AddRes<CMaterial>(L"BombFlowerMtrl", pMtrl);
 
-	// ==================
-	// Bomb material
-	// ==================
-	pMtrl = new CMaterial;
-	pMtrl->SetShader(FindRes<CGraphicsShader>(L"Std2DShader"));
-	pMtrl->m_bDefault = true;
-	AddRes<CMaterial>(L"BombMtrl", pMtrl);
-
-	// ==================
-	// FireWood material
-	// ==================
-	pMtrl = new CMaterial;
-	pMtrl->SetShader(FindRes<CGraphicsShader>(L"Std2DShader"));
-	pMtrl->m_bDefault = true;
-	AddRes<CMaterial>(L"FireWoodMtrl", pMtrl);
-
-	// ==================
-	// FireBowl material
-	// ==================
-	pMtrl = new CMaterial;
-	pMtrl->SetShader(FindRes<CGraphicsShader>(L"Std2DShader"));
-	pMtrl->m_bDefault = true;
-	AddRes<CMaterial>(L"FireBowlMtrl", pMtrl);
 
 
-
-
+	
 
 }
 

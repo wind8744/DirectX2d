@@ -180,14 +180,11 @@ call CodeGen.exe</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CBombFlowerScript.h" />
-    <ClInclude Include="CBombScript.h" />
     <ClInclude Include="CBreakableSmallStoneScript.h" />
     <ClInclude Include="CBarbedBlockScript.h" />
     <ClInclude Include="CBlockScript.h" />
     <ClInclude Include="CBreakableStoneScript.h" />
     <ClInclude Include="CCameraScript.h" />
-    <ClInclude Include="CFireBowlScript.h" />
-    <ClInclude Include="CFireWoodScript.h" />
     <ClInclude Include="CMapScript.h" />
     <ClInclude Include="CMissileScript.h" />
     <ClInclude Include="CMonsterScript.h" />
@@ -207,14 +204,11 @@ call CodeGen.exe</Command>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CBombFlowerScript.cpp" />
-    <ClCompile Include="CBombScript.cpp" />
     <ClCompile Include="CBreakableSmallStoneScript.cpp" />
     <ClCompile Include="CBarbedBlockScript.cpp" />
     <ClCompile Include="CBlockScript.cpp" />
     <ClCompile Include="CBreakableStoneScript.cpp" />
     <ClCompile Include="CCameraScript.cpp" />
-    <ClCompile Include="CFireBowlScript.cpp" />
-    <ClCompile Include="CFireWoodScript.cpp" />
     <ClCompile Include="CMapScript.cpp" />
     <ClCompile Include="CMissileScript.cpp" />
     <ClCompile Include="CMonsterScript.cpp" />

@@ -14,7 +14,7 @@ private:
     bool                b_TriggerOn;
     EventType           E_EvnetType;
 
-    CObjEventScript* m_pParentObj;
+    CObjEventScript*    m_pParentObj;
 
     int a;
 public:
@@ -24,7 +24,7 @@ public:
 public:
     bool GetTrigger() { return b_TriggerOn; }
     void SetTrigger(bool _Trigger) { b_TriggerOn = _Trigger; }
-    void SetEventType(EventType _Type) { E_EvnetType = _Type; }
+    void SetEventType(EventType _Type) { E_EvnetType=_Type; }
     EventType GetEventType() { return E_EvnetType; }
     void PushEvnetChild(CObjEventScript* _Event) {
         ChildTrigger.push_back(_Event);

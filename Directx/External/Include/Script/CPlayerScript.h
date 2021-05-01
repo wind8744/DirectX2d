@@ -10,7 +10,6 @@
 //
 //}TILE_INFO;
 
-
 class CPlayerScript :
     public CScript
 {
@@ -26,7 +25,6 @@ private:
     DIR                 m_eCurDir;              //현재 방향
     DIR                 m_ePreDir;              //이전 방향
 
-    UINT                m_iItem;                //가지고 있는 아이템 ( 0 : 없음 1 : 폭탄  2 : 화로 )
     UINT                m_iHP;                  //플레이어 체력
     float               m_fPlayerSpeed;         //플레이어 스피드
     float               m_fAtime;               //누적시간
@@ -42,13 +40,15 @@ private:
 
 private:
     Ptr<CPrefab>        m_pMissilePrefab;
+    int                 m_iData;
+    int                 m_fData;
+    Vec2                m_v2Data;
+    Vec4                m_v4Data;
 
 public:
     //GET SET
     PLAYER_STATE GetPlayerState() { return m_eCurState; }
     void SetPlayerState(PLAYER_STATE _state) { m_eCurState = _state; }
-    PLAYER_STATE GetPlayerPrevState() { return m_ePrevState; }
-    //void SetPlayerPrevState(PLAYER_STATE _state) { m_ePrevState = _state; }
 
     DIR GetPlayerDir() { return m_eCurDir; }
     void SetPlayerDir(DIR _key) { m_eCurDir = _key; }
@@ -58,9 +58,6 @@ public:
 
     int GetPlayerTileX() { return m_iTileX; }
     int GetPlayerTileY() { return m_iTileY; }
-
-    UINT GetPlayerItemNum() { return m_iItem; }
-    void SetPlayerItemNum(UINT _item) { m_iItem = _item; }
 
 
 public:
@@ -92,4 +89,3 @@ public:
     CPlayerScript();
     ~CPlayerScript();
 };
-

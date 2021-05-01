@@ -157,6 +157,7 @@
     <ClInclude Include="CSaveLoadMgr.h" />
     <ClInclude Include="DataGUI.h" />
     <ClInclude Include="DebugGUI.h" />
+    <ClInclude Include="EventGUI.h" />
     <ClInclude Include="HierachyGUI.h" />
     <ClInclude Include="InspectorGUI.h" />
     <ClInclude Include="ListGUI.h" />
@@ -192,6 +193,7 @@
     <ClCompile Include="CSaveLoadMgr.cpp" />
     <ClCompile Include="DataGUI.cpp" />
     <ClCompile Include="DebugGUI.cpp" />
+    <ClCompile Include="EventGUI.cpp" />
     <ClCompile Include="HierachyGUI.cpp" />
     <ClCompile Include="InspectorGUI.cpp" />
     <ClCompile Include="ListGUI.cpp" />

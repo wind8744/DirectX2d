@@ -190,17 +190,13 @@ void CGameObject::AddComponent(CComponent* _pComponent)
 
 CScript* CGameObject::GetScript(const wstring& _strName)
 {
-	for (UINT i = 0; i < MAX_LAYER; ++i)
-	{
-		
+	
 		for (size_t j = 0; j < m_vecScript.size(); ++j)
 		{
 			
 			if (CScriptMgr::GetScriptName(m_vecScript[j]) == _strName)
 				return m_vecScript[j];
 		}
-	}
-
 	return nullptr;
 }
 

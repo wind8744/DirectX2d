@@ -40,6 +40,7 @@ public:
     string GetObjectName() { return m_ObjectName; }
 
     CGameObject* GetTargetObj() { return m_pTargetObj; }
+    CRes* GetResObj() { return m_pTargetRes; }
     void ID_Plus();
 public:
     InspectorGUI();

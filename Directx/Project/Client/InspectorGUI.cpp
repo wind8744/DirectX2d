@@ -16,6 +16,8 @@
 
 #include "ResInfoGUI.h"
 #include "MaterialGUI.h"
+#include "EventGUI.h"
+#include "CImGUIMgr.h"
 #include <Engine\CEventMgr.h>
 
 
@@ -135,7 +137,12 @@ void InspectorGUI::render()
 
         // Object Script 에 대응하는 ScriptGUI render
         const vector<CScript*> vecScript = m_pTargetObj->GetScripts();
-        for (size_t i = 0; i < vecScript.size(); ++i)
+        if (vecScript.size() > 0)
+        {
+            ImGui::Text("Script");
+            ImGui::NewLine();
+        }
+            for (size_t i = 0; i < vecScript.size(); ++i)
         {                                
             m_vecScriptGUI[i]->SetName(CScriptMgr::GetScriptName(vecScript[i]));                   
             m_vecScriptGUI[i]->SetScript(vecScript[i]);
@@ -150,8 +157,9 @@ void InspectorGUI::render()
             even.wParam = (DWORD_PTR)0;
             CEventMgr::GetInst()->AddEvent(even);
             m_pTargetObj = nullptr;
+            EventGUI* Event = (EventGUI*)CImGUIMgr::GetInst()->FindGUI(L"Event");
+            Event->SetEventScript(nullptr);
         }
-
     }
     else if (m_pTargetRes)
     {

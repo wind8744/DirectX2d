@@ -74,6 +74,9 @@
     <Filter Include="GUI\MaptoolGUI">
       <UniqueIdentifier>{b2a4e6e5-fb10-48d4-bcd8-2311379f9b47}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GUI\Event">
+      <UniqueIdentifier>{f80ba063-4444-4931-9af2-ed5ca5ad8e07}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -178,6 +181,9 @@
     <ClInclude Include="MaptoolGUI.h">
       <Filter>GUI\MaptoolGUI</Filter>
     </ClInclude>
+    <ClInclude Include="EventGUI.h">
+      <Filter>GUI\Event</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -280,6 +286,9 @@
     </ClCompile>
     <ClCompile Include="MaptoolGUI.cpp">
       <Filter>GUI\MaptoolGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="EventGUI.cpp">
+      <Filter>GUI\Event</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

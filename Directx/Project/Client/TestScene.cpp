@@ -263,7 +263,7 @@ void CreateTestScene()
 
 	pObj->Collider2D()->SetCollider2DType(COLLIDER2D_TYPE::RECT);
 
-	dynamic_cast<CObjEventScript*>(pObj->GetScript(L"CObjEventScript"))->SetEvnetType(EventType::TriggerOnOff);
+	dynamic_cast<CObjEventScript*>(pObj->GetScript(L"CObjEventScript"))->SetEventType(EventType::TriggerOnOff);
 	dynamic_cast<CObjEventScript*>(pObj->GetScript(L"CObjEventScript"))->PushEvnetChild(redbutton);
 
 	pCurScene->AddObject(pObj, 2);

@@ -53,6 +53,22 @@ void ScriptGUI::render()
 
 	End();
 
-	ImVec2 vSize = ImGui::GetItemRectSize();
+	ImVec2 vSize = ImGui::GetItemRectMin();
 	SetSize(Vec2(0.f, vSize.y));
+}
+
+void ScriptGUI::Start()
+{
+	string strName = GetString(GetName());
+
+	//ImGui::BeginChild(strName.c_str());
+	//float fOrigin = ImGui::GetFontSize();
+
+	ImGui::Text(strName.c_str());
+	
+}
+
+void ScriptGUI::End()
+{
+	//ImGui::EndChild();
 }

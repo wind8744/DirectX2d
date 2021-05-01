@@ -19,6 +19,7 @@
 
 #include "BtnGUI.h"
 #include "MaptoolGUI.h"
+#include "EventGUI.h"
 
 CImGUIMgr::CImGUIMgr()
 {
@@ -160,4 +161,9 @@ void CImGUIMgr::CreateGUI()
     MaptoolGUI* pMaptool = new MaptoolGUI;
     pMaptool->SetName(L"Maptool");
     m_mapGUI.insert(make_pair(L"Maptool", pMaptool));
+
+
+    EventGUI* pEvent = new EventGUI;
+    pEvent->SetName(L"Event");
+    m_mapGUI.insert(make_pair(L"Event", pEvent));
 }

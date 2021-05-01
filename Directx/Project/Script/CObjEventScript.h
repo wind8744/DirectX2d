@@ -14,6 +14,9 @@ private:
     bool                b_TriggerOn;
     EventType           E_EvnetType;
 
+    CObjEventScript*    m_pParentObj;
+
+    int a;
 public:
     virtual void awake();
     virtual void update();
@@ -21,11 +24,19 @@ public:
 public:
     bool GetTrigger() { return b_TriggerOn; }
     void SetTrigger(bool _Trigger) { b_TriggerOn = _Trigger; }
-    void SetEvnetType(EventType _Type) { E_EvnetType=_Type; }
-    void PushEvnetChild(CObjEventScript* _Event) {ChildTrigger.push_back(_Event);}
+    void SetEventType(EventType _Type) { E_EvnetType=_Type; }
+    EventType GetEventType() { return E_EvnetType; }
+    void PushEvnetChild(CObjEventScript* _Event) {
+        ChildTrigger.push_back(_Event);
+        _Event->m_pParentObj = this;
+    }
     void PushEvnetChild(CGameObject* _Event);
+    vector<CObjEventScript*>& GetChildeTrigger() { return ChildTrigger; }
+    void SetParent(CObjEventScript* _Parent) { m_pParentObj = _Parent; }
+    void ReleaseEvent(int _num);
 public:
     virtual void OnCollisionEnter(CGameObject* _pOther);
+
 
 public:
     CLONE(CObjEventScript);

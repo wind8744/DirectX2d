@@ -27,7 +27,7 @@ void ComponentGUI::Start()
 	string strName = GetString(GetName());
 
 	ImGui::BeginChild(strName.c_str(), ImVec2(m_vSize.x, m_vSize.y));
-	float fOrigin = ImGui::GetFontSize();
+	//float fOrigin = ImGui::GetFontSize();
 	
 	ImGui::Text(strName.c_str());
 	ImGui::NewLine();

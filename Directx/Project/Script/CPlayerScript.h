@@ -16,9 +16,9 @@ class CPlayerScript :
 private:
     bool                m_IsOnCol;              //충돌중?
     Ptr<CTexture>       m_pPlayerTex;           //플레이어 tex
-    
-    CScript*            m_pTarScript;           //부딪힌 타겟 스크립트
-    CGameObject*        m_pTarObj;              //부딪힌 타겟 게임 오브젝트
+
+    CScript* m_pTarScript;           //부딪힌 타겟 스크립트
+    CGameObject* m_pTarObj;              //부딪힌 타겟 게임 오브젝트
 
     PLAYER_STATE        m_eCurState;            //플레이어의 현재 상태
     PLAYER_STATE        m_ePrevState;           //이전 상태
@@ -65,9 +65,9 @@ public:
     virtual void update();
 
 private:
-    void CreateMissile();   
+    void CreateMissile();
     void UpdateTilePos();
-    
+
     void CheckState();
     void PlayAnimation();
     void SetState();
@@ -89,4 +89,3 @@ public:
     CPlayerScript();
     ~CPlayerScript();
 };
-

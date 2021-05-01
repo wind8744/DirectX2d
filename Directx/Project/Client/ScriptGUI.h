@@ -15,7 +15,8 @@ public:
 public:
     virtual void update();
     virtual void render();
-
+    virtual void Start();
+    virtual void End();
 public:
     ScriptGUI();
     virtual ~ScriptGUI();

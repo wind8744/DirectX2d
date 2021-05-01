@@ -40,7 +40,7 @@ void ResGUI::update()
 		if (KEY_TAP(KEY_TYPE::LBTN)) {
 
 			InspectorGUI* pInspector = (InspectorGUI*)CImGUIMgr::GetInst()->FindGUI(L"Inspector");
-			if (pInspector->GetTargetObj() != nullptr)
+			if (pInspector->GetTargetObj() != nullptr || pInspector->GetResObj()==nullptr)
 				return;
 			Vec3 Pos = m_Map->GetGameObject()->Transform()->GetWorldPos() - CamaraPos;
 			Vec3 Scale = m_Map->GetGameObject()->Transform()->GetLocalScale();

@@ -8,9 +8,11 @@
 #include <Engine\CEventMgr.h>
 #include <Engine\CScript.h>
 
+#include <Script\CObjEventScript.h>
+
 #include "CImGUIMgr.h"
 #include "InspectorGUI.h"
-
+#include "EventGUI.h"
 HierachyGUI::HierachyGUI()
 {
 	m_Tree.SetDragDropCallBack((DRAG_DROP_CALLBACK)&HierachyGUI::DragDropProgress, this);
@@ -102,4 +104,14 @@ void HierachyGUI::ItemSelectChanged(const tData* _selectData)
 	
 	InspectorGUI* pInspector = (InspectorGUI*)CImGUIMgr::GetInst()->FindGUI(L"Inspector");
 	pInspector->SetTargetObject(pTargetObj);
+	if (pTargetObj->GetScript(L"CObjEventScript") != nullptr)
+	{
+		EventGUI* Event = (EventGUI*)CImGUIMgr::GetInst()->FindGUI(L"Event");
+		Event->SetEventScript((CObjEventScript*)pTargetObj->GetScript(L"CObjEventScript"));
+	}
+	else
+	{
+		EventGUI* Event = (EventGUI*)CImGUIMgr::GetInst()->FindGUI(L"Event");
+		Event->SetEventScript(nullptr);
+	}
 }

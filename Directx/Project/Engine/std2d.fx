@@ -293,7 +293,7 @@ float4 PS_TILE(VTX_TILE_OUT _in) : SV_Target
     return vColor;
 }
 
-//Player 전용
+// Player 전용
 // ==========================
 // Std2D Shader22222222222222222222
 // g_tex_1 : Output Texture

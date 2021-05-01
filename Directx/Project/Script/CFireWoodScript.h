@@ -10,14 +10,16 @@ class CFireWoodScript :
     public CScript
 {
 private:
-    Ptr<CTexture>           m_pTex;       //tex
-    Ptr<CMaterial>          m_pMtrl;           //material
-    CPlayerScript* m_pPlayerScript;
-    bool                    m_bIsPushed;
+    Ptr<CTexture>           m_pTex;               //tex
+    Ptr<CMaterial>          m_pMtrl;             //material
+    CPlayerScript*          m_pPlayerScript;
+
+    bool                    m_bHaveItem;
+    bool                    m_IsOnCol;
 
 
 public:
-    bool GetIsPushed() { return m_bIsPushed; }
+    //bool GetIsPushed() { return m_bIsPushed; }
 
 public:
     virtual void awake();

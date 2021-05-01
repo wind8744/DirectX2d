@@ -7,6 +7,8 @@
 #include <Engine\CTexture.h>
 #include <Engine\CLayer.h>
 #include <Engine\CGameObject.h>
+#include <Engine/CAnimation2D.h>
+#include <Engine/CAnimator2D.h>
 
 #include "CPlayerScript.h"
 #include "CMissileScript.h"
@@ -14,7 +16,8 @@
 
 CFireWoodScript::CFireWoodScript()
 	: CScript((int)SCRIPT_TYPE::FIREWOODSCRIPT)
-	, m_bIsPushed(false)
+	, m_IsOnCol(false)
+	, m_bHaveItem(false)
 	, m_pPlayerScript(nullptr)
 {
 	m_pTex = CResMgr::GetInst()->FindRes<CTexture>(L"firewood");
@@ -39,18 +42,31 @@ void CFireWoodScript::awake()
 void CFireWoodScript::update()
 {
 
+	if (m_IsOnCol)
+	{
+		//int a = 100;
+		//MeshRender()->GetSharedMaterial()->SetData(SHADER_PARAM::INT_0, &a); //½¦ÀÌ´õ¿¡ °ª Àü´Þ
+		const vector<CGameObject*>& _child = this->GetObj()->GetChild();
+		_child[0]->Animator2D()->PlayAnimation(L"BURN", true);
+	}
 
-}
+}	
 
 void CFireWoodScript::OnCollisionEnter(CGameObject* _pOther)
 {
-	m_bIsPushed = true;
-
+	//ºÎµúÈù ¿ÀºêÁ§Æ® ÀÌ¸§ ¹Þ¾Æ¿È
+	const wstring& _str = _pOther->GetName();
+	if (_str == L"FireBowl") m_IsOnCol = true;
+	if (_str == L"Player")
+	{
+		UINT _itemnum = m_pPlayerScript->GetPlayerItemNum();
+		if(_itemnum == 2) m_IsOnCol = true;
+	}
 }
 
 void CFireWoodScript::OnCollisionExit(CGameObject* _pOther)
 {
-	m_bIsPushed = false;
+	//m_IsOnCol = false;
 }
 
 void CFireWoodScript::SaveToScene(FILE* _pFile)

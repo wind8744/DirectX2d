@@ -100,7 +100,7 @@ void CFireBowlScript::Move()
 			break;
 		}
 
-		//마찰력 ( 속력의 반대방향으로)
+		//마찰력
 		if (m_fSpeed > 0)
 		{
 			m_fSpeed -= 1.5;   //0.05

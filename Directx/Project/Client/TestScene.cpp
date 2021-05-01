@@ -418,6 +418,21 @@ void CreateTestScene()
 	pObj->Collider2D()->SetCollider2DType(COLLIDER2D_TYPE::RECT);
 	pCurScene->AddObject(pObj, 3);
 
+	// 불 애니메이션
+	CGameObject* pChildObj = new CGameObject;
+	pChildObj->SetName(L"FireWoodChild");
+	pChildObj->AddComponent(new CTransform);
+	pChildObj->AddComponent(new CMeshRender);
+	pChildObj->AddComponent(new CAnimator2D);
+	pChildObj->Transform()->SetLocalPos(Vec3(0.f, 0.3f, 0.f));
+	pChildObj->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
+	pChildObj->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"PlayerMtrl"));/////
+	pChildObj->Animator2D()->CreateAnimation(L"BURN", pSmokeTex, Vec2(0.f, 20.f), Vec2(64.f, 64.f), 5, 0.1f);
+	pChildObj->Animator2D()->CreateAnimation(L"NONE", pSmokeTex, Vec2(0.f, 0.f), Vec2(0.f, 1.f), 5, 0.1f);
+	pChildObj->Animator2D()->PlayAnimation(L"NONE", true);
+	pCurScene->AddObject(pChildObj, 3);
+	CScript::AddChild(pObj, pChildObj);
+
 	// ===============
 	//  FireBowl (화로)
 	// ===============
@@ -436,7 +451,7 @@ void CreateTestScene()
 	pCurScene->AddObject(pObj, 3);
 
 	// 불 애니메이션
-	CGameObject* pChildObj = new CGameObject;
+	pChildObj = new CGameObject;
 	pChildObj->SetName(L"FireBowlChild");
 	pChildObj->AddComponent(new CTransform);
 	pChildObj->AddComponent(new CMeshRender);

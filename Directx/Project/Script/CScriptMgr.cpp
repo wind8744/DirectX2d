@@ -4,9 +4,12 @@
 #include "CBarbedBlockScript.h"
 #include "CBlockScript.h"
 #include "CBombFlowerScript.h"
+#include "CBombScript.h"
 #include "CBreakableSmallStoneScript.h"
 #include "CBreakableStoneScript.h"
 #include "CCameraScript.h"
+#include "CFireBowlScript.h"
+#include "CFireWoodScript.h"
 #include "CMapScript.h"
 #include "CMissileScript.h"
 #include "CMonsterScript.h"
@@ -24,9 +27,12 @@ void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"CBarbedBlockScript");
 	_vec.push_back(L"CBlockScript");
 	_vec.push_back(L"CBombFlowerScript");
+	_vec.push_back(L"CBombScript");
 	_vec.push_back(L"CBreakableSmallStoneScript");
 	_vec.push_back(L"CBreakableStoneScript");
 	_vec.push_back(L"CCameraScript");
+	_vec.push_back(L"CFireBowlScript");
+	_vec.push_back(L"CFireWoodScript");
 	_vec.push_back(L"CMapScript");
 	_vec.push_back(L"CMissileScript");
 	_vec.push_back(L"CMonsterScript");
@@ -48,12 +54,18 @@ CScript* CScriptMgr::GetScript(const wstring& _strScriptName)
 		return new CBlockScript;
 	if (L"CBombFlowerScript" == _strScriptName)
 		return new CBombFlowerScript;
+	if (L"CBombScript" == _strScriptName)
+		return new CBombScript;
 	if (L"CBreakableSmallStoneScript" == _strScriptName)
 		return new CBreakableSmallStoneScript;
 	if (L"CBreakableStoneScript" == _strScriptName)
 		return new CBreakableStoneScript;
 	if (L"CCameraScript" == _strScriptName)
 		return new CCameraScript;
+	if (L"CFireBowlScript" == _strScriptName)
+		return new CFireBowlScript;
+	if (L"CFireWoodScript" == _strScriptName)
+		return new CFireWoodScript;
 	if (L"CMapScript" == _strScriptName)
 		return new CMapScript;
 	if (L"CMissileScript" == _strScriptName)
@@ -92,6 +104,9 @@ CScript* CScriptMgr::GetScript(UINT _iScriptType)
 	case (UINT)SCRIPT_TYPE::BOMBFLOWERSCRIPT:
 		return new CBombFlowerScript;
 		break;
+	case (UINT)SCRIPT_TYPE::BOMBSCRIPT:
+		return new CBombScript;
+		break;
 	case (UINT)SCRIPT_TYPE::BREAKABLESMALLSTONESCRIPT:
 		return new CBreakableSmallStoneScript;
 		break;
@@ -100,6 +115,12 @@ CScript* CScriptMgr::GetScript(UINT _iScriptType)
 		break;
 	case (UINT)SCRIPT_TYPE::CAMERASCRIPT:
 		return new CCameraScript;
+		break;
+	case (UINT)SCRIPT_TYPE::FIREBOWLSCRIPT:
+		return new CFireBowlScript;
+		break;
+	case (UINT)SCRIPT_TYPE::FIREWOODSCRIPT:
+		return new CFireWoodScript;
 		break;
 	case (UINT)SCRIPT_TYPE::MAPSCRIPT:
 		return new CMapScript;
@@ -154,6 +175,10 @@ const wchar_t* CScriptMgr::GetScriptName(CScript* _pScript)
 		return L"CBombFlowerScript";
 		break;
 
+	case SCRIPT_TYPE::BOMBSCRIPT:
+		return L"CBombScript";
+		break;
+
 	case SCRIPT_TYPE::BREAKABLESMALLSTONESCRIPT:
 		return L"CBreakableSmallStoneScript";
 		break;
@@ -164,6 +189,14 @@ const wchar_t* CScriptMgr::GetScriptName(CScript* _pScript)
 
 	case SCRIPT_TYPE::CAMERASCRIPT:
 		return L"CCameraScript";
+		break;
+
+	case SCRIPT_TYPE::FIREBOWLSCRIPT:
+		return L"CFireBowlScript";
+		break;
+
+	case SCRIPT_TYPE::FIREWOODSCRIPT:
+		return L"CFireWoodScript";
 		break;
 
 	case SCRIPT_TYPE::MAPSCRIPT:

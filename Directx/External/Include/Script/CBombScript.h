@@ -12,7 +12,7 @@ class CBombScript :
 private:
     Ptr<CTexture>           m_pTex;       //tex
     Ptr<CMaterial>          m_pMtrl;           //material
-    CPlayerScript* m_pPlayerScript;
+    CPlayerScript*          m_pPlayerScript;
     bool                    m_bIsPushed;
 
 

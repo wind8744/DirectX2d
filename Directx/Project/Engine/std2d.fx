@@ -54,7 +54,11 @@ float4 PS_Std2D(VTX_OUT _in) : SV_Target
     }
     if (100 == g_int_0)
     {
-        return float4(1.f, 0.f, 0.f, 1.f);
+        return float4(1.f, 0.f, 0.f, 1.f); //¹®
+    }
+    else if(101 == g_int_1)
+    {
+        return float4(0, 0, 0, 1);//È­·Î
     }
     else
     {

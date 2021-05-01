@@ -5,6 +5,7 @@
 #include <Engine\CScene.h>
 #include <Engine\CResMgr.h>
 #include <Engine\CTexture.h>
+#include <Engine/CEventMgr.h>
 #include <Engine\CLayer.h>
 #include <Engine\CGameObject.h>
 
@@ -16,6 +17,7 @@ CBreakableStoneScript::CBreakableStoneScript()
 	: CScript((int)SCRIPT_TYPE::BREAKABLESTONESCRIPT)
 	, m_bIsPushed(false)
 	, m_pPlayerScript(nullptr)
+	, m_fAtime(0.f)
 {
 	m_pStoneTex = CResMgr::GetInst()->FindRes<CTexture>(L"breakablestone");
 	m_pMtrl = CResMgr::GetInst()->FindRes<CMaterial>(L"BreakableStoneMtrl");
@@ -41,8 +43,18 @@ void CBreakableStoneScript::update()
 	//충돌상태이고 플레이어가 z키를 누르고있을때 
 	if (m_bIsPushed == true && _curstate == PLAYER_STATE::BREAK)
 	{
-		//부셔지는 이펙트 + 본인 오브젝트 삭제
+		m_fAtime += fDT;
+		if (m_fAtime > 2.f) //2초후 삭제;
+		{
+			//부셔지는 이펙트 + 본인 오브젝트 삭제
+			tEvent _temp = {};
+			_temp.eEvent = EVENT_TYPE::DELETE_OBJECT;
+			_temp.lParam = (DWORD_PTR)GetGameObject();
+			CEventMgr::GetInst()->AddEvent(_temp);
 
+			m_pPlayerScript->SetPlayerState(PLAYER_STATE::IDLE);
+			m_fAtime = 0.f;
+		}	
 	}
 }
 

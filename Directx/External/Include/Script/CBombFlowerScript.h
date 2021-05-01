@@ -1,8 +1,8 @@
 #pragma once
 #include <Engine\CScript.h>
 
-// obj name : 부술 수 있는 돌( 큰돌 )
-// desc : 플레이어가 깰 수 있음, 지나갈 수 없음
+// obj name : 폭탄 꽃
+// desc : 폭탄 생성
 
 class CPlayerScript;
 

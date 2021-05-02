@@ -7,7 +7,7 @@
 
 CPrefab::CPrefab()
     : m_pProtoObj(nullptr)
-    , m_OffSet(0.f, 0.f, 0.f)
+    , m_OffSet(0.f, 0.f)
 {
 }
 

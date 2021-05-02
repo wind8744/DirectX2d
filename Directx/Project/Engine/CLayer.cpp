@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "CLayer.h"
 
+#include "CSceneMgr.h"
+#include "CScene.h"
 #include "CGameObject.h"
 
 
@@ -74,6 +76,8 @@ void CLayer::AddObject(CGameObject* _pObject, bool _bMoveChild)
 
 	m_vecParentObj.push_back(_pObject);
 	_pObject->SetLayerIndex(m_iLayerIndex);
+	if (SCENE_STATE::PAUSE == CSceneMgr::GetInst()->GetCurScene()->GetState() || SCENE_STATE::PLAY == CSceneMgr::GetInst()->GetCurScene()->GetState())
+		_pObject->awake();
 
 	// Layer 에 입력되는 오브젝트가 자식오브젝트가 있는 경우
 	list<CGameObject*> queue(_pObject->m_vecChild.begin(), _pObject->m_vecChild.end());
@@ -82,12 +86,14 @@ void CLayer::AddObject(CGameObject* _pObject, bool _bMoveChild)
 	{
 		CGameObject* pChild = queue.front();
 		queue.pop_front();
-		
+
 		// 자식들은 부모의 레이어를 따라가는 경우 or 자식 오브젝트가 Layer 소속이 없는경우 부모랑 동일하게 맞춰준다.
 		if (_bMoveChild || -1 == pChild->m_iLayerIdx)
 		{
 			pChild->SetLayerIndex(m_iLayerIndex);
-		}	
+			if (SCENE_STATE::PAUSE == CSceneMgr::GetInst()->GetCurScene()->GetState() || SCENE_STATE::PLAY == CSceneMgr::GetInst()->GetCurScene()->GetState())
+				pChild->awake();
+		}
 
 		// 해당 오브젝트가 또 자식을 보유하고 있으면 큐에 넣어서 계속 순회하도록 한다.
 		std::back_insert_iterator< list<CGameObject*>> enditer(queue);

@@ -3,23 +3,24 @@
 
 // obj name : 장작
 // desc : 불을 붙일 수 있음, 불이 붙으면 이벤트 발생
-
+class CObjEventScript;
 class CPlayerScript;
-
 class CFireWoodScript :
     public CScript
 {
 private:
     Ptr<CTexture>           m_pTex;               //tex
     Ptr<CMaterial>          m_pMtrl;             //material
-    CPlayerScript*          m_pPlayerScript;
 
-    bool                    m_bHaveItem;
-    bool                    m_IsOnCol;
+    CPlayerScript* m_pPlayerScript;
 
+    CObjEventScript* m_pEventScript;
+    CGameObject* m_Child;
 
-public:
-    //bool GetIsPushed() { return m_bIsPushed; }
+    bool                    m_bPlayAni;
+
+    float                   m_OnTime;
+    float                   m_Time;
 
 public:
     virtual void awake();

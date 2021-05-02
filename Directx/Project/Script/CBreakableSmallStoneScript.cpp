@@ -28,14 +28,6 @@ CBreakableSmallStoneScript::~CBreakableSmallStoneScript()
 
 void CBreakableSmallStoneScript::awake()
 {
-
-	//CScene* pCurScene = CSceneMgr::GetInst()->GetCurScene();
-	//CLayer* pLayer = pCurScene->GetLayer(0);
-	//vector<CGameObject*> vecParent = pLayer->GetParentObj();
-
-	////플레이어 스크립트
-	//m_pPlayerScript = dynamic_cast<CPlayerScript*>(vecParent[2]->GetScript());
-	////m_pTarScript = dynamic_cast<CPlayerScript*>(GetGameObject()->GetScript(L"CPlayerScript"));
 }
 
 void CBreakableSmallStoneScript::update()

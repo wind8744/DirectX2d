@@ -290,5 +290,8 @@
     <ClCompile Include="EventGUI.cpp">
       <Filter>GUI\Event</Filter>
     </ClCompile>
+    <ClCompile Include="PrefabCreate.cpp">
+      <Filter>Manager\TestSceneCreate</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

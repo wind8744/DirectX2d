@@ -40,49 +40,15 @@
 
 #include "CSaveLoadMgr.h"
 
-void CreateSamplePrefab()
-{
-	/*CGameObject* pObject = new CGameObject;
-	pObject->AddComponent(new CTransform);
-	pObject->AddComponent(new CMeshRender);
-	pObject->AddComponent(new CMissileScript);
-
-	pObject->Transform()->SetLocalScale(Vec3(50.f, 50.f, 1.f));
-	pObject->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"CircleMesh"));
-	pObject->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"Std2DMtrl"));*/
-
-	//Ptr<CPrefab> pPrefab = new CPrefab(pObject);
-	//pPrefab->Save(L"prefab\\missile.pref");
-	//CResMgr::GetInst()->AddRes<CPrefab>(L"Missile", pPrefab);
-
-	/*CGameObject* pObject = new CGameObject;
-	pObject->AddComponent(new CTransform);
-	pObject->AddComponent(new CCollider2D);
-	pObject->AddComponent(new CTileCollsion);
-
-	pObject->Transform()->SetLocalScale(Vec3(TileSize_X, TileSize_Y, 400.f));
-
-
-	Ptr<CPrefab> pPrefab = new CPrefab(pObject);
-	pPrefab->Save(L"prefab\\TileCollsion.pref");
-	CResMgr::GetInst()->AddRes<CPrefab>(L"TileCollsion", pPrefab);
-	*/
-
-	CResMgr::GetInst()->Load<CPrefab>(L"Missile", L"prefab\\missile.pref");
-	CResMgr::GetInst()->Load<CPrefab>(L"TileCollsion", L"prefab\\TileCollsion.pref");
-}
-
-
 void CreateTestScene()
 {
+	SceneInit();
 	CreateSamplePrefab();
-
 	CScene* pCurScene = CSceneMgr::GetInst()->GetCurScene();
 
 	// Scene Load
 	//CSaveLoadMgr::LoadScene(pCurScene, L"scene\\TestScene.scene");
 	//return;
-
 
 	// =================== 
 	// Compute Shader Test
@@ -96,19 +62,8 @@ void CreateTestScene()
 		//pCS->SetDestTex(pRWTex);
 		//pCS->Excute();
 
-	SceneInit();
 
 	CGameObject* pObj = nullptr;
-
-	// Texture 로딩 테스트
-
-	Ptr<CTexture> pTexture = CResMgr::GetInst()->Load<CTexture>(L"Plane", L"texture\\player.bmp");
-	Ptr<CTexture> pSmokeTex = CResMgr::GetInst()->Load<CTexture>(L"Burn", L"texture\\particle\\firesprite2.png");
-	Ptr<CTexture> pAnimAtlas = CResMgr::GetInst()->Load<CTexture>(L"Link", L"texture\\link_0.png");
-	Ptr<CTexture> pBackgroundTex = CResMgr::GetInst()->Load<CTexture>(L"Background", L"texture\\Background.png");
-
-	int a = 0;
-
 
 	// =============
 	// Camera Object
@@ -162,7 +117,8 @@ void CreateTestScene()
 
 	pObj->Collider2D()->SetCollider2DType(COLLIDER2D_TYPE::RECT);
 
-	pObj->Animator2D()->CreateAnimation(L"WALK_LEFT", pAnimAtlas, Vec2(0.f, 325.f), Vec2(60.f, 65.f), 10, 0.1f);
+	Ptr<CTexture> m_pTexture = CResMgr::GetInst()->FindRes<CTexture>(L"Link");
+	pObj->Animator2D()->CreateAnimation(L"WALK_LEFT", m_pTexture, Vec2(0.f, 325.f), Vec2(60.f, 65.f), 10, 0.1f);
 	pObj->Animator2D()->PlayAnimation(L"WALK_LEFT", true);
 
 	pCurScene->AddObject(pObj, 0);
@@ -226,7 +182,7 @@ void CreateTestScene()
 
 	// ===============
 	// Button object (빨간버튼)
-	// ===============
+	//// ===============
 	//CGameObject* redbutton = new CGameObject;
 	//redbutton->SetName(L"RedButton");////////
 
@@ -258,8 +214,8 @@ void CreateTestScene()
 	//pObj->AddComponent(new CStoneDoorScript);////////
 	//pObj->AddComponent(new CObjEventScript);
 
-	//pObj->Transform()->SetLocalPos(Vec3(-30.f,-88.f, 400.f));
-	//pObj->Transform()->SetLocalScale(Vec3(64, 80, 1.f));
+	//pObj->Transform()->SetLocalPos(Vec3(191.f,-111.f, 400.f));
+	//pObj->Transform()->SetLocalScale(Vec3(128, 160, 1.f));
 	//pObj->Transform()->SetLocalRot(Vec3(0.f, 0.f, 0.f));
 
 	//pObj->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
@@ -267,7 +223,7 @@ void CreateTestScene()
 
 	//pObj->Collider2D()->SetCollider2DType(COLLIDER2D_TYPE::RECT);
 
-	//dynamic_cast<CObjEventScript*>(pObj->GetScript(L"CObjEventScript"))->SetEvnetType(EventType::TriggerOnOff);
+	//dynamic_cast<CObjEventScript*>(pObj->GetScript(L"CObjEventScript"))->SetEventType(EventType::TriggerOnOff);
 	//dynamic_cast<CObjEventScript*>(pObj->GetScript(L"CObjEventScript"))->PushEvnetChild(redbutton);
 
 	//pCurScene->AddObject(pObj, 2);
@@ -326,7 +282,7 @@ void CreateTestScene()
 	//pObj->AddComponent(new CCollider2D);
 	//pObj->AddComponent(new CBarbedBlockScript); ////
 	//pObj->Transform()->SetLocalPos(Vec3(228.f, 200.f, 400.f));
-	//pObj->Transform()->SetLocalScale(Vec3(64, 64, 1.f));
+	//pObj->Transform()->SetLocalScale(Vec3(64, 80, 1.f));
 	//pObj->Transform()->SetLocalRot(Vec3(0.f, 0.f, 0.f));
 	//pObj->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
 	//pObj->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"BarbedBlockMtrl"));/////
@@ -376,8 +332,8 @@ void CreateTestScene()
 	pObj->AddComponent(new CMeshRender);
 	pObj->AddComponent(new CCollider2D);
 	pObj->AddComponent(new CBombFlowerScript); ////
-	pObj->Transform()->SetLocalPos(Vec3(32.f, 32.f, 400.f));
-	pObj->Transform()->SetLocalScale(Vec3(64, 80, 1.f));
+	pObj->Transform()->SetLocalPos(Vec3(32.f, 45.f, 400.f));
+	pObj->Transform()->SetLocalScale(Vec3(60, 80, 1.f));
 	pObj->Transform()->SetLocalRot(Vec3(0.f, 0.f, 0.f));
 	pObj->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
 	pObj->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"BombFlowerMtrl"));/////
@@ -387,19 +343,21 @@ void CreateTestScene()
 	// ===============
 	// Bomb (폭탄)
 	// ===============
-	pObj = new CGameObject;
-	pObj->SetName(L"Bomb"); /////
-	pObj->AddComponent(new CTransform);
-	pObj->AddComponent(new CMeshRender);
-	pObj->AddComponent(new CCollider2D);
-	pObj->AddComponent(new CBombScript); ////
-	pObj->Transform()->SetLocalPos(Vec3(-225.f, 160.f, 400.f));
-	pObj->Transform()->SetLocalScale(Vec3(60, 60, 1.f));
-	pObj->Transform()->SetLocalRot(Vec3(0.f, 0.f, 0.f));
-	pObj->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
-	pObj->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"BombMtrl"));/////
-	pObj->Collider2D()->SetCollider2DType(COLLIDER2D_TYPE::RECT);
-	pCurScene->AddObject(pObj, 3);
+	//pObj = new CGameObject;
+	//pObj->SetName(L"Bomb"); /////
+	//pObj->AddComponent(new CTransform);
+	//pObj->AddComponent(new CMeshRender);
+	//pObj->AddComponent(new CCollider2D);
+	//pObj->AddComponent(new CBombScript); ////
+	//pObj->Transform()->SetLocalPos(Vec3(-225.f, 160.f, 400.f));
+	//pObj->Transform()->SetLocalScale(Vec3(40, 50, 1.f));
+	//pObj->Transform()->SetLocalRot(Vec3(0.f, 0.f, 0.f));
+	//pObj->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
+	//pObj->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"BombMtrl"));/////
+	//pObj->Collider2D()->SetCollider2DType(COLLIDER2D_TYPE::RECT);
+	//pCurScene->AddObject(pObj, 3);
+
+	Ptr<CTexture> pSmokeTex = CResMgr::GetInst()->FindRes<CTexture>(L"Burn");
 
 	// ===============
 	// FireWood (장작)
@@ -411,11 +369,12 @@ void CreateTestScene()
 	pObj->AddComponent(new CCollider2D);
 	pObj->AddComponent(new CFireWoodScript); ////
 	pObj->Transform()->SetLocalPos(Vec3(-32.f, 300.f, 400.f));
-	pObj->Transform()->SetLocalScale(Vec3(37, 60, 1.f));
+	pObj->Transform()->SetLocalScale(Vec3(42, 60, 1.f));
 	pObj->Transform()->SetLocalRot(Vec3(0.f, 0.f, 0.f));
 	pObj->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
 	pObj->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"FireWoodMtrl"));/////
 	pObj->Collider2D()->SetCollider2DType(COLLIDER2D_TYPE::RECT);
+	pObj->AddComponent(new CObjEventScript);
 	pCurScene->AddObject(pObj, 3);
 
 	// 불 애니메이션
@@ -424,10 +383,11 @@ void CreateTestScene()
 	pChildObj->AddComponent(new CTransform);
 	pChildObj->AddComponent(new CMeshRender);
 	pChildObj->AddComponent(new CAnimator2D);
-	pChildObj->Transform()->SetLocalPos(Vec3(0.f, 0.3f, 0.f));
+	pChildObj->Transform()->SetLocalScale(Vec3(1.1, 1.5, 0.f));
+	pChildObj->Transform()->SetLocalPos(Vec3(0.f, 0.7f, 0.f));
 	pChildObj->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
 	pChildObj->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"PlayerMtrl"));/////
-	pChildObj->Animator2D()->CreateAnimation(L"BURN", pSmokeTex, Vec2(0.f, 20.f), Vec2(64.f, 64.f), 5, 0.1f);
+	pChildObj->Animator2D()->CreateAnimation(L"BURN", pSmokeTex, Vec2(0.f, 0.f), Vec2(64.f, 128.f), 32, 0.1f);
 	pChildObj->Animator2D()->CreateAnimation(L"NONE", pSmokeTex, Vec2(0.f, 0.f), Vec2(0.f, 1.f), 5, 0.1f);
 	pChildObj->Animator2D()->PlayAnimation(L"NONE", true);
 	pCurScene->AddObject(pChildObj, 3);
@@ -442,8 +402,8 @@ void CreateTestScene()
 	pObj->AddComponent(new CMeshRender);
 	pObj->AddComponent(new CCollider2D);
 	pObj->AddComponent(new CFireBowlScript); ////
-	pObj->Transform()->SetLocalPos(Vec3(162.f, 227.f, 400.f));
-	pObj->Transform()->SetLocalScale(Vec3(64, 64, 1.f));
+	pObj->Transform()->SetLocalPos(Vec3(-158.f, 227.f, 401.f));
+	pObj->Transform()->SetLocalScale(Vec3(60, 60, 1.f));
 	pObj->Transform()->SetLocalRot(Vec3(0.f, 0.f, 0.f));
 	pObj->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
 	pObj->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"FireBowlMtrl"));/////
@@ -456,14 +416,15 @@ void CreateTestScene()
 	pChildObj->AddComponent(new CTransform);
 	pChildObj->AddComponent(new CMeshRender);
 	pChildObj->AddComponent(new CAnimator2D);
+	pChildObj->Transform()->SetLocalScale(Vec3(1, 2, 0.f));
+	pChildObj->Transform()->SetLocalPos(Vec3(0, 0.63, 0.f));
 	pChildObj->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
 	pChildObj->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"PlayerMtrl"));/////
-	pChildObj->Animator2D()->CreateAnimation(L"BURN", pSmokeTex, Vec2(0.f, 20.f), Vec2(64.f, 64.f), 5, 0.1f);
+	pChildObj->Animator2D()->CreateAnimation(L"BURN", pSmokeTex, Vec2(0.f, 0.f), Vec2(64.f, 128.f), 32, 0.1f);
 	pChildObj->Animator2D()->PlayAnimation(L"BURN", true);
 	pCurScene->AddObject(pChildObj, 3);
 
 	CScript::AddChild(pObj, pChildObj);
-
 
 	// 0번 Player / 1번 배경 / 2번 장애물 / 3번 버튼,폭탄꽃
 
@@ -485,18 +446,29 @@ void CreateTestScene()
 //이미지 로드
 void SceneInit()
 {
-	// Load Obj img 
-	CResMgr::GetInst()->Load<CTexture>(L"redbutton", L"texture\\object\\8.bmp");			//빨간 버튼
-	CResMgr::GetInst()->Load<CTexture>(L"stonedoor", L"texture\\object\\6.jpg");			//돌로 된 문 (버튼을 밟으면 열림)
-	CResMgr::GetInst()->Load<CTexture>(L"pushstone", L"texture\\object\\17.jpg");			//밀 수 있는 돌
-	CResMgr::GetInst()->Load<CTexture>(L"pushsmallstone", L"texture\\object\\12.jpg");		//밀 수 있는 작은돌
-	CResMgr::GetInst()->Load<CTexture>(L"breakablestone", L"texture\\object\\15.jpg");		//부실 수 있는 돌
-	CResMgr::GetInst()->Load<CTexture>(L"block", L"texture\\object\\18.jpg");				//지나갈 수 없는 장애물
-	CResMgr::GetInst()->Load<CTexture>(L"barbedblock", L"texture\\object\\13.jpg");			//가시 달린 장애물
-	CResMgr::GetInst()->Load<CTexture>(L"speedup", L"texture\\object\\9.jpg");				//스피드 업 발판
-	CResMgr::GetInst()->Load<CTexture>(L"bombflower", L"texture\\object\\14.jpg");			//폭탄꽃
-	CResMgr::GetInst()->Load<CTexture>(L"bomb", L"texture\\object\\14-3.jpg");				//폭탄
-	CResMgr::GetInst()->Load<CTexture>(L"firewood", L"texture\\object\\5.jpg");				//장작
-	CResMgr::GetInst()->Load<CTexture>(L"firebowl", L"texture\\object\\4.jpg");				//화로
+	CResMgr::GetInst()->Load<CTexture>(L"LoadButton", L"icon\\loadbutton.png");
+	CResMgr::GetInst()->Load<CTexture>(L"SaveButton", L"icon\\savebutton.png");
+	CResMgr::GetInst()->Load<CTexture>(L"TILE", L"texture\\TIle.bmp");
 
+	// Load Obj img 
+	CResMgr::GetInst()->Load<CTexture>(L"redbutton", L"texture\\object\\8.png");			//빨간 버튼
+	CResMgr::GetInst()->Load<CTexture>(L"stonedoor", L"texture\\object\\6.png");			//돌로 된 문 (버튼을 밟으면 열림)
+	CResMgr::GetInst()->Load<CTexture>(L"pushstone", L"texture\\object\\17.png");			//밀 수 있는 돌
+	CResMgr::GetInst()->Load<CTexture>(L"pushsmallstone", L"texture\\object\\12.png");		//밀 수 있는 작은돌
+	CResMgr::GetInst()->Load<CTexture>(L"breakablestone", L"texture\\object\\15.png");		//부실 수 있는 돌
+	CResMgr::GetInst()->Load<CTexture>(L"block", L"texture\\object\\18.png");				//지나갈 수 없는 장애물
+	CResMgr::GetInst()->Load<CTexture>(L"barbedblock", L"texture\\object\\13.png");			//가시 달린 장애물
+	CResMgr::GetInst()->Load<CTexture>(L"speedup", L"texture\\object\\9.png");				//스피드 업 발판
+	CResMgr::GetInst()->Load<CTexture>(L"bombflower", L"texture\\object\\14.png");			//폭탄꽃
+	CResMgr::GetInst()->Load<CTexture>(L"flower", L"texture\\object\\14-1.png");			//꽃
+	CResMgr::GetInst()->Load<CTexture>(L"bomb", L"texture\\object\\14-3.png");				//폭탄
+	CResMgr::GetInst()->Load<CTexture>(L"firewood", L"texture\\object\\5.png");				//장작
+	CResMgr::GetInst()->Load<CTexture>(L"firebowl", L"texture\\object\\4.png");				//화로
+
+
+	// Texture 로딩 테스트
+	
+	CResMgr::GetInst()->Load<CTexture>(L"Burn", L"texture\\particle\\fire.png");
+	CResMgr::GetInst()->Load<CTexture>(L"Link", L"texture\\link_0.png");
+	CResMgr::GetInst()->Load<CTexture>(L"Background", L"texture\\Background.png");
 }

@@ -30,10 +30,9 @@ CBreakableStoneScript::~CBreakableStoneScript()
 
 void CBreakableStoneScript::awake()
 {
-	CScene* pCurScene = CSceneMgr::GetInst()->GetCurScene();
-	CLayer* pLayer = pCurScene->GetLayer(0);
-	vector<CGameObject*> vecParent = pLayer->GetParentObj();
-	m_pPlayerScript = dynamic_cast<CPlayerScript*>(vecParent[2]->GetScript());
+	//플레이어 스크립트
+	CGameObject* PlayerObject = CSceneMgr::GetInst()->FindObjectByName(L"Player");
+	m_pPlayerScript = dynamic_cast<CPlayerScript*>(PlayerObject->GetScript(L"CPlayerScript"));
 }
 
 void CBreakableStoneScript::update()
@@ -46,6 +45,7 @@ void CBreakableStoneScript::update()
 		m_fAtime += fDT;
 		if (m_fAtime > 2.f) //2초후 삭제;
 		{
+			m_fAtime = 0.f;
 			//부셔지는 이펙트 + 본인 오브젝트 삭제
 			tEvent _temp = {};
 			_temp.eEvent = EVENT_TYPE::DELETE_OBJECT;
@@ -53,7 +53,6 @@ void CBreakableStoneScript::update()
 			CEventMgr::GetInst()->AddEvent(_temp);
 
 			m_pPlayerScript->SetPlayerState(PLAYER_STATE::IDLE);
-			m_fAtime = 0.f;
 		}	
 	}
 }

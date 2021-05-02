@@ -4,20 +4,37 @@
 // obj name : 气藕 采
 // desc : 气藕 积己
 
+enum class FLOWER_STATE
+{
+    IDLE,
+    COL,
+    MAKEBOMB,
+    HEAD,
+    NONE
+};
+
 class CPlayerScript;
+class CScene;
 
 class CBombFlowerScript :
     public CScript
 {
 private:
-    Ptr<CTexture>           m_pTex;       //tex
+    Ptr<CTexture>           m_pTex1;             //tex ( 气藕 + 采 )
+    Ptr<CTexture>           m_pTex2;             //tex ( 采 )
     Ptr<CMaterial>          m_pMtrl;           //material
     CPlayerScript*          m_pPlayerScript;
-    bool                    m_bIsPushed;
+    CScript*                m_pScript;
+    CScene*                 m_pCurScene;
+
+    FLOWER_STATE            m_eState;           //气藕采 惑怕
+    bool                    m_IsOnCol;          //面倒吝?
 
 
-public:
-    bool GetIsPushed() { return m_bIsPushed; }
+private:
+    void CheckState();
+    void Excute();
+    //bool GetIsPushed() { return m_bIsPushed; }
 
 public:
     virtual void awake();

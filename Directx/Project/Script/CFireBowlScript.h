@@ -21,27 +21,26 @@ class CFireBowlScript :
 private:
     Ptr<CTexture>           m_pTex;               //tex
     Ptr<CMaterial>          m_pMtrl;              //material
-    CPlayerScript* m_pPlayerScript;
-    CScript* m_pScript;
+    CPlayerScript*          m_pPlayerScript;
+    CScript*                m_pScript;
 
-    float                   m_fAtime;
-    float                   m_fSpeed;
     FIRE_STATE              m_eState;
     Vec3                    m_vPos;
     DIR                     m_eDir;
 
-public:
-    // bool GetOnHead() { return m_bIsOnHead; }
-
+    float                   m_fAtime;
+    Vec2                    m_vSpeed;
+    float                   m_fAngle;
+    float                   m_fPower;
+    //float                   m_fSpeed;
 
 public:
     virtual void awake();
     virtual void update();
 
+private:
     void CheckState();
-
     void Move();
-
 
 public:
     virtual void OnCollisionEnter(CGameObject* _pOther);

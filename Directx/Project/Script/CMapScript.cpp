@@ -20,7 +20,10 @@ m_tileUv_y(0.2f)
 	m_TileBuffer = new CStructuredBuffer;
 	m_TSharedBuffer = new CStructuredBuffer;
 	m_TSharedBuffer->Create(sizeof(tTileShared), 1, nullptr);
-	
+
+	Ptr<CTexture> pTex = CResMgr::GetInst()->FindRes<CTexture>(L"TILE");
+	Ptr<CMaterial> pMtrl = CResMgr::GetInst()->FindRes<CMaterial>(L"MaptoolRenderMtrl");
+	pMtrl->SetData(SHADER_PARAM::TEX_0, pTex.Get());
 }
 
 CMapScript::~CMapScript()

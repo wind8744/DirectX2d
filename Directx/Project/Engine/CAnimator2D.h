@@ -34,6 +34,7 @@ public:
 
 public:
     CAnimator2D();
+    CAnimator2D(const CAnimator2D& _origin);
     ~CAnimator2D();
 };
 

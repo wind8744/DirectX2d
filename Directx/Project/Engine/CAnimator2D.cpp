@@ -16,6 +16,22 @@ CAnimator2D::CAnimator2D()
 {
 }
 
+CAnimator2D::CAnimator2D(const CAnimator2D& _origin) :
+	CComponent(COMPONENT_TYPE::ANIMATOR2D),
+	m_bRepeat(_origin.m_bRepeat)
+{
+	map<wstring, CAnimation2D*>::const_iterator iter = _origin.m_mapAnim.begin();
+	for (; iter != _origin.m_mapAnim.end(); ++iter)
+	{
+		CAnimation2D* Ani = iter->second->Clone();
+		Ani->m_pAnimator = this;
+
+		m_mapAnim.insert(make_pair(iter->first, Ani));
+
+	}
+	ChangeAnimation(_origin.m_pCurAnim->GetName());
+}
+
 CAnimator2D::~CAnimator2D()
 {
 	Safe_Delete_Map(m_mapAnim);

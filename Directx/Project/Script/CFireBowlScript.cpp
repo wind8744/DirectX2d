@@ -17,7 +17,10 @@ CFireBowlScript::CFireBowlScript()
 	, m_pPlayerScript(nullptr)
 	, m_pScript(nullptr)
 	, m_fAtime(0.f)
-	, m_fSpeed(350.f)
+	//, m_fSpeed(350.f)
+	, m_vSpeed(350,350)
+	, m_fAngle(5.f)
+	, m_fPower(10.f)
 	, m_eState(FIRE_STATE::NONE)
 	, m_vPos(0, 0, 400)
 	, m_eDir(DIR::DOWN)
@@ -33,13 +36,21 @@ CFireBowlScript::~CFireBowlScript()
 
 void CFireBowlScript::awake()
 {
+	m_vSpeed.x = m_fPower * sinf(m_fAngle);
+	m_vSpeed.y = m_fPower * cosf(m_fAngle);
+
 	CScene* pCurScene = CSceneMgr::GetInst()->GetCurScene();
 	CLayer* pLayer = pCurScene->GetLayer(0);
 	vector<CGameObject*> vecParent = pLayer->GetParentObj();
 
-	//플레이어 스크립트
+	//스크립트
 	m_pScript = vecParent[2]->GetScript();
-	m_pPlayerScript = dynamic_cast<CPlayerScript*>(vecParent[2]->GetScript());
+	//스크립트
+	//m_pScript = GetGameObject()->GetScript(L"CPlayerScript");
+
+	//플레이어 스크립트
+	CGameObject* PlayerObject = CSceneMgr::GetInst()->FindObjectByName(L"Player");
+	m_pPlayerScript = dynamic_cast<CPlayerScript*>(PlayerObject->GetScript(L"CPlayerScript"));
 }
 
 void CFireBowlScript::update()
@@ -51,7 +62,6 @@ void CFireBowlScript::update()
 void CFireBowlScript::CheckState()
 {
 	PLAYER_STATE _curstate = m_pPlayerScript->GetPlayerState();
-	PLAYER_STATE _prevstate = m_pPlayerScript->GetPlayerPrevState();
 
 	//충돌상태이고 플레이어가 Item상태일때 , 머리 위로
 	if ((m_eState == FIRE_STATE::COL) && _curstate == PLAYER_STATE::ITEM)	m_eState = FIRE_STATE::HEAD;
@@ -60,7 +70,7 @@ void CFireBowlScript::CheckState()
 	else if (m_eState == FIRE_STATE::HEAD && _curstate == PLAYER_STATE::IDLE)
 	{
 		//머리에서 던질때 위치, 방향 상태 저장
-		m_fSpeed = 350.f;
+		m_vSpeed = Vec2(350.f, 350.f);
 		m_eDir = m_pPlayerScript->GetPlayerDir();
 		m_vPos = m_pScript->Transform()->GetLocalPos();
 		m_eState = FIRE_STATE::SLIDE;
@@ -81,35 +91,39 @@ void CFireBowlScript::Move()
 	}
 	else if (m_eState == FIRE_STATE::SLIDE)
 	{
+
 		switch (m_eDir)
 		{
 		case DIR::RIGHT:
-			m_vPos.x += m_fSpeed * fDT;
+			m_vPos.x += m_vSpeed.x * fDT;
+			m_vPos.y += m_vSpeed.y * fDT;
 			break;
 
 		case DIR::LEFT:
-			m_vPos.x -= m_fSpeed * fDT;
+			m_vPos.x -= m_vSpeed.x * fDT;
+			m_vPos.y -= m_vSpeed.x * fDT;
 			break;
 
 		case DIR::DOWN:
-			m_vPos.y -= m_fSpeed * fDT;
+			m_vPos.y -= 350 * fDT;
 			break;
 
 		case DIR::UP:
-			m_vPos.y += m_fSpeed * fDT;
+			m_vPos.y += 350 * fDT;
 			break;
 		}
 
 		//마찰력
-		if (m_fSpeed > 0)
+		if (m_vSpeed.x > 0)
 		{
-			m_fSpeed -= 1.5;   //0.05
+			m_vSpeed.x -= 1.5;   //0.05
 		}
-		else if (m_fSpeed < 0)
+		else if (m_vSpeed.x < 0)
 		{
-			m_fSpeed += 1.5;
+			m_vSpeed.x += 1.5;
 		}
 
+		m_vSpeed.y += 0.5;	//중력
 
 		m_fAtime += fDT;
 		if (m_fAtime > 3.f)
@@ -127,7 +141,13 @@ void CFireBowlScript::Move()
 
 void CFireBowlScript::OnCollisionEnter(CGameObject* _pOther)
 {
-	m_eState = FIRE_STATE::COL;
+	//부딪힌 오브젝트 이름 받아옴
+	//const wstring& _str = _pOther->GetName();
+	//if (_str == L"Player")
+	{
+		m_eState = FIRE_STATE::COL;
+	}
+	
 }
 
 void CFireBowlScript::OnCollisionExit(CGameObject* _pOther)

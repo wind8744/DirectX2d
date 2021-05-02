@@ -12,6 +12,8 @@ class BtnGUI :
 {
 private:
     CTexture*   m_arrIcon[(UINT)SCENE_STATE::END];
+    Ptr<CTexture>   m_SaveIcon;
+    Ptr<CTexture>   m_LoadIcon;
 
 public:
     virtual void init();

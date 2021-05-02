@@ -30,6 +30,7 @@ InspectorGUI::InspectorGUI()
     , m_pTargetObj(nullptr)
     , m_pTargetRes(nullptr)
     , m_ID(0)
+    , m_LayerIndex(0)
 {
 }
 
@@ -43,19 +44,19 @@ InspectorGUI::~InspectorGUI()
 void InspectorGUI::init()
 {
     ComponentGUI* pNew = new TransformGUI;
-  
+
     pNew->SetName(L"Transform");
     pNew->SetSize(Vec2(0.f, 100.f));
     m_arrComGUI[(UINT)COMPONENT_TYPE::TRANSFORM] = pNew;
 
     pNew = new MeshRenderGUI;
-  
+
     pNew->SetName(L"MeshRender");
     pNew->SetSize(Vec2(0.f, 80.f));
     m_arrComGUI[(UINT)COMPONENT_TYPE::MESHRENDER] = pNew;
 
     pNew = new Collider2DGUI;
-   
+
     pNew->SetName(L"Collider2D");
     pNew->SetSize(Vec2(0.f, 100.f));
     m_arrComGUI[(UINT)COMPONENT_TYPE::COLLIDER2D] = pNew;
@@ -63,7 +64,7 @@ void InspectorGUI::init()
     for (int i = 0; i < 10; ++i)
     {
         m_vecScriptGUI.push_back(new ScriptGUI);
-    }    
+    }
 
     ResInfoGUI* pResInfoGUI = new MaterialGUI;
     pResInfoGUI->SetName(L"Material");
@@ -72,14 +73,14 @@ void InspectorGUI::init()
 
 void InspectorGUI::update()
 {
-	for (UINT i = 0; i < (UINT)COMPONENT_TYPE::END; ++i)
-	{
-		if (nullptr == m_arrComGUI[i])
-			continue;
+    for (UINT i = 0; i < (UINT)COMPONENT_TYPE::END; ++i)
+    {
+        if (nullptr == m_arrComGUI[i])
+            continue;
 
-		m_arrComGUI[i]->SetTargetObj(m_pTargetObj);
-		m_arrComGUI[i]->update();
-	}
+        m_arrComGUI[i]->SetTargetObj(m_pTargetObj);
+        m_arrComGUI[i]->update();
+    }
 
     if (m_pTargetObj)
     {
@@ -101,10 +102,10 @@ void InspectorGUI::update()
         {
             m_vecScriptGUI[i]->SetTargetObj(nullptr);
             m_vecScriptGUI[i]->update();
-        }        
+        }
     }
-	
-   
+
+
     if (m_pTargetRes)
     {
         if (nullptr != m_arrResInfoGUI[(UINT)m_eResType])
@@ -123,16 +124,16 @@ void InspectorGUI::render()
     {
         string strName = GetString(m_pTargetObj->GetName());
         ImGui::Text(strName.c_str());
-        for(UINT i = 0; i < (UINT)COMPONENT_TYPE::END; ++i)
+        for (UINT i = 0; i < (UINT)COMPONENT_TYPE::END; ++i)
         {
             if (nullptr == m_arrComGUI[i])
                 continue;
-                        
+
             if (m_arrComGUI[i]->IsActive())
             {
                 m_arrComGUI[i]->render();
                 ImGui::Separator();
-            }             
+            }
         }
 
         // Object Script 에 대응하는 ScriptGUI render
@@ -142,9 +143,9 @@ void InspectorGUI::render()
             ImGui::Text("Script");
             ImGui::NewLine();
         }
-            for (size_t i = 0; i < vecScript.size(); ++i)
-        {                                
-            m_vecScriptGUI[i]->SetName(CScriptMgr::GetScriptName(vecScript[i]));                   
+        for (size_t i = 0; i < vecScript.size(); ++i)
+        {
+            m_vecScriptGUI[i]->SetName(CScriptMgr::GetScriptName(vecScript[i]));
             m_vecScriptGUI[i]->SetScript(vecScript[i]);
             m_vecScriptGUI[i]->render();
         }
@@ -166,11 +167,18 @@ void InspectorGUI::render()
         string strName = GetString(m_pTargetRes->GetKey().c_str());
         ImGui::Text(strName.c_str());
         ImGui::Text("Object Name "); ImGui::SameLine();
-       string n = m_ObjectName;
-      
-       ImGui::InputText("##Obj_Name", (char*)n.c_str(),100);
+        string n = m_ObjectName;
 
-       m_ObjectName = n;
+        ImGui::InputText("##Obj_Name", (char*)n.c_str(), 100);
+
+        int index = m_LayerIndex;
+
+        ImGui::Text("Layer Index "); ImGui::SameLine();
+        ImGui::InputInt("##Layer_Index", &index);
+        if (index >= 0 && index < 32)
+            m_LayerIndex = index;
+        m_ObjectName = n;
+
         if (nullptr != m_arrResInfoGUI[(UINT)m_eResType])
         {
             m_arrResInfoGUI[(UINT)m_eResType]->render();
@@ -184,13 +192,13 @@ void InspectorGUI::SetTargetResource(CRes* _pRes, RES_TYPE _eType)
 {
     m_pTargetRes = _pRes;
     m_eResType = _eType;
-    m_ObjectName = GetString(_pRes->GetKey().c_str())+to_string(m_ID);
+    m_ObjectName = GetString(_pRes->GetKey().c_str()) + to_string(m_ID);
     if (nullptr != m_pTargetRes)
         m_pTargetObj = nullptr;
 }
 void InspectorGUI::ID_Plus()
 {
     m_ID++;
-    
+
     m_ObjectName = GetString(m_pTargetRes->GetKey().c_str()) + to_string(m_ID);
 }

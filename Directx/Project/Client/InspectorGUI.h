@@ -11,16 +11,17 @@ class InspectorGUI :
     public GUI
 {
 private:
-    ComponentGUI*   m_arrComGUI[(UINT)COMPONENT_TYPE::END];
+    ComponentGUI* m_arrComGUI[(UINT)COMPONENT_TYPE::END];
     vector<ScriptGUI*> m_vecScriptGUI;
 
-    ResInfoGUI*     m_arrResInfoGUI[(UINT)RES_TYPE::END];
+    ResInfoGUI* m_arrResInfoGUI[(UINT)RES_TYPE::END];
 
-    CGameObject*    m_pTargetObj;
+    CGameObject* m_pTargetObj;
 
-    CRes*           m_pTargetRes;
+    CRes* m_pTargetRes;
     RES_TYPE        m_eResType;
     unsigned int    m_ID;
+    int             m_LayerIndex;
     string          m_ObjectName;
 public:
     virtual void init();
@@ -41,9 +42,9 @@ public:
 
     CGameObject* GetTargetObj() { return m_pTargetObj; }
     CRes* GetResObj() { return m_pTargetRes; }
+    int   GetLayerIndex() { return m_LayerIndex; }
     void ID_Plus();
 public:
     InspectorGUI();
     ~InspectorGUI();
 };
-

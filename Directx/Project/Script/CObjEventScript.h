@@ -15,8 +15,6 @@ private:
     EventType           E_EvnetType;
 
     CObjEventScript* m_pParentObj;
-
-    int a;
 public:
     virtual void awake();
     virtual void update();

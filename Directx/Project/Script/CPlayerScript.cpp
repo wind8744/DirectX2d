@@ -40,42 +40,6 @@ CPlayerScript::~CPlayerScript()
 void CPlayerScript::awake()
 {
 	m_pMissilePrefab = CResMgr::GetInst()->FindRes<CPrefab>(L"Missile");
-	//temp
-	//임시로 타일 벡터에 obj정보 넣음
-	//int size = 10 * 10;
-	//size_t sizet = (size_t)size;
-	//m_vecTileInfo.resize(sizet);
-	////미는 돌 좌표
-	//int _x = 0;
-	//int _y = 2;
-	//int z = _y * m_iMapCol + _x;
-	////미는 돌 정보
-	//tile_info _pushstone = {};
-	//_pushstone.IsObj = true;
-	//_pushstone.IsPush = true;
-	//_pushstone.IsBlock = true;
-	////미는돌 정보 넣음
-	//m_vecTileInfo[z] = _pushstone;
-	////버튼 좌표
-	// _x = 3;
-	// _y = 0;
-	// z = _y * m_iMapCol + _x;
-	////버튼 정보
-	// _pushstone = {};
-	//_pushstone.IsObj = true;
-	//_pushstone.IsPush = false;
-	//_pushstone.IsBlock = false;
-	////버튼 정보 넣음
-	//m_vecTileInfo[z] = _pushstone;
-	////돌문 좌표
-	//_x = 4;
-	//_y = 4;
-	//z = _y * m_iMapCol + _x;
-	//_pushstone = {};
-	//_pushstone.IsObj = true;
-	//_pushstone.IsPush = false;
-	//_pushstone.IsBlock = true;
-	//m_vecTileInfo[z] = _pushstone;
 }
 
 void CPlayerScript::update()
@@ -184,7 +148,7 @@ void CPlayerScript::CheckState()
 			}
 		}
 		//TAP
-		if (m_iItem == 0 && KEY_TAP(KEY_TYPE::KEY_Z)) //아이템 들기
+		if (KEY_TAP(KEY_TYPE::KEY_Z) && m_iItem == 0) //아이템 들기
 		{
 			//충돌한 물체 스크립트 이넘값 받아옴
 			if (m_pTarObj != nullptr)
@@ -194,7 +158,7 @@ void CPlayerScript::CheckState()
 				if (_str == L"FireBowl") { m_iItem = 2; m_eCurState = PLAYER_STATE::ITEM; }
 			}
 		}
-		else if (m_iItem != 0 && KEY_TAP(KEY_TYPE::KEY_Z)) //아이템 버리기
+		else if (KEY_TAP(KEY_TYPE::KEY_Z) && m_iItem != 0) //아이템 버리기
 		{
 			m_iItem = 0;
 			m_eCurState = PLAYER_STATE::IDLE;

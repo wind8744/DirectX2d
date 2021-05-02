@@ -11,7 +11,7 @@ class MaptoolGUI :
 private:
     Ptr<CTexture> m_TileTex;
     Ptr<CPrefab>  p_Collsion;
-    
+
     vector<CGameObject*> m_CollVector;
 
     CMapScript* m_Map;
@@ -20,8 +20,9 @@ private:
     int        m_size;
     Vec2        m_SetIndex;
     bool        m_Collsion;
-    
-    
+
+
+
 public:
     virtual void init();
     virtual void update();
@@ -32,4 +33,3 @@ public:
     ~MaptoolGUI();
 
 };
-

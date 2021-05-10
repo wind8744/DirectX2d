@@ -1,0 +1,49 @@
+#pragma once
+
+#include <vector>
+#include <string>
+
+enum class SCRIPT_TYPE
+{
+	BARBEDBLOCKSCRIPT,
+	BLOCKSCRIPT,
+	BOMBFLOWERSCRIPT,
+	BOMBSCRIPT,
+	BREAKABLESMALLSTONESCRIPT,
+	BREAKABLESTONESCRIPT,
+	CAMERASCRIPT,
+	ELECBLOCKSCRIPT,
+	ELECCHILDSCRIPT,
+	ELECTOWERSCRIPT,
+	ENDBLOCKSCRIPT,
+	FIREBOWLSCRIPT,
+	FIREWOODSCRIPT,
+	JUMPUPSCRIPT,
+	MAPSCRIPT,
+	MISSILESCRIPT,
+	MONSTERSCRIPT,
+	OBJEVENTSCRIPT,
+	PLAYERPOSSETSCRIPT,
+	PLAYERSCRIPT,
+	PUSHSMALLSTONESCRIPT,
+	PUSHSTONESCRIPT,
+	REDBUTTONSCRIPT,
+	SPEEDUPSCRIPT,
+	STONEDOORSCRIPT,
+	TARGETTOAUTO,
+	TILECOLLSION,
+	END,
+};
+
+using namespace std;
+
+class CScript;
+
+class CScriptMgr
+{
+public:
+	static void GetScriptInfo(vector<wstring>& _vec);
+	static CScript * GetScript(const wstring& _strScriptName);
+	static CScript * GetScript(UINT _iScriptType);
+	static const wchar_t * GetScriptName(CScript * _pScript);
+};

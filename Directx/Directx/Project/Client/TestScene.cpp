@@ -121,147 +121,57 @@ void CreateTestScene()
 
 	pObj->Collider2D()->SetCollider2DType(COLLIDER2D_TYPE::RECT);
 	pObj->Collider2D()->SetvOffsetScale(Vec2(0.25f, 0.25f));
+	Ptr<CTexture> m_pTexture = CResMgr::GetInst()->FindRes<CTexture>(L"Garam");
 
-	Ptr<CTexture> m_pTexture = CResMgr::GetInst()->FindRes<CTexture>(L"Nari");
+	pObj->Animator2D()->CreateAnimation(L"WALK_DOWN", m_pTexture, Vec2(0.f, 256.f * 0), Vec2(256.f, 256.f), 10, 0.04f);
+	pObj->Animator2D()->CreateAnimation(L"ATTACK_DOWN1", m_pTexture, Vec2(0.f, 256.f * 1), Vec2(256.f, 256.f), 10, 0.04f);
+	pObj->Animator2D()->CreateAnimation(L"RUN_DOWN", m_pTexture, Vec2(0.f, 256.f * 2), Vec2(256.f, 256.f), 10, 0.04f);
+	pObj->Animator2D()->CreateAnimation(L"STOP_DOWN", m_pTexture, Vec2(0.f, 256.f * 3), Vec2(256.f, 256.f), 10, 0.04f);
+	pObj->Animator2D()->CreateAnimation(L"SKILL_DOWN", m_pTexture, Vec2(0.f, 256.f * 4), Vec2(256.f, 256.f), 26, 0.04f);
+	pObj->Animator2D()->CreateAnimation(L"WALKBOMB_DOWN", m_pTexture, Vec2(0.f, 256.f * 5), Vec2(256.f, 256.f), 10, 0.04f);
+	pObj->Animator2D()->CreateAnimation(L"THROWBOMB_DOWN", m_pTexture, Vec2(0.f, 256.f * 6), Vec2(256.f, 256.f), 10, 0.04f);
+	pObj->Animator2D()->CreateAnimation(L"STOPBOMB_DOWN", m_pTexture, Vec2(0.f, 256.f * 7), Vec2(256.f, 256.f), 10, 0.04f);
+	pObj->Animator2D()->CreateAnimation(L"PUSH_DOWN", m_pTexture, Vec2(0.f, 256.f * 8), Vec2(256.f, 256.f), 10, 0.04f);
 
-	
+	pObj->Animator2D()->CreateAnimation(L"WALK_RIGHT", m_pTexture, Vec2(0.f, 256.f * 9), Vec2(256.f, 256.f), 10, 0.04f);
+	pObj->Animator2D()->CreateAnimation(L"ATTACK_RIGHT1", m_pTexture, Vec2(0.f, 256.f * 10), Vec2(256.f, 256.f), 10, 0.04f);
+	pObj->Animator2D()->CreateAnimation(L"THROWBOMB_RIGHT", m_pTexture, Vec2(0.f, 256.f * 11), Vec2(256.f, 256.f), 10, 0.04f);
+	pObj->Animator2D()->CreateAnimation(L"DEAD_RIGHT", m_pTexture, Vec2(0.f, 256.f * 12), Vec2(256.f, 256.f), 29, 0.04f);
+	pObj->Animator2D()->CreateAnimation(L"RUN_RIGHT", m_pTexture, Vec2(0.f, 256.f * 13), Vec2(256.f, 256.f), 10, 0.04f);
+	pObj->Animator2D()->CreateAnimation(L"LINKEDSKILL_RIGHT", m_pTexture, Vec2(0.f, 256.f * 14), Vec2(256.f, 256.f), 10, 0.04f);
+	pObj->Animator2D()->CreateAnimation(L"STOP_RIGHT", m_pTexture, Vec2(0.f, 256.f * 15), Vec2(256.f, 256.f), 10, 0.04f);
+	pObj->Animator2D()->CreateAnimation(L"SKILL_RIGHT", m_pTexture, Vec2(0.f, 256.f * 16), Vec2(256.f, 256.f), 30, 0.04f);
+	pObj->Animator2D()->CreateAnimation(L"WALKBOMB_RIGHT", m_pTexture, Vec2(0.f, 256.f * 17), Vec2(256.f, 256.f), 10, 0.04f);
+	pObj->Animator2D()->CreateAnimation(L"STOPBOMB_RIGHT", m_pTexture, Vec2(0.f, 256.f * 18), Vec2(256.f, 256.f), 10, 0.04f);
+	pObj->Animator2D()->CreateAnimation(L"PUSH_RIGHT", m_pTexture, Vec2(0.f, 256.f * 19), Vec2(256.f, 256.f), 10, 0.04f);
 
-	pObj->Animator2D()->CreateAnimation(L"WALK_LEFT", m_pTexture, Vec2(0.f, 256.f * 0), Vec2(256.f, 256.f), 17, 0.03f,true);
-	pObj->Animator2D()->CreateAnimation(L"ATTACK_LEFT1", m_pTexture, Vec2(0.f, 256.f * 1), Vec2(256.f, 256.f), 16, 0.03f, true);
-	pObj->Animator2D()->CreateAnimation(L"RUN_LEFT", m_pTexture, Vec2(0.f, 256.f * 2), Vec2(256.f, 256.f), 10, 0.03f, true);
-	pObj->Animator2D()->CreateAnimation(L"THROWBOMB_LEFT", m_pTexture, Vec2(0.f, 256.f * 3), Vec2(256.f, 256.f), 11, 0.03f, true);
-	pObj->Animator2D()->CreateAnimation(L"DEAD_LEFT", m_pTexture, Vec2(0.f, 256.f * 4), Vec2(256.f, 256.f), 55, 0.03f, true);
-	pObj->Animator2D()->CreateAnimation(L"PUSH_LEFT", m_pTexture, Vec2(0.f, 256.f * 5), Vec2(256.f, 256.f), 19, 0.03f, true);
-	pObj->Animator2D()->CreateAnimation(L"SKILL_LEFT", m_pTexture, Vec2(0.f, 256.f * 6), Vec2(256.f, 256.f), 19, 0.03f, true);
-	pObj->Animator2D()->CreateAnimation(L"LINKEDSKILL_LEFT", m_pTexture, Vec2(0.f, 256.f * 7), Vec2(256.f, 256.f), 17, 0.03f, true);
-	pObj->Animator2D()->CreateAnimation(L"STOP_LEFT", m_pTexture, Vec2(0.f, 256.f * 8), Vec2(256.f, 256.f), 21, 0.03f, true);
-	pObj->Animator2D()->CreateAnimation(L"WALKBOMB_LEFT", m_pTexture, Vec2(0.f, 256.f * 9), Vec2(256.f, 256.f), 17, 0.03f, true);
-	pObj->Animator2D()->CreateAnimation(L"STOPBOMB_LEFT", m_pTexture, Vec2(0.f, 256.f * 10), Vec2(256.f, 256.f), 21, 0.03f, true);
+	pObj->Animator2D()->CreateAnimation(L"WALK_LEFT", m_pTexture, Vec2(0.f, 256.f * 20), Vec2(256.f, 256.f), 10, 0.04f, true);
+	pObj->Animator2D()->CreateAnimation(L"ATTACK_LEFT1", m_pTexture, Vec2(0.f, 256.f * 21), Vec2(256.f, 256.f), 10, 0.04f, true);
+	pObj->Animator2D()->CreateAnimation(L"THROWBOMB_LEFT", m_pTexture, Vec2(0.f, 256.f * 22), Vec2(256.f, 256.f), 10, 0.04f, true);
+	pObj->Animator2D()->CreateAnimation(L"DEAD_LEFT", m_pTexture, Vec2(0.f, 256.f * 23), Vec2(256.f, 256.f), 29, 0.04f, true);  //x
+	pObj->Animator2D()->CreateAnimation(L"RUN_LEFT", m_pTexture, Vec2(0.f, 256.f * 24), Vec2(256.f, 256.f), 10, 0.04f, true);
+	pObj->Animator2D()->CreateAnimation(L"LINKEDSKILL_LEFT", m_pTexture, Vec2(0.f, 256.f * 25), Vec2(256.f, 256.f), 10, 0.04f, true);
+	pObj->Animator2D()->CreateAnimation(L"STOP_LEFT", m_pTexture, Vec2(0.f, 256.f * 26), Vec2(256.f, 256.f), 10, 0.04f, true);
+	pObj->Animator2D()->CreateAnimation(L"SKILL_LEFT", m_pTexture, Vec2(0.f, 256.f * 27), Vec2(256.f, 256.f), 30, 0.04f, true);
+	pObj->Animator2D()->CreateAnimation(L"WALKBOMB_LEFT", m_pTexture, Vec2(0.f, 256.f * 28), Vec2(256.f, 256.f), 10, 0.04f, true);
+	pObj->Animator2D()->CreateAnimation(L"STOPBOMB_LEFT", m_pTexture, Vec2(0.f, 256.f * 29), Vec2(256.f, 256.f), 10, 0.04f, true);
+	pObj->Animator2D()->CreateAnimation(L"PUSH_LEFT", m_pTexture, Vec2(0.f, 256.f * 30), Vec2(256.f, 256.f), 10, 0.04f, true);
 
-	pObj->Animator2D()->CreateAnimation(L"WALK_UP", m_pTexture, Vec2(0.f, 256.f * 11), Vec2(256.f, 256.f), 17, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"ATTACK_UP1", m_pTexture, Vec2(0.f, 256.f * 12), Vec2(256.f, 256.f), 16, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"THROWBOMB_UP", m_pTexture, Vec2(0.f, 256.f * 13), Vec2(256.f, 256.f), 16, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"RUN_UP", m_pTexture, Vec2(0.f, 256.f * 14), Vec2(256.f, 256.f), 11, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"PUSH_UP", m_pTexture, Vec2(0.f, 256.f * 15), Vec2(256.f, 256.f), 19, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"SKILL_UP", m_pTexture, Vec2(0.f, 256.f * 16), Vec2(256.f, 256.f), 18, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"STOP_UP", m_pTexture, Vec2(0.f, 256.f * 17), Vec2(256.f, 256.f), 21, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"WALKBOMB_UP", m_pTexture, Vec2(0.f, 256.f * 18), Vec2(256.f, 256.f), 17, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"STOPBOMB_UP", m_pTexture, Vec2(0.f, 256.f * 19), Vec2(256.f, 256.f), 21, 0.03f);
-
-	pObj->Animator2D()->CreateAnimation(L"WALK_RIGHT", m_pTexture, Vec2(0.f, 256.f * 20), Vec2(256.f, 256.f), 17, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"ATTACK_RIGHT1", m_pTexture, Vec2(0.f, 256.f * 21), Vec2(256.f, 256.f), 16, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"RUN_RIGHT", m_pTexture, Vec2(0.f, 256.f * 22), Vec2(256.f, 256.f), 10, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"THROWBOMB_RIGHT", m_pTexture, Vec2(0.f, 256.f * 23), Vec2(256.f, 256.f), 11, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"DEAD_RIGHT", m_pTexture, Vec2(0.f, 256.f * 24), Vec2(256.f, 256.f), 55, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"PUSH_RIGHT", m_pTexture, Vec2(0.f, 256.f * 25), Vec2(256.f, 256.f), 19, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"SKILL_RIGHT", m_pTexture, Vec2(0.f, 256.f * 26), Vec2(256.f, 256.f), 19, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"LINKEDSKILL_RIGHT", m_pTexture, Vec2(0.f, 256.f * 27), Vec2(256.f, 256.f), 17, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"STOP_RIGHT", m_pTexture, Vec2(0.f, 256.f * 28), Vec2(256.f, 256.f), 21, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"WALKBOMB_RIGHT", m_pTexture, Vec2(0.f, 256.f * 29), Vec2(256.f, 256.f), 17, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"STOPBOMB_RIGHT", m_pTexture, Vec2(0.f, 256.f * 30), Vec2(256.f, 256.f), 21, 0.03f);
-
-
-	pObj->Animator2D()->CreateAnimation(L"WALK_DOWN", m_pTexture, Vec2(0.f, 256.f * 31), Vec2(256.f, 256.f), 17, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"ATTACK_DOWN1", m_pTexture, Vec2(0.f, 256.f * 32), Vec2(256.f, 256.f), 16, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"RUN_DOWN", m_pTexture, Vec2(0.f, 256.f * 33), Vec2(256.f, 256.f), 11, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"SKILL_DOWN", m_pTexture, Vec2(0.f, 256.f * 34), Vec2(256.f, 256.f), 18, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"STOP_DOWN", m_pTexture, Vec2(0.f, 256.f * 35), Vec2(256.f, 256.f), 21, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"WALKBOMB_DOWN", m_pTexture, Vec2(0.f, 256.f * 36), Vec2(256.f, 256.f), 17, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"THROWBOMB_DOWN", m_pTexture, Vec2(0.f, 256.f * 37), Vec2(256.f, 256.f), 16, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"STOPBOMB_DOWN", m_pTexture, Vec2(0.f, 256.f * 38), Vec2(256.f, 256.f), 21, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"PUSH_DOWN", m_pTexture, Vec2(0.f, 256.f * 39), Vec2(256.f, 256.f), 18, 0.03f);
-
-
+	pObj->Animator2D()->CreateAnimation(L"WALK_UP", m_pTexture, Vec2(0.f, 256.f * 31), Vec2(256.f, 256.f), 9, 0.04f);
+	pObj->Animator2D()->CreateAnimation(L"ATTACK_UP1", m_pTexture, Vec2(0.f, 256.f * 32), Vec2(256.f, 256.f), 10, 0.04f);
+	pObj->Animator2D()->CreateAnimation(L"RUN_UP", m_pTexture, Vec2(0.f, 256.f * 33), Vec2(256.f, 256.f), 10, 0.04f);
+	pObj->Animator2D()->CreateAnimation(L"STOP_UP", m_pTexture, Vec2(0.f, 256.f * 34), Vec2(256.f, 256.f), 10, 0.04f);
+	pObj->Animator2D()->CreateAnimation(L"SKILL_UP", m_pTexture, Vec2(0.f, 256.f * 35), Vec2(256.f, 256.f), 26, 0.04f);
+	pObj->Animator2D()->CreateAnimation(L"WALKBOMB_UP", m_pTexture, Vec2(0.f, 256.f * 36), Vec2(256.f, 256.f), 10, 0.04f);
+	pObj->Animator2D()->CreateAnimation(L"THROWBOMB_UP", m_pTexture, Vec2(0.f, 256.f * 37), Vec2(256.f, 256.f), 10, 0.04f);
+	pObj->Animator2D()->CreateAnimation(L"STOPBOMB_UP", m_pTexture, Vec2(0.f, 256.f * 38), Vec2(256.f, 256.f), 10, 0.04f);
 
 	pObj->Animator2D()->PlayAnimation(L"STOP_DOWN", true);
 
 	CPlayerScript* Player = (CPlayerScript*)pObj->GetScript(L"CPlayerScript");
-	Player->SetCharacter(Character::NARI);
+	Player->SetCharacter(Character::GARAM);
 
 	pCurScene->AddObject(pObj, 0);
-
-
-	/*
-	pObj->Animator2D()->CreateAnimation(L"WALK_UP", m_pTexture, Vec2(0.f, 256.f * 0), Vec2(256.f, 256.f), 10, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"ATTACK_UP1", m_pTexture, Vec2(0.f, 256.f * 1), Vec2(256.f, 256.f), 20, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"ATTACK_UP2", m_pTexture, Vec2(0.f, 256.f * 2), Vec2(256.f, 256.f), 10, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"ATTACK_UP3", m_pTexture, Vec2(0.f, 256.f * 3), Vec2(256.f, 256.f), 10, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"ATTACK_UP4", m_pTexture, Vec2(0.f, 256.f * 4), Vec2(256.f, 256.f), 10, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"THROWBOMB_UP", m_pTexture, Vec2(0.f, 256.f * 5), Vec2(256.f, 256.f), 10, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"RUN_UP", m_pTexture, Vec2(0.f, 256.f * 6), Vec2(256.f, 256.f), 10, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"STOP_UP", m_pTexture, Vec2(0.f, 256.f * 7), Vec2(256.f, 256.f), 10, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"WALKBOMB_UP", m_pTexture, Vec2(0.f, 256.f * 8), Vec2(256.f, 256.f), 10, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"STOPBOMB_UP", m_pTexture, Vec2(0.f, 256.f * 9), Vec2(256.f, 256.f), 10, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"PUSH_UP", m_pTexture, Vec2(0.f, 256.f * 10), Vec2(256.f, 256.f), 10, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"SKILL2_UP", m_pTexture, Vec2(0.f, 256.f * 11), Vec2(256.f, 256.f), 15, 0.03f);
-
-	pObj->Animator2D()->CreateAnimation(L"WALK_RIGHT", m_pTexture, Vec2(0.f, 256.f * 12), Vec2(256.f, 256.f), 10, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"ATTACK_RIGHT1", m_pTexture, Vec2(0.f, 256.f * 13), Vec2(256.f, 256.f), 22, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"ATTACK_RIGHT2", m_pTexture, Vec2(0.f, 256.f * 14), Vec2(256.f, 256.f), 10, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"ATTACK_RIGHT3", m_pTexture, Vec2(0.f, 256.f * 15), Vec2(256.f, 256.f), 10, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"ATTACK_RIGHT4", m_pTexture, Vec2(0.f, 256.f * 16), Vec2(256.f, 256.f), 10, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"DEAD_RIGHT", m_pTexture, Vec2(0.f, 256.f * 17), Vec2(256.f, 256.f), 30, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"RUN_RIGHT", m_pTexture, Vec2(0.f, 256.f * 18), Vec2(256.f, 256.f), 10, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"SKILL_RIGHT", m_pTexture, Vec2(0.f, 256.f * 19), Vec2(256.f, 256.f), 15, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"STOP_RIGHT", m_pTexture, Vec2(0.f, 256.f * 20), Vec2(256.f, 256.f), 10, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"WALKBOMB_RIGHT", m_pTexture, Vec2(0.f, 256.f * 21), Vec2(256.f, 256.f), 10, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"THROWBOMB_RIGHT", m_pTexture, Vec2(0.f, 256.f * 22), Vec2(256.f, 256.f), 10, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"STOPBOMB_RIGHT", m_pTexture, Vec2(0.f, 256.f * 23), Vec2(256.f, 256.f), 10, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"PUSH_RIGHT", m_pTexture, Vec2(0.f, 256.f * 24), Vec2(256.f, 256.f), 10, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"SKILL2_RIGHT", m_pTexture, Vec2(0.f, 256.f * 25), Vec2(256.f, 256.f), 15, 0.03f);
-
-	pObj->Animator2D()->CreateAnimation(L"WALK_DOWN", m_pTexture, Vec2(0.f, 256.f * 26), Vec2(256.f, 256.f), 10, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"ATTACK_DOWN1", m_pTexture, Vec2(0.f, 256.f * 27), Vec2(256.f, 256.f), 30, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"ATTACK_DOWN2", m_pTexture, Vec2(0.f, 256.f * 28), Vec2(256.f, 256.f), 10, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"ATTACK_DOWN3", m_pTexture, Vec2(0.f, 256.f * 29), Vec2(256.f, 256.f), 10, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"ATTACK_DOWN4", m_pTexture, Vec2(0.f, 256.f * 30), Vec2(256.f, 256.f), 10, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"THROWBOMB_DOWN", m_pTexture, Vec2(0.f, 256.f * 31), Vec2(256.f, 256.f), 10, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"RUN_DOWN", m_pTexture, Vec2(0.f, 256.f * 32), Vec2(256.f, 256.f), 10, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"STOP_DOWN", m_pTexture, Vec2(0.f, 256.f * 33), Vec2(256.f, 256.f), 10, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"WALKBOMB_DOWN", m_pTexture, Vec2(0.f, 256.f * 34), Vec2(256.f, 256.f), 10, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"STOPBOMB_DOWN", m_pTexture, Vec2(0.f, 256.f * 35), Vec2(256.f, 256.f), 10, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"PUSH_DOWN", m_pTexture, Vec2(0.f, 256.f * 36), Vec2(256.f, 256.f), 10, 0.03f);
-	pObj->Animator2D()->CreateAnimation(L"SKILL2_DOWN", m_pTexture, Vec2(0.f, 256.f * 37), Vec2(256.f, 256.f), 15, 0.03f);
-
-	pObj->Animator2D()->CreateAnimation(L"WALK_LEFT", m_pTexture, Vec2(0.f, 256.f * 38), Vec2(256.f, 256.f), 10, 0.03f,true);
-	pObj->Animator2D()->CreateAnimation(L"ATTACK_LEFT1", m_pTexture, Vec2(0.f, 256.f * 39), Vec2(256.f, 256.f), 22, 0.03f, true);
-	pObj->Animator2D()->CreateAnimation(L"ATTACK_LEFT2", m_pTexture, Vec2(0.f, 256.f * 40), Vec2(256.f, 256.f), 10, 0.03f, true);
-	pObj->Animator2D()->CreateAnimation(L"ATTACK_LEFT3", m_pTexture, Vec2(0.f, 256.f * 41), Vec2(256.f, 256.f), 10, 0.03f, true);
-	pObj->Animator2D()->CreateAnimation(L"ATTACK_LEFT4", m_pTexture, Vec2(0.f, 256.f * 42), Vec2(256.f, 256.f), 10, 0.03f, true);
-	pObj->Animator2D()->CreateAnimation(L"DEAD_LEFT", m_pTexture, Vec2(0.f, 256.f * 43), Vec2(256.f, 256.f), 30, 0.03f, true);
-	pObj->Animator2D()->CreateAnimation(L"RUN_LEFT", m_pTexture, Vec2(0.f, 256.f * 44), Vec2(256.f, 256.f), 10, 0.03f, true);
-	pObj->Animator2D()->CreateAnimation(L"SKILL_LEFT", m_pTexture, Vec2(0.f, 256.f * 45), Vec2(256.f, 256.f), 15, 0.03f, true);
-	pObj->Animator2D()->CreateAnimation(L"STOP_LEFT", m_pTexture, Vec2(0.f, 256.f * 46), Vec2(256.f, 256.f), 10, 0.03f, true);
-	pObj->Animator2D()->CreateAnimation(L"WALKBOMB_LEFT", m_pTexture, Vec2(0.f, 256.f * 47), Vec2(256.f, 256.f), 10, 0.03f, true);
-	pObj->Animator2D()->CreateAnimation(L"THROWBOMB_LEFT", m_pTexture, Vec2(0.f, 256.f * 48), Vec2(256.f, 256.f), 10, 0.03f, true);
-	pObj->Animator2D()->CreateAnimation(L"STOPBOMB_LEFT", m_pTexture, Vec2(0.f, 256.f * 49), Vec2(256.f, 256.f), 10, 0.03f, true);
-	pObj->Animator2D()->CreateAnimation(L"PUSH_LEFT", m_pTexture, Vec2(0.f, 256.f * 50), Vec2(256.f, 256.f), 10, 0.03f, true);
-	pObj->Animator2D()->CreateAnimation(L"SKILL2_LEFT", m_pTexture, Vec2(0.f, 256.f * 51), Vec2(256.f, 256.f), 15, 0.03f, true);
-	*/
-
-	
-
-
-	
-
-	//애니메이션 
-	//CResMgr::GetInst()->Load<CTexture>(L"SKILL", L"texture\\smoke.png");
-	//Ptr<CTexture> pSTex = CResMgr::GetInst()->FindRes<CTexture>(L"SKILL");
-	//CGameObject* pChildObj1 = new CGameObject;
-	//pChildObj1->SetName(L"SKILL");
-	//pChildObj1->AddComponent(new CTransform);
-	//pChildObj1->AddComponent(new CMeshRender);
-	//pChildObj1->AddComponent(new CAnimator2D);
-	//pChildObj1->Transform()->SetLocalScale(Vec3(0.15f, 0.15f, 0.f));
-	//pChildObj1->Transform()->SetLocalPos(Vec3(0.f, -0.2f, 0.f));
-	//pChildObj1->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
-	//pChildObj1->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"SkillMtrl"));/////
-	////pChildObj1->Animator2D()->CreateAnimation(L"skill", pSTex, Vec2(0.f, 0.f), Vec2(497.f, 360.f), 22, 0.02f); //fff
-	//pChildObj1->Animator2D()->CreateAnimation(L"smoke", pSTex, Vec2(0.f, 0.f), Vec2(43.f, 43.f), 9, 0.1f); //smoke
-	//pChildObj1->Animator2D()->PlayAnimation(L"smoke", true);
-	//pCurScene->AddObject(pChildObj1, 10);
-	//CScript::AddChild(pObj, pChildObj1);
-
 
 	// ==========
 	// Background
@@ -685,7 +595,7 @@ void SceneInit()
 	CResMgr::GetInst()->Load<CTexture>(L"Marina", L"texture\\player\\marina\\marina.png");	//마리나
 	CResMgr::GetInst()->Load<CTexture>(L"Nari", L"texture\\player\\nari\\nari.png");		//나리
 	CResMgr::GetInst()->Load<CTexture>(L"Eva", L"texture\\player\\eva\\eva.png");			//에바
-	CResMgr::GetInst()->Load<CTexture>(L"Garam", L"texture\\player\\garam\\garam.png");	//가람
+	CResMgr::GetInst()->Load<CTexture>(L"Garam", L"texture\\player\\garam\\garam.png");	    //가람
 
 
 	// Load Attack Effect
@@ -699,11 +609,17 @@ void SceneInit()
 	//Nari
 	CResMgr::GetInst()->Load<CTexture>(L"Nari_Attack1", L"texture\\player\\nari\\skill\\Attack1.png");
 
+	//Eva 에바
+	CResMgr::GetInst()->Load<CTexture>(L"Eva_Attack1", L"texture\\player\\eva\\skill\\Attack1.png");
+	CResMgr::GetInst()->Load<CTexture>(L"Eva_Attack2", L"texture\\player\\eva\\skill\\Attack2.png");
 
-	//garam
+	//garam 가람
+	CResMgr::GetInst()->Load<CTexture>(L"Garam_Attack1", L"texture\\player\\garam\\skill\\Attack1.png");
+	CResMgr::GetInst()->Load<CTexture>(L"Garam_Attack2", L"texture\\player\\garam\\skill\\Attack11.png");
+	CResMgr::GetInst()->Load<CTexture>(L"Garam_Skill1", L"texture\\player\\garam\\skill\\Skill1.png");
+	
 
-
-	//marina
+	
 
 
 

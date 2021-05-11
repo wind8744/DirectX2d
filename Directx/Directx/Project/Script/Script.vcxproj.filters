@@ -240,5 +240,17 @@
     <ClCompile Include="CTargetToAuto.cpp">
       <Filter>ScriptCode\PlayerScript\SkillScript</Filter>
     </ClCompile>
+    <ClCompile Include="EvaAttack.cpp">
+      <Filter>ScriptCode\PlayerScript</Filter>
+    </ClCompile>
+    <ClCompile Include="GaramAttack.cpp">
+      <Filter>ScriptCode\PlayerScript</Filter>
+    </ClCompile>
+    <ClCompile Include="MarinaAttack.cpp">
+      <Filter>ScriptCode\PlayerScript</Filter>
+    </ClCompile>
+    <ClCompile Include="NariAttack.cpp">
+      <Filter>ScriptCode\PlayerScript</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

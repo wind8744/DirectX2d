@@ -240,7 +240,7 @@ enum class Character
 {
 	NARI,
 	MARINA,
-	garam,
-	idol
+	GARAM,
+	EVA
 
 };

@@ -21,10 +21,11 @@
 #include "CMissileScript.h"
 #include "CPlayerPosSetScript.h"
 #include "CTargetToAuto.h"
+/*
 void CPlayerScript::Attack()
 {
 	
-		if (m_eCurState == PLAYER_STATE::SKILL)
+	if (m_eCurState == PLAYER_STATE::SKILL)
 	{
 		CGameObject* pObject = nullptr;
 		Vec3 Pos = Transform()->GetLocalPos();
@@ -32,182 +33,33 @@ void CPlayerScript::Attack()
 		{
 		case Character::NARI:
 		{
-				if (m_CoolTime <= 0)
-				{
-					m_CoolTime = 8.f;
-
-					
-					//UP
-					pObject = m_Skill->Instantiate();
-
-					Pos.y += 45.f;
-					pObject->Transform()->SetLocalPos(Pos);
-
-					CTargetToAuto* hook = (CTargetToAuto*)pObject->GetScript(L"CTargetToAuto");
-					hook->SetDir(DIR::UP);
-					pObject->Collider2D()->SetvOffsetPos(Vec2(-10.f, 20.f));
-					pObject->Collider2D()->SetvOffsetScale(Vec2(0.5f, 1.f));
-					
-					tEvent even = {};
-					even.eEvent = EVENT_TYPE::CREATE_OBJECT;
-					even.lParam = (DWORD_PTR)pObject;
-					//even.wParam = (DWORD_PTR)GetGameObject()->GetLayerIndex();
-					even.wParam = (DWORD_PTR)30;
-					CEventMgr::GetInst()->AddEvent(even);
-
-					//DOWN
-					pObject = m_Skill->Instantiate();
-					Pos = Transform()->GetLocalPos();
-					Pos.y -= 45.f;
-					Pos.x -= 10.f;
-
-					pObject->Transform()->SetLocalPos(Pos);
-
-					hook = (CTargetToAuto*)pObject->GetScript(L"CTargetToAuto");
-					hook->SetDir(DIR::DOWN);
-					pObject->Collider2D()->SetvOffsetPos(Vec2(10.f, -20.f));
-					pObject->Collider2D()->SetvOffsetScale(Vec2(0.5f, 1.f));
-					
-					even = {};
-					even.eEvent = EVENT_TYPE::CREATE_OBJECT;
-					even.lParam = (DWORD_PTR)pObject;
-					//even.wParam = (DWORD_PTR)GetGameObject()->GetLayerIndex();
-					even.wParam = (DWORD_PTR)30;
-					CEventMgr::GetInst()->AddEvent(even);
-
-					//RIGHT
-					pObject = m_Skill->Instantiate();
-					Pos = Transform()->GetLocalPos();
-					Pos.x += 45.f;
-					Pos.y -= 10.f;
-					pObject->Transform()->SetLocalPos(Pos);
-					hook = (CTargetToAuto*)pObject->GetScript(L"CTargetToAuto");
-					hook->SetDir(DIR::RIGHT);
-					pObject->Collider2D()->SetvOffsetPos(Vec2(20.f, 10.f));
-					pObject->Collider2D()->SetvOffsetScale(Vec2(0.5f, 1.f));
-					
-					
-					even = {};
-					even.eEvent = EVENT_TYPE::CREATE_OBJECT;
-					even.lParam = (DWORD_PTR)pObject;
-					//even.wParam = (DWORD_PTR)GetGameObject()->GetLayerIndex();
-					even.wParam = (DWORD_PTR)30;
-					CEventMgr::GetInst()->AddEvent(even);
-
-
-					//LEFT
-					pObject = m_Skill->Instantiate();
-					Pos = Transform()->GetLocalPos();
-					Pos.x -= 45.f;
-					
-					pObject->Transform()->SetLocalPos(Pos);
-					hook = (CTargetToAuto*)pObject->GetScript(L"CTargetToAuto");
-					hook->SetDir(DIR::LEFT);
-					pObject->Collider2D()->SetvOffsetPos(Vec2(-20.f, -10.f));
-					pObject->Collider2D()->SetvOffsetScale(Vec2(0.5f, 1.f));
-					
-					even = {};
-					even.eEvent = EVENT_TYPE::CREATE_OBJECT;
-					even.lParam = (DWORD_PTR)pObject;
-					//even.wParam = (DWORD_PTR)GetGameObject()->GetLayerIndex();
-					even.wParam = (DWORD_PTR)30;
-					CEventMgr::GetInst()->AddEvent(even);
-
-					//UPLEFT
-					pObject = m_Skill->Instantiate();
-					Pos = Transform()->GetLocalPos();
-					Pos.y +=30.f;
-					Pos.x -= 30.f;
-					pObject->Transform()->SetLocalPos(Pos);
-
-					hook = (CTargetToAuto*)pObject->GetScript(L"CTargetToAuto");
-					hook->SetDir(DIR::UPLEFT);
-					pObject->Collider2D()->SetvOffsetPos(Vec2(-20.f, 10.f));
-					pObject->Collider2D()->SetvOffsetScale(Vec2(0.5f, 1.f));
-					
-					
-					even = {};
-					even.eEvent = EVENT_TYPE::CREATE_OBJECT;
-					even.lParam = (DWORD_PTR)pObject;
-					//even.wParam = (DWORD_PTR)GetGameObject()->GetLayerIndex();
-					even.wParam = (DWORD_PTR)30;
-					CEventMgr::GetInst()->AddEvent(even);
-
-					//UPRIGHT
-					pObject = m_Skill->Instantiate();
-					Pos = Transform()->GetLocalPos();
-					Pos.y += 30.f;
-					Pos.x += 30.f;
-					pObject->Transform()->SetLocalPos(Pos);
-
-					hook = (CTargetToAuto*)pObject->GetScript(L"CTargetToAuto");
-					hook->SetDir(DIR::UPRIGHT);
-					pObject->Collider2D()->SetvOffsetPos(Vec2(10.f, 30.f));
-					pObject->Collider2D()->SetvOffsetScale(Vec2(0.5f, 1.f));
-				
-					even = {};
-					even.eEvent = EVENT_TYPE::CREATE_OBJECT;
-					even.lParam = (DWORD_PTR)pObject;
-					//even.wParam = (DWORD_PTR)GetGameObject()->GetLayerIndex();
-					even.wParam = (DWORD_PTR)30;
-					CEventMgr::GetInst()->AddEvent(even);
-
-					//DOWNLEFT
-					pObject = m_Skill->Instantiate();
-					Pos = Transform()->GetLocalPos();
-					Pos.y -=30.f;
-					Pos.x -=30.f;
-					pObject->Transform()->SetLocalPos(Pos);
-
-					hook = (CTargetToAuto*)pObject->GetScript(L"CTargetToAuto");
-					hook->SetDir(DIR::DOWNLEFT);
-					pObject->Collider2D()->SetvOffsetPos(Vec2(-10.f, -30.f));
-					pObject->Collider2D()->SetvOffsetScale(Vec2(0.5f, 1.f));
-					
-					even = {};
-					even.eEvent = EVENT_TYPE::CREATE_OBJECT;
-					even.lParam = (DWORD_PTR)pObject;
-					//even.wParam = (DWORD_PTR)GetGameObject()->GetLayerIndex();
-					even.wParam = (DWORD_PTR)30;
-					CEventMgr::GetInst()->AddEvent(even);
-
-					//DOWNRIGHT
-					pObject = m_Skill->Instantiate();
-					Pos = Transform()->GetLocalPos();
-					Pos.y -= 30.f;
-					Pos.x += 30.f;
-					pObject->Transform()->SetLocalPos(Pos);
-
-					hook = (CTargetToAuto*)pObject->GetScript(L"CTargetToAuto");
-					hook->SetDir(DIR::DOWNRIGHT);
-					pObject->Collider2D()->SetvOffsetPos(Vec2(25.f, -20.f));
-					pObject->Collider2D()->SetvOffsetScale(Vec2(0.5f, 1.f));
-					
-					even = {};
-					even.eEvent = EVENT_TYPE::CREATE_OBJECT;
-					even.lParam = (DWORD_PTR)pObject;
-					//even.wParam = (DWORD_PTR)GetGameObject()->GetLayerIndex();
-					even.wParam = (DWORD_PTR)30;
-					CEventMgr::GetInst()->AddEvent(even);
-
-
-				}
-
+			
 		}
 			break;
 		case Character::MARINA:
 		{
-			if (m_ISkillNum == 1 )
+			
+		}
+			break;
+		case Character::EVA:
+		{
+
+		}
+			break;
+		case Character::GARAM:
+		{
+			if (m_ISkillNum == 1)
 			{
 				if (m_CoolTime <= 0)
 				{
-					pObject = m_Skill->Instantiate();
+					pObject = m_Skill1->Instantiate();
 					pObject->Transform()->SetLocalPos(Pos);
 					pObject->Transform()->SetLocalScaleX(128.f * 4.f);
 					pObject->Transform()->SetLocalScaleY(128.f * 4.f);
 					pObject->Collider2D()->SetvOffsetScale(Vec2(1.f, 1.f));
 					pObject->Animator2D()->PlayAnimation(L"Skill", false);
 					m_CoolTime = 8.f;
+
 					CPlayerPosSetScript* PlayerPosSetScript = (CPlayerPosSetScript*)pObject->GetScript(L"CPlayerPosSetScript");
 					PlayerPosSetScript->SetTarget(GetGameObject());
 					tEvent even = {};
@@ -216,87 +68,32 @@ void CPlayerScript::Attack()
 					//even.wParam = (DWORD_PTR)GetGameObject()->GetLayerIndex();
 					even.wParam = (DWORD_PTR)30;
 					CEventMgr::GetInst()->AddEvent(even);
-				}
-				
-			}
-			else if (m_ISkillNum == 2)
-			{
-				if(m_CoolTime2 <=0)
-				{ 
-					float n = Animator2D()->GetCurAnim()->GetAnimFrmRatio();
-					if (0.5 < n)
-					{
-						pObject = m_Skill2->Instantiate();
-						
-						switch (m_AnimDir)
-						{
-						case DIR::UP:
-						{
-							Pos.y += 45.f;
-							pObject->Transform()->SetLocalPos(Pos);
 
 
-							CMissileScript* Missile = (CMissileScript*)pObject->GetScript(L"CMissileScript");
-							CTargetToAuto* hook = (CTargetToAuto*)pObject->GetScript(L"CTargetToAuto");
-							hook->SetDir(DIR::UP);
-						}
-						break;
-						case DIR::DOWN:
-						{
-							Pos.y -= 45.f;
-							pObject->Transform()->SetLocalPos(Pos);
-							CMissileScript* Missile = (CMissileScript*)pObject->GetScript(L"CMissileScript");
-							CTargetToAuto* hook = (CTargetToAuto*)pObject->GetScript(L"CTargetToAuto");
-							hook->SetDir(DIR::DOWN);
-							
-						}
-						break;
-						case DIR::RIGHT:
-						{
-							Pos.x += 45.f;
-							pObject->Transform()->SetLocalPos(Pos);
+					//DOWN
+					//pObject = m_Skill2->Instantiate();
+					//Pos = Transform()->GetLocalPos();
+					//Pos.y -= 45.f;
+					//Pos.x -= 10.f;
 
-							CMissileScript* Missile = (CMissileScript*)pObject->GetScript(L"CMissileScript");
-							CTargetToAuto* hook = (CTargetToAuto*)pObject->GetScript(L"CTargetToAuto");
-							hook->SetDir(DIR::RIGHT);
-							
-						}
-						break;
-						case DIR::LEFT:
-						{
-							Pos.x -= 45.f;
-							pObject->Transform()->SetLocalPos(Pos);
+					//pObject->Transform()->SetLocalPos(Pos);
 
-							
-							CTargetToAuto* hook = (CTargetToAuto*)pObject->GetScript(L"CTargetToAuto");
-							hook->SetDir(DIR::LEFT);
-							
-						}
-						break;
-						}
-						CMissileScript* Missile = (CMissileScript*)pObject->GetScript(L"CMissileScript");
-						Missile->SetTime(0.5f);
-						tEvent even = {};
-						even.eEvent = EVENT_TYPE::CREATE_OBJECT;
-						even.lParam = (DWORD_PTR)pObject;
-						//even.wParam = (DWORD_PTR)GetGameObject()->GetLayerIndex();
-						even.wParam = (DWORD_PTR)30;
-						CEventMgr::GetInst()->AddEvent(even);
-						m_CoolTime2 = 8.f;
-					}
+					//CTargetToAuto* hook = (CTargetToAuto*)pObject->GetScript(L"CTargetToAuto");
+					//hook->SetDir(DIR::DOWN);
+					//pObject->Collider2D()->SetvOffsetPos(Vec2(10.f, -20.f));
+					//pObject->Collider2D()->SetvOffsetScale(Vec2(0.5f, 1.f));
+
+					//even = {};
+					//even.eEvent = EVENT_TYPE::CREATE_OBJECT;
+					//even.lParam = (DWORD_PTR)pObject;
+					////even.wParam = (DWORD_PTR)GetGameObject()->GetLayerIndex();
+					//even.wParam = (DWORD_PTR)30;
+					//CEventMgr::GetInst()->AddEvent(even);
+
 
 				}
+
 			}
-		}
-			break;
-		case Character::garam:
-		{
-
-		}
-			break;
-		case Character::idol:
-		{
-
 		}
 			break;
 		}
@@ -317,66 +114,7 @@ void CPlayerScript::Attack()
 		{
 		case Character::NARI:
 		{	
-			srand((unsigned int)time(NULL));
-			int n = rand() % 10;
-			if (n < 3)
-				pObject = m_Attack2->Instantiate();
-			else
-				pObject = m_Attack1->Instantiate();
-			switch (m_AnimDir)
-			{
-			case DIR::UP:
-			{
-				Pos.y += 45.f;
-				pObject->Transform()->SetLocalPos(Pos);
-				
-				CTargetToAuto* hook = (CTargetToAuto*)pObject->GetScript(L"CTargetToAuto");
-				hook->SetDir(DIR::UP);
-				pObject->Collider2D()->SetvOffsetPos(Vec2(-10.f,20.f));
-				pObject->Collider2D()->SetvOffsetScale(Vec2(0.5f, 1.f));
-				CMissileScript* Missile = (CMissileScript*)pObject->GetScript(L"CMissileScript");
-				Missile->SetTime(2.f);
-			}
-			break;
-			case DIR::DOWN:
-			{
-				Pos.y -= 45.f;
-				pObject->Transform()->SetLocalPos(Pos);
 			
-				CTargetToAuto* hook = (CTargetToAuto*)pObject->GetScript(L"CTargetToAuto");
-				hook->SetDir(DIR::DOWN);
-				pObject->Collider2D()->SetvOffsetPos(Vec2(10.f, -20.f));
-				pObject->Collider2D()->SetvOffsetScale(Vec2(0.5f, 1.f));
-				CMissileScript* Missile = (CMissileScript*)pObject->GetScript(L"CMissileScript");
-				Missile->SetTime(2.f);
-			}
-			break;
-			case DIR::RIGHT:
-			{
-				Pos.x += 45.f;
-				pObject->Transform()->SetLocalPos(Pos);
-				CTargetToAuto* hook = (CTargetToAuto*)pObject->GetScript(L"CTargetToAuto");
-				hook->SetDir(DIR::RIGHT);
-				pObject->Collider2D()->SetvOffsetPos(Vec2(20.f, 10.f));
-				pObject->Collider2D()->SetvOffsetScale(Vec2(0.5f, 1.f));
-				CMissileScript* Missile = (CMissileScript*)pObject->GetScript(L"CMissileScript");
-				Missile->SetTime(2.f);
-			}
-			break;
-			case DIR::LEFT:
-			{
-				Pos.x -= 45.f;
-				Pos.y += 10.f;
-				pObject->Transform()->SetLocalPos(Pos);
-				CTargetToAuto* hook = (CTargetToAuto*)pObject->GetScript(L"CTargetToAuto");
-				hook->SetDir(DIR::LEFT);
-				pObject->Collider2D()->SetvOffsetPos(Vec2(-20.f, -10.f));
-				pObject->Collider2D()->SetvOffsetScale(Vec2(0.5f, 1.f));
-				CMissileScript* Missile = (CMissileScript*)pObject->GetScript(L"CMissileScript");
-				Missile->SetTime(2.f);
-			}
-			break;
-			}
 		}
 		break;
 
@@ -622,15 +360,17 @@ void CPlayerScript::Attack()
 		}
 		break;
 
-		case Character::garam:
+		case Character::EVA:
 		{
 
+			
 		}
 		break;
 
-		case Character::idol:
+		case Character::GARAM:
 		{
-
+			
+		
 		}
 		break;
 		}
@@ -647,3 +387,4 @@ void CPlayerScript::Attack()
 		m_PreCombo = m_CurrentCombo;
 	}
 }
+*/

@@ -265,7 +265,7 @@ void CResMgr::CreateDefaultShader()
 	pShader->CreatePixelShader(L"shader\\std2d.fx", "PS_Std2D_SKILL");
 	// OM
 	pShader->SetBlendType(BLEND_TYPE::ALPHA_ONE);
-	//pShader->SetDepthStencilType();
+	pShader->SetDSType(DS_TYPE::NO_TEST);
 
 	// Shader Param	
 	//pShader->AddShaderParam(SHADER_PARAM::TEX_1, L"Output Texture");
@@ -477,6 +477,11 @@ void CResMgr::CreateDefaultMaterial()
 	pMtrl->SetShader(FindRes<CGraphicsShader>(L"Std2DShader"));
 	pMtrl->m_bDefault = true;
 	AddRes<CMaterial>(L"Marina_SkillMtrl", pMtrl);
+
+	pMtrl = new CMaterial;
+	pMtrl->SetShader(FindRes<CGraphicsShader>(L"Std2DShader_SKILL"));
+	pMtrl->m_bDefault = true;
+	AddRes<CMaterial>(L"Garam_AttackMtrl", pMtrl);
 }
 
 #include "CGameObject.h"

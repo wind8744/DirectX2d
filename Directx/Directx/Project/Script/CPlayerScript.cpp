@@ -42,7 +42,7 @@ CPlayerScript::CPlayerScript()
 	, m_Attack2(nullptr)
 	, m_Attack3(nullptr)
 	, m_Attack4(nullptr)
-	, m_Skill(nullptr)
+	, m_Skill1(nullptr)
 	, m_Skill2(nullptr)
 	, m_LinkSkill(nullptr)
 	, m_IsAttacking(false)
@@ -80,20 +80,34 @@ void CPlayerScript::awake()
 		m_MaxCombo = 1;
 		m_Attack1 = CResMgr::GetInst()->FindRes<CPrefab>(L"NariAttack1");
 		m_Attack2 = CResMgr::GetInst()->FindRes<CPrefab>(L"NariAttack2");
-		m_Skill = CResMgr::GetInst()->FindRes<CPrefab>(L"NariSkill1");
+		m_Skill1 = CResMgr::GetInst()->FindRes<CPrefab>(L"NariSkill1");
 	}
 		break;
 	case Character::MARINA:
 	{
 		m_Attack1 = CResMgr::GetInst()->FindRes<CPrefab>(L"MarinaAttack");
-		m_Skill = CResMgr::GetInst()->FindRes<CPrefab>(L"MarinaSkill1");
+		m_Skill1 = CResMgr::GetInst()->FindRes<CPrefab>(L"MarinaSkill1");
 		m_Skill2 = CResMgr::GetInst()->FindRes<CPrefab>(L"MarinaSkill2");
 		m_MaxCombo = 4;
 	}
 		break;
-	case Character::garam:
+	case Character::EVA:
+	{
+		m_Attack1 = CResMgr::GetInst()->FindRes<CPrefab>(L"EvaAttack1");
+		m_Attack2 = CResMgr::GetInst()->FindRes<CPrefab>(L"EvaAttack2");
+		//m_Attack3 = CResMgr::GetInst()->FindRes<CPrefab>(L"EvaAttack3");
+		//m_Skill = CResMgr::GetInst()->FindRes<CPrefab>(L"EvaSkill1");
+		m_MaxCombo = 3;
+	}
 		break;
-	case Character::idol:
+	case Character::GARAM:
+	{
+		m_Attack1 = CResMgr::GetInst()->FindRes<CPrefab>(L"GaramAttack1");
+		m_Attack2 = CResMgr::GetInst()->FindRes<CPrefab>(L"GaramAttack2");
+		m_Skill1 = CResMgr::GetInst()->FindRes<CPrefab>(L"GaramSkill1"); 
+		//m_Skill2 = CResMgr::GetInst()->FindRes<CPrefab>(L"GaramSkill2");
+		m_MaxCombo = 1;
+	}
 		break;
 	}
 	
@@ -113,7 +127,25 @@ void CPlayerScript::update()
 	PlayerAction();
 
 	
-	Attack();
+	
+	
+	switch (m_Character)
+	{
+	case Character::NARI:
+		NariAttack();
+		break;
+	case Character::MARINA:
+		MarinaAttack();
+		break;
+	case Character::GARAM:
+		GaramAttack();
+		break;
+	case Character::EVA:
+		EvaAttack();
+		break;
+	}
+
+	
 
 	if (m_CoolTime > 0) //쿨이 있으면 감소
 	{
@@ -433,7 +465,7 @@ void CPlayerScript::CheckState()
 	//점프 상태  : 점프 발판 위
 	else if (m_eCurState == PLAYER_STATE::JUMP && m_bIsOnCol == false)
 	{
-	Collider2D()->SetvOffsetScale(Vec2(0.f, 0.f));
+		Collider2D()->SetvOffsetScale(Vec2(0.f, 0.f));
 		// * 플레이어 충돌체 제거 추가 *
 		if (m_eCurDir == DIR::DOWN) vPos.y -= m_fJumpSpeed * fDT;
 		
@@ -720,9 +752,10 @@ void CPlayerScript::PlayAnimation()
 				case Character::MARINA:
 					Animator2D()->PlayAnimation(L"SKILL_RIGHT", false);
 					break;
-				case Character::garam:
+				case Character::EVA:
 					break;
-				case Character::idol:
+				case Character::GARAM:
+					Animator2D()->PlayAnimation(L"SKILL_UP", false);
 					break;
 				default:
 					break;
@@ -745,9 +778,10 @@ void CPlayerScript::PlayAnimation()
 				case Character::MARINA:
 					Animator2D()->PlayAnimation(L"SKILL_RIGHT", false);
 					break;
-				case Character::garam:
+				case Character::EVA:
 					break;
-				case Character::idol:
+				case Character::GARAM:
+					Animator2D()->PlayAnimation(L"SKILL_DOWN", false);
 					break;
 				default:
 					break;
@@ -770,9 +804,10 @@ void CPlayerScript::PlayAnimation()
 				case Character::MARINA:
 					Animator2D()->PlayAnimation(L"SKILL_LEFT", false);
 					break;
-				case Character::garam:
+				case Character::EVA:
 					break;
-				case Character::idol:
+				case Character::GARAM:
+					Animator2D()->PlayAnimation(L"SKILL_LEFT", false);
 					break;
 				default:
 					break;
@@ -796,9 +831,10 @@ void CPlayerScript::PlayAnimation()
 				case Character::MARINA:
 					Animator2D()->PlayAnimation(L"SKILL_RIGHT", false);
 					break;
-				case Character::garam:
+				case Character::EVA:
 					break;
-				case Character::idol:
+				case Character::GARAM:
+					Animator2D()->PlayAnimation(L"SKILL_RIGHT", false);
 					break;
 				default:
 					break;
@@ -1010,12 +1046,6 @@ void CPlayerScript::PlayerAction()
 
 	Transform()->SetLocalPos(vPos);
 }
-
-
-
-
-
-
 
 
 void CPlayerScript::Attacking()

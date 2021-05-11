@@ -246,6 +246,10 @@ call CodeGen.exe</Command>
     <ClCompile Include="CStoneDoorScript.cpp" />
     <ClCompile Include="CTargetToAuto.cpp" />
     <ClCompile Include="CTileCollsion.cpp" />
+    <ClCompile Include="EvaAttack.cpp" />
+    <ClCompile Include="GaramAttack.cpp" />
+    <ClCompile Include="MarinaAttack.cpp" />
+    <ClCompile Include="NariAttack.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

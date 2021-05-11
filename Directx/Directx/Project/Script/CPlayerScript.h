@@ -52,7 +52,7 @@ private:
     Ptr<CPrefab>            m_Attack3;  //평타3
     Ptr<CPrefab>            m_Attack4;  //평타4
   
-    Ptr<CPrefab>            m_Skill;  //스킬
+    Ptr<CPrefab>            m_Skill1;  //스킬
     Ptr<CPrefab>            m_Skill2;  //특수 스킬
 
     Ptr<CPrefab>            m_LinkSkill; //연계기
@@ -90,13 +90,13 @@ public:
     void SetAttack(CPrefab* _Attack1, CPrefab* _Attack2 = nullptr, CPrefab* _Attack3 = nullptr, CPrefab* _Attack4 = nullptr) {
         m_Attack1 = _Attack1;
         m_Attack2 = _Attack2;
-        m_Attack3 = _Attack3;
+        m_Attack3 = _Attack3;  
         m_Attack4 = _Attack4;
     }
     void SetSkill(CPrefab* _Skill, CPrefab* _Skill2 = nullptr)
     {
-        m_Skill = _Skill;
-        m_Skill = _Skill2;
+        m_Skill1 = _Skill;
+        m_Skill1 = _Skill2;
     }
     void SetLinkSkill(CPrefab* _LinkSkill)
     {
@@ -119,6 +119,12 @@ private:
    
     void PlayerAction();
     void Attack();
+
+    void EvaAttack();
+    void GaramAttack();
+    void MarinaAttack();
+    void NariAttack();
+
 
     void Attacking();
     void AttackStartComboState();
